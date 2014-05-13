@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="BorderPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="700.0" prefWidth="1245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.MainLayoutController">
+  <bottom>
+    <AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
+      <children>
+        <Label id="dateTimeLabel" layoutX="49.0" layoutY="11.0" text="STATUS BAR" />
+      </children>
+    </AnchorPane>
+  </bottom>
+  <left>
+    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="241.0" rotate="0.0" BorderPane.alignment="CENTER">
+      <children>
+        <VBox id="VBox" alignment="CENTER_LEFT" depthTest="INHERIT" fillWidth="true" spacing="15.0" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="29.0">
+          <children>
+            <HBox id="HBox" fx:id="dashboardHBox" alignment="CENTER" onMouseClicked="#dashboardHBoxOnMouseClicked" onMouseEntered="#dashboardHBoxOnMouseEntered" onMouseExited="#dashboardHBoxOnMouseExited" spacing="10.0">
+              <children>
+                <ImageView id="homeButton" fx:id="dashboardImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" x="10.0">
+                  <image>
+                    <Image url="@../gallery/image/homeButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="homeButtonLabel" text="Dashboard" textAlignment="LEFT" wrapText="false" />
+              </children>
+            </HBox>
+            <HBox id="HBox" fx:id="fieldsHBox" alignment="CENTER_LEFT" onMouseClicked="#fieldsHBoxOnMouseClicked" onMouseEntered="#fieldsHBoxOnMouseEntered" onMouseExited="#fieldsHBoxOnMouseExited" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="fieldsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../gallery/image/fieldButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="fieldButtonLabel" text="Fields" />
+              </children>
+            </HBox>
+            <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#usersHBoxOnMouseClicked" onMouseEntered="#usersHBoxOnMouseEntered" onMouseExited="#usersHBoxOnMouseExited" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="usersImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../gallery/image/userButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="userButtonLabel" text="Users" />
+              </children>
+            </HBox>
+            <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#groupsHBoxOnMouseClicked" onMouseEntered="#groupsHBoxOnMouseEntered" onMouseExited="#groupsHBoxOnMouseExited" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="groupsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../gallery/image/courseGroupButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="groupButtonLabel" text="Groups" />
+              </children>
+            </HBox>
+            <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#classHBoxOnMouseClicked" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="classImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../gallery/image/classButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="classButtonLabel" text="Class" />
+              </children>
+            </HBox>
+            <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#scheduleHBoxOnMouseClicked" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="scheduleImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../gallery/image/scheduleButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="scheduleButtonLabel" text="Schedule" />
+              </children>
+            </HBox>
+            <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#scheduleHBoxOnMouseClicked" spacing="10.0">
+              <children>
+                <ImageView id="fieldButton" fx:id="reportsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+                  <image>
+                    <Image url="file:/C:/Users/Ali/Documents/NetBeansProjects/ClassChin/src/classchin/gallery/image/reportButton.png" preserveRatio="true" smooth="true" />
+                  </image>
+                </ImageView>
+                <Label id="scheduleButtonLabel" text="Reports" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+      <BorderPane.margin>
+        <Insets />
+      </BorderPane.margin>
+    </AnchorPane>
+  </left>
+  <top>
+    <AnchorPane prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
+      <children>
+        <Label id="dateTimeLabel" layoutX="43.0" layoutY="13.0" text="DATE &amp; TIME" />
+      </children>
+    </AnchorPane>
+  </top>
+</BorderPane>
