@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="jclasschin.entity.Course" table="course" catalog="class_chin_db">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="coursetype" class="jclasschin.entity.Coursetype" fetch="select">
+            <column name="course_type_id" />
+        </many-to-one>
+        <many-to-one name="field" class="jclasschin.entity.Field" fetch="select">
+            <column name="field_id" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <set name="cctms" table="cctm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Cctm" />
+        </set>
+    </class>
+</hibernate-mapping>

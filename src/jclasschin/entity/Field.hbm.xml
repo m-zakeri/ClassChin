@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="jclasschin.entity.Field" table="field" catalog="class_chin_db">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" unique="true" />
+        </property>
+        <set name="statuses" table="status" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="field_id" not-null="true" />
+            </key>
+            <one-to-many class="jclasschin.entity.Status" />
+        </set>
+        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="field_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Person" />
+        </set>
+        <set name="dedications" table="dedication" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="field_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Dedication" />
+        </set>
+        <set name="courses" table="course" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="field_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Course" />
+        </set>
+    </class>
+</hibernate-mapping>

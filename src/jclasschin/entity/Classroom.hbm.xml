@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="jclasschin.entity.Classroom" table="classroom" catalog="class_chin_db">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="floor" type="string">
+            <column name="floor" length="3" />
+        </property>
+        <property name="capacity" type="java.lang.Integer">
+            <column name="capacity" />
+        </property>
+        <property name="dataProjector" type="java.lang.Boolean">
+            <column name="data_projector" />
+        </property>
+        <property name="blackboard" type="java.lang.Boolean">
+            <column name="blackboard" />
+        </property>
+        <property name="whiteboard" type="java.lang.Boolean">
+            <column name="whiteboard" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <set name="dedications" table="dedication" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="classroom_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Dedication" />
+        </set>
+    </class>
+</hibernate-mapping>

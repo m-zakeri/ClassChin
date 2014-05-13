@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/class_chin_db?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="jclasschin/entity/Term.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Schedule.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Course.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Weekday.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Job.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Status.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Mail.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Field.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Person.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Dedication.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Period.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Classroom.hbm.xml"/>
+    <mapping resource="jclasschin/entity/User.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Cctm.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Coursetype.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

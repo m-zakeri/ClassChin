@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="class_chin_db"/>
+  <table-filter match-name="status"/>
+  <table-filter match-name="schedule"/>
+  <table-filter match-name="person"/>
+  <table-filter match-name="term"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="coursetype"/>
+  <table-filter match-name="course"/>
+  <table-filter match-name="field"/>
+  <table-filter match-name="cctm"/>
+  <table-filter match-name="weekday"/>
+  <table-filter match-name="dedication"/>
+  <table-filter match-name="job"/>
+  <table-filter match-name="classroom"/>
+  <table-filter match-name="period"/>
+  <table-filter match-name="mail"/>
+</hibernate-reverse-engineering>

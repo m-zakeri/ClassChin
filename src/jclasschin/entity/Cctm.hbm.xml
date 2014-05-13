@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="jclasschin.entity.Cctm" table="cctm" catalog="class_chin_db">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="weekday" class="jclasschin.entity.Weekday" fetch="select">
+            <column name="weekday_id" />
+        </many-to-one>
+        <many-to-one name="person" class="jclasschin.entity.Person" fetch="select">
+            <column name="person_id" />
+        </many-to-one>
+        <many-to-one name="course" class="jclasschin.entity.Course" fetch="select">
+            <column name="course_id" />
+        </many-to-one>
+        <many-to-one name="period" class="jclasschin.entity.Period" fetch="select">
+            <column name="period_id" />
+        </many-to-one>
+        <many-to-one name="dedication" class="jclasschin.entity.Dedication" fetch="select">
+            <column name="dedication_id" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

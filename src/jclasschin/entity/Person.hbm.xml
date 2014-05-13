@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="jclasschin.entity.Person" table="person" catalog="class_chin_db">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="field" class="jclasschin.entity.Field" fetch="select">
+            <column name="field_id" />
+        </many-to-one>
+        <many-to-one name="job" class="jclasschin.entity.Job" fetch="select">
+            <column name="job_id" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="45" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="55" not-null="true" />
+        </property>
+        <property name="sex" type="boolean">
+            <column name="sex" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="11" />
+        </property>
+        <set name="mailsForReceiverPersonId" table="mail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="receiver_person_id" not-null="true" />
+            </key>
+            <one-to-many class="jclasschin.entity.Mail" />
+        </set>
+        <set name="mailsForSenderPersonId" table="mail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sender_person_id" not-null="true" />
+            </key>
+            <one-to-many class="jclasschin.entity.Mail" />
+        </set>
+        <set name="cctms" table="cctm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" />
+            </key>
+            <one-to-many class="jclasschin.entity.Cctm" />
+        </set>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" unique="true" />
+            </key>
+            <one-to-many class="jclasschin.entity.User" />
+        </set>
+    </class>
+</hibernate-mapping>
