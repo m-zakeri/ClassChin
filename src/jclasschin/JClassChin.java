@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *   ClassChin Main Class. 
+ *   First Create by Ali @ 1392-02-20
+ *    Last Edit by Morteza, Add some Comment! and Fix Import!
  */
 package jclasschin;
 
@@ -12,13 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import jclasschin.controller.MainLayoutController;
 
 /**
  *
  * @author Ali
  */
-public class JClassChin extends Application {
+public class JClassChin extends Application
+{
 
     private static Stage mainStage;
     private static BorderPane mainLayout;
@@ -27,20 +27,22 @@ public class JClassChin extends Application {
     /**
      * @return the mainStage
      */
-    public static Stage getMainStage() {
+    public static Stage getMainStage()
+    {
         return mainStage;
     }
 
     /**
      * @return the mainLayout
      */
-    public static BorderPane getMainLayout() {
+    public static BorderPane getMainLayout()
+    {
         return mainLayout;
     }
-    
 
     @Override
-    public void start(Stage mainStage) throws IOException {
+    public void start(Stage mainStage) throws IOException
+    {
 
         JClassChin.mainStage = mainStage;
 
@@ -50,18 +52,18 @@ public class JClassChin extends Application {
         mainLayout = (BorderPane) mainLayoutLoader.load();
         Scene mainScene = new Scene(getMainLayout());
         mainStage.setScene(mainScene);
-        
+
 //        FXMLLoader dashboardLayoutLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
 //        dashboardLayout=(AnchorPane) dashboardLayoutLoader.load();
 //        mainLayout.setCenter(dashboardLayout);
-
         mainStage.show();
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 
