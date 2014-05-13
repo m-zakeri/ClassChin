@@ -8,7 +8,10 @@ package jclasschin.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
@@ -16,6 +19,12 @@ import javafx.fxml.Initializable;
  * @author Ali
  */
 public class UsersLayoutController implements Initializable {
+    @FXML
+    private HBox newHBox;
+    @FXML
+    private HBox editHBox;
+    @FXML
+    private HBox deleteHBox;
 
     /**
      * Initializes the controller class.
@@ -24,5 +33,20 @@ public class UsersLayoutController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void newHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void editHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void deleteHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
     
 }
