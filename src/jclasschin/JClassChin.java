@@ -1,7 +1,8 @@
 /*
  *   ClassChin Main Class. 
  *   First Create by Ali @ 1392-02-20
- *    Last Edit by Morteza, Add some Comment! and Fix Import!
+ *   Last Edit by Morteza, Add some Comment! and Fix Import!
+*    Ready to Connect to DataBase! 
  */
 package jclasschin;
 
