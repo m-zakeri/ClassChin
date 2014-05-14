@@ -39,6 +39,8 @@ public class DashboardLayoutController implements Initializable {
     private final Stage inboxNewMailDialogStage;
     private DashboardInboxNewMailDialogController inboxNewMailDialogController;
     
+    private Mail mail;
+    
     private ObservableList<Mail> mailList = FXCollections.observableArrayList();
     
     
@@ -89,7 +91,7 @@ public class DashboardLayoutController implements Initializable {
            inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
            inboxNewMailDialogStage.close();
            
-           Mail mail=new Mail();
+           mail=new Mail();
            mail.setType("New Class Needed");
            mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
            mailList.add(mail);
@@ -129,6 +131,9 @@ public class DashboardLayoutController implements Initializable {
         inboxNewMailDialogController=inboxNewMailDialogLoader.getController();
         inboxNewMailDialogController.initialize(null, null);
         inboxNewMailDialogStage.showAndWait();
+        
+        mailList.add(inboxNewMailDialogController.getMail());
+        
         
     }
 

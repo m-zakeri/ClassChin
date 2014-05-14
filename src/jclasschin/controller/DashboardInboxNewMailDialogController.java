@@ -28,7 +28,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
@@ -36,8 +38,13 @@ import javafx.scene.control.TextField;
  * @author Ali
  */
 public class DashboardInboxNewMailDialogController implements Initializable {
+    
+    private Mail mail;
+    
     @FXML
     private TextField subjectTextField;
+    @FXML
+    private TextArea messegeTextArea;
 
     public DashboardInboxNewMailDialogController(){
     }
@@ -47,10 +54,17 @@ public class DashboardInboxNewMailDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          subjectTextField.setText("");
+         messegeTextArea.setText("");
 
 
         // TODO
     }    
     
+    public Mail getMail(){
+        mail=new Mail();
+        mail.setType(subjectTextField.getText());
+        mail.setText(messegeTextArea.getText());
+        return mail;
+    }
     
 }
