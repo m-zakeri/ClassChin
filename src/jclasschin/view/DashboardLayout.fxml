@@ -14,13 +14,13 @@
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
-                <TableView prefHeight="200.0" prefWidth="200.0">
+                <TableView fx:id="inboxTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
                     <TableColumn prefWidth="75.0" text="#" />
                     <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="From" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Subject" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Subject" fx:id="subjectTableColumn" />
                     <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="Date" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Messege" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Messege" fx:id="messegeTableColumn" />
                   </columns>
                 </TableView>
               </center>

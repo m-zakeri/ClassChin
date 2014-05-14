@@ -40,14 +40,15 @@ public class DashboardInboxNewMailDialogController implements Initializable {
     private TextField subjectTextField;
 
     public DashboardInboxNewMailDialogController(){
-        //subjectTextField.setText("");
-
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         subjectTextField.setText("");
+
+
         // TODO
     }    
     

@@ -7,13 +7,16 @@ package jclasschin.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -21,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
+import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
@@ -28,11 +32,15 @@ import jclasschin.JClassChin;
  * @author Ali
  */
 public class DashboardLayoutController implements Initializable {
+    
     private final FXMLLoader inboxNewMailDialogLoader;
     private final AnchorPane inboxNewMailDialogLayout;
     private final Scene inboxNewMailDialogScene;
     private final Stage inboxNewMailDialogStage;
     private DashboardInboxNewMailDialogController inboxNewMailDialogController;
+    
+    private ObservableList<Mail> mailList = FXCollections.observableArrayList();
+    
     
     
     
@@ -61,6 +69,12 @@ public class DashboardLayoutController implements Initializable {
     private HBox deleteTermHBox;
     @FXML
     private ComboBox<?> currentTermComboBox;
+    @FXML
+    private TableView<Mail> inboxTableView;
+    @FXML
+    private TableColumn<Mail, String> subjectTableColumn;
+    @FXML
+    private TableColumn<Mail, String> messegeTableColumn;
 
     public DashboardLayoutController() throws IOException{
            inboxNewMailDialogLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
@@ -74,6 +88,14 @@ public class DashboardLayoutController implements Initializable {
            inboxNewMailDialogStage.setResizable(false);
            inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
            inboxNewMailDialogStage.close();
+           
+           Mail mail=new Mail();
+           mail.setType("New Class Needed");
+           mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
+           mailList.add(mail);
+           
+           
+           
 
     }
     
@@ -81,7 +103,12 @@ public class DashboardLayoutController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {     
+    public void initialize(URL url, ResourceBundle rb) {    
+        subjectTableColumn.setCellValueFactory(new PropertyValueFactory<Mail,String>("type"));
+        messegeTableColumn.setCellValueFactory(new PropertyValueFactory<Mail,String>("text"));
+
+        
+        inboxTableView.setItems(mailList);
     }    
 
     @FXML
@@ -100,6 +127,7 @@ public class DashboardLayoutController implements Initializable {
     {
         inboxNewMailDialogController=new DashboardInboxNewMailDialogController();
         inboxNewMailDialogController=inboxNewMailDialogLoader.getController();
+        inboxNewMailDialogController.initialize(null, null);
         inboxNewMailDialogStage.showAndWait();
         
     }
