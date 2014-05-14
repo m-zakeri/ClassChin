@@ -4,14 +4,23 @@
 
 package jclasschin.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import jclasschin.JClassChin;
 
 /**
  * FXML Controller class
@@ -19,6 +28,15 @@ import javafx.scene.layout.HBox;
  * @author Ali
  */
 public class DashboardLayoutController implements Initializable {
+    private final FXMLLoader inboxNewMailDialogLoader;
+    private final AnchorPane inboxNewMailDialogLayout;
+    private final Scene inboxNewMailDialogScene;
+    private final Stage inboxNewMailDialogStage;
+    private DashboardInboxNewMailDialogController inboxNewMailDialogController;
+    
+    
+    
+    
     @FXML
     private AnchorPane dashboardAnchorPane;
     @FXML
@@ -44,17 +62,32 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     private ComboBox<?> currentTermComboBox;
 
+    public DashboardLayoutController() throws IOException{
+           inboxNewMailDialogLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
+           inboxNewMailDialogLayout=(AnchorPane)inboxNewMailDialogLoader.load();
+           inboxNewMailDialogScene=new Scene(inboxNewMailDialogLayout);
+           inboxNewMailDialogStage=new Stage();
+           inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
+           inboxNewMailDialogStage.setTitle("New Mail");
+           inboxNewMailDialogStage.initModality(Modality.WINDOW_MODAL);
+           inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
+           inboxNewMailDialogStage.setResizable(false);
+           inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
+           inboxNewMailDialogStage.close();
+
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) {     
     }    
 
     @FXML
     private void newHBoxOnMouseExited(MouseEvent event)
     {
+        
     }
 
     @FXML
@@ -65,6 +98,10 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
+        inboxNewMailDialogController=new DashboardInboxNewMailDialogController();
+        inboxNewMailDialogController=inboxNewMailDialogLoader.getController();
+        inboxNewMailDialogStage.showAndWait();
+        
     }
 
     @FXML
