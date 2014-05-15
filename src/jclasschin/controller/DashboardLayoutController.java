@@ -80,8 +80,11 @@ public class DashboardLayoutController implements Initializable {
 
     public DashboardLayoutController() throws IOException{
            inboxNewMailDialogLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
+          
            inboxNewMailDialogLayout=(AnchorPane)inboxNewMailDialogLoader.load();
+          
            inboxNewMailDialogScene=new Scene(inboxNewMailDialogLayout);
+          
            inboxNewMailDialogStage=new Stage();
            inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
            inboxNewMailDialogStage.setTitle("New Mail");
