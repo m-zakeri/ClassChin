@@ -47,6 +47,7 @@ public class FieldsLayoutController implements Initializable {
     @FXML
     private void deleteHBoxOnMouseClicked(MouseEvent event)
     {
+        
     }
     
 }
