@@ -19,11 +19,11 @@
     </VBox>
     <Label layoutX="14.0" layoutY="10.0" text="New Field" />
     <Separator prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0" />
-    <HBox id="HBox" alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="121.0">
+    <HBox id="HBox" alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="127.0">
       <children>
-        <HBox id="HBox" fx:id="okHBox" alignment="CENTER" onMouseClicked="#okHBoxOnMouseClicked" spacing="10.0">
+        <HBox id="HBox" fx:id="okHBox" alignment="CENTER" onMouseClicked="#okHBoxOnMouseClicked" onMouseEntered="#okHBoxOnMouseEntered" onMouseExited="#okHBoxOnMouseExited" spacing="10.0">
           <children>
-            <ImageView id="okButton" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+            <ImageView id="okButton" fx:id="okImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
               <image>
                 <Image url="@../gallery/image/okButton.png" preserveRatio="true" smooth="true" />
               </image>
@@ -31,9 +31,9 @@
             <Label text="Ok" />
           </children>
         </HBox>
-        <HBox id="HBox" fx:id="cancelHBox" alignment="CENTER" onMouseClicked="#cancelHBoxOnMouseClicked" spacing="10.0">
+        <HBox id="HBox" fx:id="cancelHBox" alignment="CENTER" onMouseClicked="#cancelHBoxOnMouseClicked" onMouseEntered="#cancelHBoxOnMouseEntered" onMouseExited="#cancelHBoxOnMouseExited" spacing="10.0">
           <children>
-            <ImageView id="okButton" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+            <ImageView id="okButton" fx:id="cancelImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
               <image>
                 <Image url="@../gallery/image/cancelButton.png" preserveRatio="true" smooth="true" />
               </image>
@@ -48,5 +48,6 @@
         <Font name="System Italic" size="13.0" />
       </font>
     </Label>
+    <Label fx:id="programMessageLable" prefHeight="21.0" prefWidth="258.0" text="Label" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="84.0" />
   </children>
 </AnchorPane>

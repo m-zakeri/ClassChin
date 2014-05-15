@@ -49,7 +49,9 @@ public class JClassChin extends Application
 
         mainStage.setTitle("JClassChin");
 
-        FXMLLoader mainLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
+        FXMLLoader mainLayoutLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
+
         mainLayout = (BorderPane) mainLayoutLoader.load();
         Scene mainScene = new Scene(getMainLayout());
         mainStage.setScene(mainScene);

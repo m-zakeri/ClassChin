@@ -11,11 +11,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import jclasschin.JClassChin;
 
 /**
@@ -23,7 +25,8 @@ import jclasschin.JClassChin;
  *
  * @author Ali
  */
-public class MainLayoutController implements Initializable {
+public class MainLayoutController implements Initializable
+{
 
     private BorderPane mainLayout;
     private final AnchorPane dashboardLayout,
@@ -78,9 +81,17 @@ public class MainLayoutController implements Initializable {
     private ImageView scheduleImageView;
     @FXML
     private ImageView reportsImageView;
+    @FXML
+    private Label dataAndTimeLable;
+    @FXML
+    private HBox dashboardHBox;
+    @FXML
+    private HBox fieldsHBox;
+    @FXML
+    private static Label statusBarLable;
 
-    public MainLayoutController() throws IOException {
-
+    public MainLayoutController() throws IOException
+    {
         FXMLLoader dashboardLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
         dashboardLayout = (AnchorPane) dashboardLayoutLoader.load();
         FXMLLoader fieldsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsLayout.fxml"));
@@ -99,25 +110,29 @@ public class MainLayoutController implements Initializable {
         homeButton = new Image("jclasschin/gallery/image/homeButton.png");
         homeButtonOnMouseEntered = new Image("jclasschin/gallery/image/homeButtonEntered.png");
         homeButtonOnMouseClicked = new Image("jclasschin/gallery/image/homeButtonClicked.png");
+
         fieldButton = new Image("jclasschin/gallery/image/fieldButton.png");
         fieldButtonOnMouseEntered = new Image("jclasschin/gallery/image/fieldButtonEntered.png");
         fieldButtonOnMouseClicked = new Image("jclasschin/gallery/image/fieldButtonClicked.png");
+
         userButton = new Image("jclasschin/gallery/image/userButton.png");
         userButtonOnMouseEntered = new Image("jclasschin/gallery/image/userButtonEntered.png");
         userButtonOnMouseClicked = new Image("jclasschin/gallery/image/userButtonClicked.png");
+
         courseGroupButton = new Image("jclasschin/gallery/image/courseGroupButton.png");
         courseGroupButtonOnMouseEntered = new Image("jclasschin/gallery/image/courseGroupButtonEntered.png");
         courseGroupButtonOnMouseClicked = new Image("jclasschin/gallery/image/courseGroupButtonClicked.png");
+
         classButton = new Image("jclasschin/gallery/image/classButton.png");
         classButtonOnMouseEntered = new Image("jclasschin/gallery/image/classButtonEntered.png");
         classButtonOnMouseClicked = new Image("jclasschin/gallery/image/classButtonClicked.png");
+
 //        scheduleButton = new Image("jclasschin/gallery/image/scheduleButton.png");
 //        scheduleButtonOnMouseEntered = new Image("jclasschin/gallery/image/scheduleButtonEntered.png");
 //        scheduleButtonOnMouseClicked = new Image("jclasschin/gallery/image/scheduleButtonClicked.png");
 //        reportButton = new Image("jclasschin/gallery/image/reportButton.png");
 //        reportButtonOnMouseEntered = new Image("jclasschin/gallery/image/reportButtonEntered.png");
 //        reportButtonOnMouseClicked = new Image("jclasschin/gallery/image/reportButtonClicked.png");
-
         dashboardHBoxOnMouseClickedFlag = false;
         fieldsHBoxOnMouseClickedFlag = false;
         usersHBoxOnMouseClickedFlag = false;
@@ -132,27 +147,34 @@ public class MainLayoutController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
-    private void resetAllButtons() {
-        if (dashboardHBoxOnMouseClickedFlag) {
+    private void resetAllButtons()
+    {
+        if (dashboardHBoxOnMouseClickedFlag)
+        {
             dashboardImageView.setImage(homeButton);
             dashboardHBoxOnMouseClickedFlag = false;
-        } else if (fieldsHBoxOnMouseClickedFlag) {
+        } else if (fieldsHBoxOnMouseClickedFlag)
+        {
             fieldsImageView.setImage(fieldButton);
             fieldsHBoxOnMouseClickedFlag = false;
-        } else if (usersHBoxOnMouseClickedFlag) {
+        } else if (usersHBoxOnMouseClickedFlag)
+        {
             usersImageView.setImage(userButton);
             usersHBoxOnMouseClickedFlag = false;
-        } else if (groupsHBoxOnMouseClickedFlag) {
+        } else if (groupsHBoxOnMouseClickedFlag)
+        {
             groupsImageView.setImage(courseGroupButton);
             groupsHBoxOnMouseClickedFlag = false;
-        } else if (classHBoxOnMouseClickedFlag) {
+        } else if (classHBoxOnMouseClickedFlag)
+        {
             classImageView.setImage(classButton);
             classHBoxOnMouseClickedFlag = false;
-        } 
+        }
 //        else if (scheduleHBoxOnMouseClickedFlag) {
 //            scheduleImageView.setImage(scheduleButton);
 //            scheduleHBoxOnMouseClickedFlag = false;
@@ -166,21 +188,26 @@ public class MainLayoutController implements Initializable {
     //___________________________________________________________________
     //  DASHBOARD HBOX
     @FXML
-    private void dashboardHBoxOnMouseEntered(MouseEvent event) {
+    private void dashboardHBoxOnMouseEntered(MouseEvent event)
+    {
         dashboardImageView.setImage(homeButtonOnMouseEntered);
     }
 
     @FXML
-    private void dashboardHBoxOnMouseExited(MouseEvent event) {
-        if (!dashboardHBoxOnMouseClickedFlag) {
+    private void dashboardHBoxOnMouseExited(MouseEvent event)
+    {
+        if (!dashboardHBoxOnMouseClickedFlag)
+        {
             dashboardImageView.setImage(homeButton);
-        } else {
+        } else
+        {
             dashboardImageView.setImage(homeButtonOnMouseClicked);
         }
     }
 
     @FXML
-    private void dashboardHBoxOnMouseClicked(MouseEvent event) throws IOException {
+    private void dashboardHBoxOnMouseClicked(MouseEvent event) throws IOException
+    {
         resetAllButtons();
         JClassChin.getMainLayout().setCenter(dashboardLayout);
         dashboardImageView.setImage(homeButtonOnMouseClicked);
@@ -190,21 +217,26 @@ public class MainLayoutController implements Initializable {
     //___________________________________________________________________
     //  FIELDS HBOX
     @FXML
-    private void fieldsHBoxOnMouseEntered(MouseEvent event) {
+    private void fieldsHBoxOnMouseEntered(MouseEvent event)
+    {
         fieldsImageView.setImage(fieldButtonOnMouseEntered);
     }
 
     @FXML
-    private void fieldsHBoxOnMouseExited(MouseEvent event) {
-        if (!fieldsHBoxOnMouseClickedFlag) {
+    private void fieldsHBoxOnMouseExited(MouseEvent event)
+    {
+        if (!fieldsHBoxOnMouseClickedFlag)
+        {
             fieldsImageView.setImage(fieldButton);
-        } else {
+        } else
+        {
             fieldsImageView.setImage(fieldButtonOnMouseClicked);
         }
     }
 
     @FXML
-    private void fieldsHBoxOnMouseClicked(MouseEvent event) throws IOException {
+    private void fieldsHBoxOnMouseClicked(MouseEvent event) throws IOException
+    {
         resetAllButtons();
         JClassChin.getMainLayout().setCenter(fieldsLayout);
         fieldsImageView.setImage(fieldButtonOnMouseClicked);
@@ -214,21 +246,26 @@ public class MainLayoutController implements Initializable {
     //___________________________________________________________________
     //  USERS HBOX
     @FXML
-    private void usersHBoxOnMouseEntered(MouseEvent event) {
+    private void usersHBoxOnMouseEntered(MouseEvent event)
+    {
         usersImageView.setImage(userButtonOnMouseEntered);
     }
 
     @FXML
-    private void usersHBoxOnMouseExited(MouseEvent event) {
-        if (!usersHBoxOnMouseClickedFlag) {
+    private void usersHBoxOnMouseExited(MouseEvent event)
+    {
+        if (!usersHBoxOnMouseClickedFlag)
+        {
             usersImageView.setImage(userButton);
-        } else {
+        } else
+        {
             usersImageView.setImage(userButtonOnMouseClicked);
         }
     }
 
     @FXML
-    private void usersHBoxOnMouseClicked(MouseEvent event) throws IOException {
+    private void usersHBoxOnMouseClicked(MouseEvent event) throws IOException
+    {
         resetAllButtons();
         JClassChin.getMainLayout().setCenter(usersLayout);
         usersImageView.setImage(userButtonOnMouseClicked);
@@ -238,21 +275,26 @@ public class MainLayoutController implements Initializable {
 //___________________________________________________________________
     //  GROUPS HBOX
     @FXML
-    private void groupsHBoxOnMouseEntered(MouseEvent event) {
+    private void groupsHBoxOnMouseEntered(MouseEvent event)
+    {
         groupsImageView.setImage(courseGroupButtonOnMouseEntered);
     }
 
     @FXML
-    private void groupsHBoxOnMouseExited(MouseEvent event) {
-        if (!groupsHBoxOnMouseClickedFlag) {
+    private void groupsHBoxOnMouseExited(MouseEvent event)
+    {
+        if (!groupsHBoxOnMouseClickedFlag)
+        {
             groupsImageView.setImage(courseGroupButton);
-        } else {
+        } else
+        {
             groupsImageView.setImage(courseGroupButtonOnMouseClicked);
         }
     }
 
     @FXML
-    private void groupsHBoxOnMouseClicked(MouseEvent event) throws IOException {
+    private void groupsHBoxOnMouseClicked(MouseEvent event) throws IOException
+    {
         resetAllButtons();
         JClassChin.getMainLayout().setCenter(groupsLayout);
         groupsImageView.setImage(courseGroupButtonOnMouseClicked);
@@ -260,11 +302,29 @@ public class MainLayoutController implements Initializable {
     }
 
     @FXML
-    private void classHBoxOnMouseClicked(MouseEvent event) {
+    private void classHBoxOnMouseClicked(MouseEvent event)
+    {
     }
 
     @FXML
-    private void scheduleHBoxOnMouseClicked(MouseEvent event) {
+    private void scheduleHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    /**
+     * @return the statusBarLable
+     */
+    public static Label getStatusBarLable()
+    {
+        return statusBarLable;
+    }
+
+    /**
+     * @param statusBarLable the statusBarLable to set
+     */
+    public static void setStatusBarLable(Label statusBarLable)
+    {
+        MainLayoutController.statusBarLable = statusBarLable;
     }
 
 }

@@ -21,16 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -39,30 +44,90 @@ import javafx.scene.layout.HBox;
  */
 public class NewFieldDialogController implements Initializable
 {
+
+    private final Image okButton, okButtonOnMouseEntered, okButtonOnMouseClicked,
+            cancelButton, cancelButtonOnMouseEntered, cancelButtonOnMouseClicked;
+
     @FXML
     private TextField fieldNameTextField;
     @FXML
     private HBox okHBox;
     @FXML
     private HBox cancelHBox;
+    @FXML
+    private Label programMessageLable;
+    @FXML
+    private ImageView okImageView;
+    @FXML
+    private ImageView cancelImageView;
+
+    public NewFieldDialogController() throws IOException
+    {
+        okButton = new Image("jclasschin/gallery/image/okButton.png");
+        okButtonOnMouseClicked = new Image("jclasschin/gallery/image/okButtonClicked.png");
+        okButtonOnMouseEntered = new Image("jclasschin/gallery/image/okButtonEntered.png");
+
+        cancelButton = new Image("jclasschin/gallery/image/cancelButton.png");
+        cancelButtonOnMouseClicked = new Image("jclasschin/gallery/image/cancelButtonClicked.png");
+        cancelButtonOnMouseEntered = new Image("jclasschin/gallery/image/cancelButtonEntered.png");
+
+    }
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+        programMessageLable.setText("");
+    }
 
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
+        if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText()))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field name can not be NULL!");
+
+        } 
+        else if(fieldNameTextField.getText().matches("\\d*")){
+            programMessageLable.setText("Only Number!");
+        }
+    }
+
+    @FXML
+    private void okHBoxOnMouseExited(MouseEvent event)
+    {
+        okImageView.setImage(okButton);
+    }
+
+    @FXML
+    private void okHBoxOnMouseEntered(MouseEvent event)
+    {
+        okImageView.setImage(okButtonOnMouseEntered);
     }
 
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
+
     }
-    
+
+    @FXML
+    private void cancelHBoxOnMouseEntered(MouseEvent event)
+    {
+        cancelImageView.setImage(cancelButtonOnMouseEntered);
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseExited(MouseEvent event)
+    {
+        cancelImageView.setImage(cancelButton);
+    }
+
 }
