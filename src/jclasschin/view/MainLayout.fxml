@@ -13,6 +13,7 @@
     <AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
       <children>
         <Label id="dateTimeLabel" layoutX="49.0" layoutY="11.0" text="STATUS BAR" />
+        <Separator prefWidth="1245.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </children>
     </AnchorPane>
   </bottom>
@@ -93,6 +94,7 @@
             </HBox>
           </children>
         </VBox>
+        <Separator orientation="VERTICAL" prefHeight="613.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="-3.0" />
       </children>
       <BorderPane.margin>
         <Insets />
@@ -103,6 +105,7 @@
     <AnchorPane prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
       <children>
         <Label id="dateTimeLabel" layoutX="43.0" layoutY="13.0" text="DATE &amp; TIME" />
+        <Separator prefWidth="1245.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
       </children>
     </AnchorPane>
   </top>

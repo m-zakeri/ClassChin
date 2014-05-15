@@ -53,6 +53,8 @@ public class JClassChin extends Application
         mainLayout = (BorderPane) mainLayoutLoader.load();
         Scene mainScene = new Scene(getMainLayout());
         mainStage.setScene(mainScene);
+        mainStage.setResizable(false);
+        mainStage.centerOnScreen();
 
 //        FXMLLoader dashboardLayoutLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
 //        dashboardLayout=(AnchorPane) dashboardLayoutLoader.load();
