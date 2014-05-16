@@ -119,11 +119,13 @@ public class FieldsLayoutController implements Initializable
     @FXML
     private void newHBoxOnMouseExited(MouseEvent event)
     {
+        
     }
 
     @FXML
     private void newHBoxOnMouseEntered(MouseEvent event)
     {
+        
     }
 
 }

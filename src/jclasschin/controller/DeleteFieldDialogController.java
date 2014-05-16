@@ -28,9 +28,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -39,18 +38,18 @@ import javafx.scene.layout.HBox;
  *
  * @author HP
  */
-public class NewMailController implements Initializable
+public class DeleteFieldDialogController implements Initializable
 {
     @FXML
-    private ComboBox<?> toComboBox;
+    private HBox yesHBox;
     @FXML
-    private TextField subjectMailTextField;
+    private ImageView okImageView;
     @FXML
-    private TextArea messegeTextField;
+    private HBox noHBox;
     @FXML
-    private HBox sendMailHBox;
+    private ImageView cancelImageView;
     @FXML
-    private HBox cancelMailHBox;
+    private Label programMessageLable;
 
     /**
      * Initializes the controller class.
@@ -62,12 +61,32 @@ public class NewMailController implements Initializable
     }    
 
     @FXML
-    private void sendMailHBoxOnMouseClicked(MouseEvent event)
+    private void yesHBoxOnMouseExited(MouseEvent event)
     {
     }
 
     @FXML
-    private void cancelMailHBoxOnMouseClicked(MouseEvent event)
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
     {
     }
     

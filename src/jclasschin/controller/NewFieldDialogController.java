@@ -90,6 +90,7 @@ public class NewFieldDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
+        
         FieldManager fieldManager;
         if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText()))
         {
@@ -118,6 +119,7 @@ public class NewFieldDialogController implements Initializable
                 programMessageLable.setTextFill(Color.GREEN);
                 programMessageLable.setText("New Field add successfully!!!");
                 fieldNameTextField.setText("");
+                
             }
             else
             {

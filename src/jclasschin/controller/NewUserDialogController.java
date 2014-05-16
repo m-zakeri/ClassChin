@@ -21,52 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package jclasschin.model;
 
-import jclasschin.entity.Field;
-import jclasschin.util.HibernateUtil;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+package jclasschin.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 
 /**
+ * FXML Controller class
  *
  * @author HP
  */
-public class FieldManager
+public class NewUserDialogController implements Initializable
 {
+    @FXML
+    private TextField subjectTextField;
+    @FXML
+    private Font x1;
+    @FXML
+    private Button lovButton;
 
-    private Field field;
-    private Session session;
-
-    public boolean insert(String fieldName)
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb)
     {
-        field = new Field();
-        field.setName(fieldName);
+        // TODO
+    }    
 
-        try
-        {
-            session = (Session) HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(field);
-            session.getTransaction().commit();
-            return true;
-        }
-
-        catch (HibernateException he)
-        {
-            return false;
-        }
-
-    }
-
-    public boolean delete(int fieldId)
+    @FXML
+    private void lovButtonOnMouseClicked(MouseEvent event)
     {
-        return false;
-
     }
     
-    public void selectAll(){
-        
-    }
-
 }
