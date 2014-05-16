@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import jclasschin.model.FieldManager;
 
 /**
  * FXML Controller class
@@ -89,15 +90,42 @@ public class NewFieldDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
+        FieldManager fieldManager;
         if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText()))
         {
             programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field name can not be NULL!");
+            programMessageLable.setText("Field Name can not be NULL!");
 
-        } 
-        else if(fieldNameTextField.getText().matches("\\d*")){
-            programMessageLable.setText("Only Number!");
         }
+        else if (fieldNameTextField.getText().matches("\\d*"))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field Name can not be only number!");
+            
+        }
+        else if (fieldNameTextField.getText().matches("\\d+[a-zA-Z_$1-9]*"))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field Name can not be start with number!");
+            
+        }
+        else
+        {
+            fieldManager = new FieldManager();
+            if (fieldManager.insert(fieldNameTextField.getText()))
+            {
+                System.out.println(fieldNameTextField.getText());
+                programMessageLable.setTextFill(Color.GREEN);
+                programMessageLable.setText("New Field add successfully!!!");
+                fieldNameTextField.setText("");
+            }
+            else
+            {
+                programMessageLable.setTextFill(Color.RED);
+                programMessageLable.setText("Failed to add New Field!");
+            }
+        }
+
     }
 
     @FXML
