@@ -28,7 +28,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -36,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import jclasschin.model.FieldManager;
 
 /**
@@ -45,7 +45,8 @@ import jclasschin.model.FieldManager;
  */
 public class NewFieldDialogController implements Initializable
 {
-
+    private Stage newFieldDialogStage;
+    
     private final Image okButton, okButtonOnMouseEntered, okButtonOnMouseClicked,
             cancelButton, cancelButtonOnMouseEntered, cancelButtonOnMouseClicked;
 
@@ -120,6 +121,8 @@ public class NewFieldDialogController implements Initializable
                 programMessageLable.setText("New Field add successfully!!!");
                 fieldNameTextField.setText("");
                 
+                newFieldDialogStage.close();
+                
             }
             else
             {
@@ -145,7 +148,7 @@ public class NewFieldDialogController implements Initializable
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
-
+        newFieldDialogStage.close();
     }
 
     @FXML
@@ -158,6 +161,22 @@ public class NewFieldDialogController implements Initializable
     private void cancelHBoxOnMouseExited(MouseEvent event)
     {
         cancelImageView.setImage(cancelButton);
+    }
+
+    /**
+     * @return the newFieldDialogStage
+     */
+    public Stage getNewFieldDialogStage()
+    {
+        return newFieldDialogStage;
+    }
+
+    /**
+     * @param newFieldDialogStage the newFieldDialogStage to set
+     */
+    public void setNewFieldDialogStage(Stage newFieldDialogStage)
+    {
+        this.newFieldDialogStage = newFieldDialogStage;
     }
 
 }

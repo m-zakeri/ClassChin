@@ -23,9 +23,11 @@
  */
 package jclasschin.model;
 
+import java.util.List;
 import jclasschin.entity.Field;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -64,9 +66,27 @@ public class FieldManager
         return false;
 
     }
-    
-    public void selectAll(){
-        
+
+    public List selectAll()
+    {
+        try
+        {
+
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            //Query q = session.createQuery(hql);
+            List resultList = session.createQuery("from Field").list();
+            //displayResult(resultList);
+
+            session.getTransaction().commit();
+            return resultList;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+        }
+        return null;
     }
 
 }

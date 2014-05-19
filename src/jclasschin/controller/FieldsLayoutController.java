@@ -26,11 +26,17 @@ package jclasschin.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -38,7 +44,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
-import jclasschin.entity.Mail;
+import jclasschin.entity.Field;
+import jclasschin.model.FieldManager;
 
 /**
  * FXML Controller class
@@ -54,6 +61,8 @@ public class FieldsLayoutController implements Initializable
     private final Stage newFieldDialogStage;
 
     private NewFieldDialogController newFieldDialogController;
+    
+    //private ObservableList<Field> fieldList = FXCollections.observableArrayList();
 
     @FXML
     private HBox newHBox;
@@ -61,6 +70,12 @@ public class FieldsLayoutController implements Initializable
     private HBox editHBox;
     @FXML
     private HBox deleteHBox;
+    @FXML
+    private TableView<Field> fieldsTableView;
+    @FXML
+    private TableColumn<Field, String> idTableColumn;
+    @FXML
+    private TableColumn<Field, String> nameTableColumn;
     
      /**
      * Initializes the controller class constructor
@@ -99,10 +114,11 @@ public class FieldsLayoutController implements Initializable
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
         //newFieldDialogController = new NewFieldDialogController();
-        
         newFieldDialogController = newFieldDialogLoader.getController();
+        newFieldDialogController.setNewFieldDialogStage(newFieldDialogStage);
         newFieldDialogStage.showAndWait();
        // newFieldDialogStage.close();
+       updateFieldTableView();
     }
 
     @FXML
@@ -127,5 +143,23 @@ public class FieldsLayoutController implements Initializable
     {
         
     }
+
+    private void updateFieldTableView()
+    {
+         //update field table after any change!
+        
+        FieldManager fm = new FieldManager();
+        ObservableList<Field> fieldList = FXCollections.observableArrayList();
+        
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        List l = fm.selectAll();
+        l.stream().forEach((f) ->
+        {
+            fieldList.add((Field)f);
+        });
+        
+        fieldsTableView.setItems(fieldList);
+     }
 
 }

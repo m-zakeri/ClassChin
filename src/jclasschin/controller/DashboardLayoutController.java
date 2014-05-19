@@ -1,7 +1,6 @@
 /*
  * Complete fxids  and event functions on 1393-02-28 by Morteza!
  */
-
 package jclasschin.controller;
 
 import java.io.IOException;
@@ -31,22 +30,19 @@ import jclasschin.entity.Mail;
  *
  * @author Ali
  */
-public class DashboardLayoutController implements Initializable {
-    
+public class DashboardLayoutController implements Initializable
+{
+
     private final FXMLLoader inboxNewMailDialogLoader;
     private final AnchorPane inboxNewMailDialogLayout;
     private final Scene inboxNewMailDialogScene;
     private final Stage inboxNewMailDialogStage;
     private DashboardInboxNewMailDialogController inboxNewMailDialogController;
-    
+
     private Mail mail;
-    
+
     private ObservableList<Mail> mailList = FXCollections.observableArrayList();
-    
-    
-    
-    
-    
+
     @FXML
     private AnchorPane dashboardAnchorPane;
     @FXML
@@ -78,48 +74,46 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     private TableColumn<Mail, String> messegeTableColumn;
 
-    public DashboardLayoutController() throws IOException{
-           inboxNewMailDialogLoader=new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
-          
-           inboxNewMailDialogLayout=(AnchorPane)inboxNewMailDialogLoader.load();
-          
-           inboxNewMailDialogScene=new Scene(inboxNewMailDialogLayout);
-          
-           inboxNewMailDialogStage=new Stage();
-           inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
-           inboxNewMailDialogStage.setTitle("New Mail");
-           inboxNewMailDialogStage.initModality(Modality.WINDOW_MODAL);
-           inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
-           inboxNewMailDialogStage.setResizable(false);
-           inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
-           inboxNewMailDialogStage.close();
-           
-           mail=new Mail();
-           mail.setType("New Class Needed");
-           mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
-           mailList.add(mail);
-           
-           
-           
+    public DashboardLayoutController() throws IOException
+    {
+        inboxNewMailDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
+
+        inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
+
+        inboxNewMailDialogScene = new Scene(inboxNewMailDialogLayout);
+
+        inboxNewMailDialogStage = new Stage();
+        inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
+        inboxNewMailDialogStage.setTitle("New Mail");
+        inboxNewMailDialogStage.initModality(Modality.WINDOW_MODAL);
+        inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
+        inboxNewMailDialogStage.setResizable(false);
+        inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
+          // inboxNewMailDialogStage.close();
+
+        mail = new Mail();
+        mail.setType("New Class Needed");
+        mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
+        mailList.add(mail);
 
     }
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {    
-        subjectTableColumn.setCellValueFactory(new PropertyValueFactory<Mail,String>("type"));
-        messegeTableColumn.setCellValueFactory(new PropertyValueFactory<Mail,String>("text"));
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        subjectTableColumn.setCellValueFactory(new PropertyValueFactory<Mail, String>("type"));
+        messegeTableColumn.setCellValueFactory(new PropertyValueFactory<Mail, String>("text"));
 
-        
         inboxTableView.setItems(mailList);
-    }    
+    }
 
     @FXML
     private void newHBoxOnMouseExited(MouseEvent event)
     {
-        
+
     }
 
     @FXML
@@ -130,14 +124,13 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
-        inboxNewMailDialogController=new DashboardInboxNewMailDialogController();
-        inboxNewMailDialogController=inboxNewMailDialogLoader.getController();
+        inboxNewMailDialogController = new DashboardInboxNewMailDialogController();
+        inboxNewMailDialogController = inboxNewMailDialogLoader.getController();
         inboxNewMailDialogController.initialize(null, null);
         inboxNewMailDialogStage.showAndWait();
-        
+
         mailList.add(inboxNewMailDialogController.getMail());
-        
-        
+
     }
 
     @FXML
@@ -239,5 +232,5 @@ public class DashboardLayoutController implements Initializable {
     private void deleteTermHBoxOnMouseClicked(MouseEvent event)
     {
     }
-    
+
 }
