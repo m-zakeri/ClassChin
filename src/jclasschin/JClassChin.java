@@ -9,6 +9,7 @@ package jclasschin;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -53,6 +54,7 @@ public class JClassChin extends Application
                 = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
 
         mainLayout = (BorderPane) mainLayoutLoader.load();
+        mainLayout.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         Scene mainScene = new Scene(getMainLayout());
         mainStage.setScene(mainScene);
         mainStage.setResizable(false);
