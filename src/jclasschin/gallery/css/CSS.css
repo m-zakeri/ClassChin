@@ -1,0 +1,21 @@
+.label {
+-fx-font-family : "B Nazanin";
+-fx-font-size:21px;
+}
+
+.label:hover {
+-fx-font-weight :bold;
+}
+
+.imageView {
+    -fx-image: url("homeButton.png");
+}
+
+.imageView:hover {
+         -fx-image:url("homeButtonEntered.png");
+	-fx-background-color:black;
+}
+
+.imageView:selected{
+    -fx-image: url("homeButtonClicked.png");
+}

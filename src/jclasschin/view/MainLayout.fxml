@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.geometry.*?>
@@ -8,11 +10,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<BorderPane id="BorderPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="700.0" prefWidth="1245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.MainLayoutController">
+<BorderPane id="BorderPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="700.0" prefWidth="1245.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.MainLayoutController">
   <bottom>
     <AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
       <children>
-        <Label id="dateTimeLabel" fx:id="statusBarLable" layoutX="49.0" layoutY="11.0" text="STATUS BAR" />
+        <Label id="dateTimeLabel" fx:id="statusBarLable" layoutX="40.0" layoutY="8.0" text="نوار وضعیت">
+               <font>
+                  <Font name="B Nazanin" size="20.0" />
+               </font></Label>
         <Separator prefWidth="1245.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </children>
     </AnchorPane>
@@ -22,74 +27,95 @@
       <children>
         <VBox id="VBox" alignment="CENTER_LEFT" depthTest="INHERIT" fillWidth="true" spacing="15.0" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="29.0">
           <children>
-            <HBox id="HBox" fx:id="dashboardHBox" alignment="CENTER" onMouseClicked="#dashboardHBoxOnMouseClicked" onMouseEntered="#dashboardHBoxOnMouseEntered" onMouseExited="#dashboardHBoxOnMouseExited" spacing="10.0">
+            <HBox id="HBox" fx:id="dashboardHBox" alignment="CENTER_LEFT" onMouseClicked="#dashboardHBoxOnMouseClicked" onMouseEntered="#dashboardHBoxOnMouseEntered" onMouseExited="#dashboardHBoxOnMouseExited" prefHeight="60.0" prefWidth="149.0" spacing="10.0">
               <children>
-                <ImageView id="homeButton" fx:id="dashboardImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" x="10.0">
+                <ImageView id="homeButton" fx:id="dashboardImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" styleClass="imageView" x="10.0">
                   <image>
-                    <Image url="@../gallery/image/homeButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/homeButton.png" />
                   </image>
                 </ImageView>
-                <Label id="homeButtonLabel" text="Dashboard" textAlignment="LEFT" wrapText="false" />
+                <Label id="homeButtonLabel" text="پیشخوان" textAlignment="LEFT" wrapText="false">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" fx:id="fieldsHBox" alignment="CENTER_LEFT" onMouseClicked="#fieldsHBoxOnMouseClicked" onMouseEntered="#fieldsHBoxOnMouseEntered" onMouseExited="#fieldsHBoxOnMouseExited" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="fieldsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="@../gallery/image/fieldButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/fieldButton.png" />
                   </image>
                 </ImageView>
-                <Label id="fieldButtonLabel" text="Fields" />
+                <Label id="fieldButtonLabel" text="رشته ها">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#usersHBoxOnMouseClicked" onMouseEntered="#usersHBoxOnMouseEntered" onMouseExited="#usersHBoxOnMouseExited" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="usersImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="@../gallery/image/userButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/userButton.png" />
                   </image>
                 </ImageView>
-                <Label id="userButtonLabel" text="Users" />
+                <Label id="userButtonLabel" text="کاربران">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#groupsHBoxOnMouseClicked" onMouseEntered="#groupsHBoxOnMouseEntered" onMouseExited="#groupsHBoxOnMouseExited" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="groupsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="@../gallery/image/courseGroupButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/courseGroupButton.png" />
                   </image>
                 </ImageView>
-                <Label id="groupButtonLabel" text="Groups" />
+                <Label id="groupButtonLabel" text="گروه های درسی">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#classHBoxOnMouseClicked" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="classImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="@../gallery/image/classButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/classButton.png" />
                   </image>
                 </ImageView>
-                <Label id="classButtonLabel" text="Class" />
+                <Label id="classButtonLabel" text="کلاس ها">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#scheduleHBoxOnMouseClicked" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="scheduleImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="@../gallery/image/scheduleButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/scheduleButton.png" />
                   </image>
                 </ImageView>
-                <Label id="scheduleButtonLabel" text="Schedule" />
+                <Label id="scheduleButtonLabel" text="برنامه ریزی">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
             <HBox id="HBox" alignment="CENTER_LEFT" onMouseClicked="#scheduleHBoxOnMouseClicked" spacing="10.0">
               <children>
                 <ImageView id="fieldButton" fx:id="reportsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image url="file:/C:/Users/Ali/Documents/NetBeansProjects/ClassChin/src/classchin/gallery/image/reportButton.png" preserveRatio="true" smooth="true" />
+                    <Image preserveRatio="true" smooth="true" url="file:/C:/Users/Ali/Documents/NetBeansProjects/ClassChin/src/classchin/gallery/image/reportButton.png" />
                   </image>
                 </ImageView>
-                <Label id="scheduleButtonLabel" text="Reports" />
+                <Label id="scheduleButtonLabel" text="گزارش گیری">
+                           <font>
+                              <Font name="B Nazanin" size="21.0" />
+                           </font></Label>
               </children>
             </HBox>
           </children>
@@ -104,7 +130,10 @@
   <top>
     <AnchorPane prefHeight="45.0" prefWidth="1245.0" BorderPane.alignment="CENTER">
       <children>
-        <Label id="dateTimeLabel" fx:id="dataAndTimeLable" layoutX="43.0" layoutY="13.0" text="DATE &amp; TIME" />
+        <Label id="dateTimeLabel" fx:id="dataAndTimeLable" layoutX="42.0" layoutY="8.0" text="تاریخ و زمان">
+               <font>
+                  <Font name="B Nazanin" size="20.0" />
+               </font></Label>
         <Separator prefWidth="1245.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
       </children>
     </AnchorPane>

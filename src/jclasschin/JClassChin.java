@@ -54,7 +54,6 @@ public class JClassChin extends Application
                 = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
 
         mainLayout = (BorderPane) mainLayoutLoader.load();
-        mainLayout.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         Scene mainScene = new Scene(getMainLayout());
         mainStage.setScene(mainScene);
         mainStage.setResizable(false);
