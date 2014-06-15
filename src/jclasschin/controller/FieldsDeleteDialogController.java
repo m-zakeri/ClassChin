@@ -38,7 +38,7 @@ import javafx.scene.layout.HBox;
  *
  * @author HP
  */
-public class DeleteTermDialogController implements Initializable
+public class FieldsDeleteDialogController implements Initializable
 {
     @FXML
     private HBox yesHBox;

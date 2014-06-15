@@ -60,7 +60,7 @@ public class FieldsLayoutController implements Initializable
     private final Scene newFieldDialogScene;
     private final Stage newFieldDialogStage;
 
-    private NewFieldDialogController newFieldDialogController;
+    private FieldsNewDialogController newFieldDialogController;
     
     //private ObservableList<Field> fieldList = FXCollections.observableArrayList();
 
@@ -84,7 +84,7 @@ public class FieldsLayoutController implements Initializable
 
     public FieldsLayoutController() throws IOException
     {
-        newFieldDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/NewFieldDialog.fxml"));
+        newFieldDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsNewDialog.fxml"));
 
         newFieldDialogAnchorPane = (AnchorPane) newFieldDialogLoader.load();
 

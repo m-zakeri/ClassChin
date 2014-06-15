@@ -43,7 +43,7 @@ import jclasschin.model.FieldManager;
  *
  * @author HP
  */
-public class NewFieldDialogController implements Initializable
+public class FieldsNewDialogController implements Initializable
 {
     private Stage newFieldDialogStage;
     
@@ -63,7 +63,7 @@ public class NewFieldDialogController implements Initializable
     @FXML
     private ImageView cancelImageView;
 
-    public NewFieldDialogController() throws IOException
+    public FieldsNewDialogController() throws IOException
     {
         okButton = new Image("jclasschin/gallery/image/okButton.png");
         okButtonOnMouseClicked = new Image("jclasschin/gallery/image/okButtonClicked.png");

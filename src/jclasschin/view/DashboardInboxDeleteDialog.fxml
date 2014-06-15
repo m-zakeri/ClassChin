@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="false" depthTest="DISABLE" disable="false" focusTraversable="false" prefHeight="182.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.DeleteTermDialogController">
+<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="false" depthTest="DISABLE" disable="false" focusTraversable="false" prefHeight="182.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.DashboardInboxDeleteDialogController">
   <children>
     <VBox id="VBox" alignment="TOP_LEFT" layoutX="21.0" layoutY="55.0" spacing="20.0" />
-    <Label layoutX="14.0" layoutY="10.0" text="Delete Term">
+    <Label layoutX="14.0" layoutY="10.0" text="Delete Mail">
       <effect>
         <Lighting diffuseConstant="0.9047619047619048" specularExponent="11.11111111111111" surfaceScale="1.1825396825396826">
           <bumpInput>
@@ -50,7 +50,7 @@
         </HBox>
       </children>
     </HBox>
-    <Label fx:id="programMessageLable" prefHeight="21.0" prefWidth="258.0" text="Are you sure to delete this Term?" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="56.0">
+    <Label fx:id="programMessageLable" prefHeight="21.0" prefWidth="258.0" text="Are you sure to delete this Mail?" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="56.0">
       <font>
         <Font size="14.0" />
       </font>

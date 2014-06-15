@@ -37,7 +37,7 @@ public class DashboardLayoutController implements Initializable
     private final AnchorPane inboxNewMailDialogLayout;
     private final Scene inboxNewMailDialogScene;
     private final Stage inboxNewMailDialogStage;
-    private DashboardInboxNewMailDialogController inboxNewMailDialogController;
+    private DashboardInboxNewDialogController inboxNewMailDialogController;
 
     private Mail mail;
 
@@ -76,7 +76,7 @@ public class DashboardLayoutController implements Initializable
 
     public DashboardLayoutController() throws IOException
     {
-        inboxNewMailDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewMailDialog.fxml"));
+        inboxNewMailDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
 
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
 
@@ -124,7 +124,7 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
-        inboxNewMailDialogController = new DashboardInboxNewMailDialogController();
+        inboxNewMailDialogController = new DashboardInboxNewDialogController();
         inboxNewMailDialogController = inboxNewMailDialogLoader.getController();
         inboxNewMailDialogController.initialize(null, null);
         inboxNewMailDialogStage.showAndWait();

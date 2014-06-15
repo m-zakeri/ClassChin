@@ -28,31 +28,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 /**
  * FXML Controller class
  *
  * @author HP
  */
-public class NewTermDialogController implements Initializable
+public class UsersNewDialogController implements Initializable
 {
     @FXML
-    private TextField fieldNameTextField;
+    private TextField subjectTextField;
     @FXML
-    private HBox okHBox;
+    private Font x1;
     @FXML
-    private ImageView okImageView;
-    @FXML
-    private HBox cancelHBox;
-    @FXML
-    private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+    private Button lovButton;
 
     /**
      * Initializes the controller class.
@@ -64,32 +57,7 @@ public class NewTermDialogController implements Initializable
     }    
 
     @FXML
-    private void okHBoxOnMouseExited(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void okHBoxOnMouseEntered(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void cancelHBoxOnMouseExited(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void cancelHBoxOnMouseEntered(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    private void lovButtonOnMouseClicked(MouseEvent event)
     {
     }
     

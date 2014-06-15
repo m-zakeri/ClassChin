@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 Ali.
+ * Copyright 2014 HP.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,43 +28,69 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import jclasschin.entity.Mail;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
  *
- * @author Ali
+ * @author HP
  */
-public class DashboardInboxNewMailDialogController implements Initializable {
-    
-    private Mail mail;
-    
+public class DashboardTermNewDialogController implements Initializable
+{
     @FXML
-    private TextField subjectTextField;
+    private TextField fieldNameTextField;
     @FXML
-    private TextArea messegeTextArea;
+    private HBox okHBox;
+    @FXML
+    private ImageView okImageView;
+    @FXML
+    private HBox cancelHBox;
+    @FXML
+    private ImageView cancelImageView;
+    @FXML
+    private Label programMessageLable;
 
-    public DashboardInboxNewMailDialogController(){
-    }
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-         subjectTextField.setText("");
-         messegeTextArea.setText("");
-
-
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }    
-    
-    public Mail getMail(){
-        mail=new Mail();
-        mail.setType(subjectTextField.getText());
-        mail.setText(messegeTextArea.getText());
-        return mail;
+
+    @FXML
+    private void okHBoxOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void okHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
     }
     
 }

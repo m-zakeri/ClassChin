@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 HP.
+ * Copyright 2014 Ali.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,66 +28,43 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
  *
- * @author HP
+ * @author Ali
  */
-public class DeleteMailDialogController implements Initializable
-{
+public class DashboardInboxNewDialogController implements Initializable {
+    
+    private Mail mail;
+    
     @FXML
-    private HBox yesHBox;
+    private TextField subjectTextField;
     @FXML
-    private ImageView okImageView;
-    @FXML
-    private HBox noHBox;
-    @FXML
-    private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+    private TextArea messegeTextArea;
 
+    public DashboardInboxNewDialogController(){
+    }
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
+         subjectTextField.setText("");
+         messegeTextArea.setText("");
+
+
         // TODO
     }    
-
-    @FXML
-    private void yesHBoxOnMouseExited(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void yesHBoxOnMouseEntered(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void yesHBoxOnMouseClicked(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void noHBoxOnMouseExited(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void noHBoxOnMouseEntered(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void noHBoxOnMouseClicked(MouseEvent event)
-    {
+    
+    public Mail getMail(){
+        mail=new Mail();
+        mail.setType(subjectTextField.getText());
+        mail.setText(messegeTextArea.getText());
+        return mail;
     }
     
 }

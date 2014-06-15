@@ -28,24 +28,28 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
  *
  * @author HP
  */
-public class NewUserDialogController implements Initializable
+public class DashboardInboxDeleteDialogController implements Initializable
 {
     @FXML
-    private TextField subjectTextField;
+    private HBox yesHBox;
     @FXML
-    private Font x1;
+    private ImageView okImageView;
     @FXML
-    private Button lovButton;
+    private HBox noHBox;
+    @FXML
+    private ImageView cancelImageView;
+    @FXML
+    private Label programMessageLable;
 
     /**
      * Initializes the controller class.
@@ -57,7 +61,32 @@ public class NewUserDialogController implements Initializable
     }    
 
     @FXML
-    private void lovButtonOnMouseClicked(MouseEvent event)
+    private void yesHBoxOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
     {
     }
     
