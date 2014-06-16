@@ -33,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -41,6 +42,11 @@ import javafx.scene.layout.HBox;
  */
 public class DashboardTermNewDialogController implements Initializable
 {
+    
+    private Stage dashboardTermNewDialogStage;
+    
+    
+    
     @FXML
     private TextField fieldNameTextField;
     @FXML

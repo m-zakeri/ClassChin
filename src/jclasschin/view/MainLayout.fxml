@@ -83,7 +83,7 @@
               <children>
                 <ImageView id="fieldButton" fx:id="classImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image preserveRatio="true" smooth="true" url="@../gallery/image/classButton.png" />
+                    <Image url="@../gallery/image/classButton.png" />
                   </image>
                 </ImageView>
                 <Label id="classButtonLabel" text="کلاس ها">
@@ -109,7 +109,7 @@
               <children>
                 <ImageView id="fieldButton" fx:id="reportsImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                   <image>
-                    <Image preserveRatio="true" smooth="true" url="file:/C:/Users/Ali/Documents/NetBeansProjects/ClassChin/src/classchin/gallery/image/reportButton.png" />
+                    <Image url="@../gallery/image/reportButton.png" />
                   </image>
                 </ImageView>
                 <Label id="scheduleButtonLabel" text="گزارش گیری">

@@ -33,11 +33,15 @@ import jclasschin.entity.Mail;
 public class DashboardLayoutController implements Initializable
 {
 
-    private final FXMLLoader inboxNewMailDialogLoader;
-    private final AnchorPane inboxNewMailDialogLayout;
-    private final Scene inboxNewMailDialogScene;
-    private final Stage inboxNewMailDialogStage;
+    private final FXMLLoader inboxNewMailDialogLoader,dashboardTermNewDailogLoader;
+    private final AnchorPane inboxNewMailDialogLayout,dashboardTermNewDailogLayout;
+    private final Scene inboxNewMailDialogScene,dashboardTermNewDailogScenec;
+    private final Stage inboxNewMailDialogStage,dashboardTermNewDailogStage;
+    
+    
     private DashboardInboxNewDialogController inboxNewMailDialogController;
+    private DashboardTermNewDialogController dashboardTermNewDialogController;
+    
 
     private Mail mail;
 
@@ -76,7 +80,8 @@ public class DashboardLayoutController implements Initializable
 
     public DashboardLayoutController() throws IOException
     {
-        inboxNewMailDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
+        inboxNewMailDialogLoader = 
+                new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
 
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
 
@@ -95,8 +100,8 @@ public class DashboardLayoutController implements Initializable
         mail.setType("New Class Needed");
         mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
         mailList.add(mail);
-
     }
+    
 
     /**
      * Initializes the controller class.
