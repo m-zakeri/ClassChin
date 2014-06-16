@@ -64,8 +64,40 @@ public class FieldManager
 
     public boolean delete(int fieldId)
     {
-        return false;
-
+       try
+        { 
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Field f = (Field) session.load(Field.class, fieldId);
+            session.delete(f);
+            session.getTransaction().commit(); 
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean update(int fieldId, String newFieldName)
+    {
+        try
+        { 
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Field f = (Field) session.load(Field.class, fieldId);
+            f.setName(newFieldName);
+            session.update(f);
+            session.getTransaction().commit(); 
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
+        
     }
 
     public List selectAll()
