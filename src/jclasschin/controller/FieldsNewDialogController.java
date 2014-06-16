@@ -27,7 +27,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -36,6 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import jclasschin.JClassChin;
 import jclasschin.model.FieldManager;
 
 /**
@@ -43,10 +46,13 @@ import jclasschin.model.FieldManager;
  *
  * @author HP
  */
-public class FieldsNewDialogController implements Initializable
-{
+public class FieldsNewDialogController implements Initializable {
+
     private Stage newFieldDialogStage;
-    
+
+    FXMLLoader mainLayoutLoader;
+    MainLayoutController mainLayoutController;
+
     private final Image okButton, okButtonOnMouseEntered, okButtonOnMouseClicked,
             cancelButton, cancelButtonOnMouseEntered, cancelButtonOnMouseClicked;
 
@@ -63,8 +69,8 @@ public class FieldsNewDialogController implements Initializable
     @FXML
     private ImageView cancelImageView;
 
-    public FieldsNewDialogController() throws IOException
-    {
+    public FieldsNewDialogController() throws IOException {
+        
         okButton = new Image("jclasschin/gallery/image/okButton.png");
         okButtonOnMouseClicked = new Image("jclasschin/gallery/image/okButtonClicked.png");
         okButtonOnMouseEntered = new Image("jclasschin/gallery/image/okButtonEntered.png");
@@ -82,50 +88,46 @@ public class FieldsNewDialogController implements Initializable
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
         programMessageLable.setText("");
     }
 
     @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void okHBoxOnMouseClicked(MouseEvent event) throws IOException {
+
+        mainLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
+        mainLayoutLoader.load();
+        mainLayoutController = (MainLayoutController) mainLayoutLoader.getController();
+        
         
         FieldManager fieldManager;
-        if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText()))
-        {
+        if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText())) {
             programMessageLable.setTextFill(Color.RED);
             programMessageLable.setText("Field Name can not be NULL!");
+           
+           // mainLayoutController.statusBarLable.setTextFill(Color.RED);
+            mainLayoutController.statusBarLable.setText("texttttt");
 
-        }
-        else if (fieldNameTextField.getText().matches("\\d*"))
-        {
+        } else if (fieldNameTextField.getText().matches("\\d*")) {
             programMessageLable.setTextFill(Color.RED);
             programMessageLable.setText("Field Name can not be only number!");
-            
-        }
-        else if (fieldNameTextField.getText().matches("\\d+[a-zA-Z_$1-9]*"))
-        {
+
+        } else if (fieldNameTextField.getText().matches("\\d+[a-zA-Z_$1-9]*")) {
             programMessageLable.setTextFill(Color.RED);
             programMessageLable.setText("Field Name can not be start with number!");
-            
-        }
-        else
-        {
+
+        } else {
             fieldManager = new FieldManager();
-            if (fieldManager.insert(fieldNameTextField.getText()))
-            {
+            if (fieldManager.insert(fieldNameTextField.getText())) {
                 System.out.println(fieldNameTextField.getText());
                 programMessageLable.setTextFill(Color.GREEN);
                 programMessageLable.setText("New Field add successfully!!!");
                 fieldNameTextField.setText("");
-                
+
                 newFieldDialogStage.close();
-                
-            }
-            else
-            {
+
+            } else {
                 programMessageLable.setTextFill(Color.RED);
                 programMessageLable.setText("Failed to add New Field!");
             }
@@ -134,48 +136,41 @@ public class FieldsNewDialogController implements Initializable
     }
 
     @FXML
-    private void okHBoxOnMouseExited(MouseEvent event)
-    {
+    private void okHBoxOnMouseExited(MouseEvent event) {
         okImageView.setImage(okButton);
     }
 
     @FXML
-    private void okHBoxOnMouseEntered(MouseEvent event)
-    {
+    private void okHBoxOnMouseEntered(MouseEvent event) {
         okImageView.setImage(okButtonOnMouseEntered);
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void cancelHBoxOnMouseClicked(MouseEvent event) {
         newFieldDialogStage.close();
     }
 
     @FXML
-    private void cancelHBoxOnMouseEntered(MouseEvent event)
-    {
+    private void cancelHBoxOnMouseEntered(MouseEvent event) {
         cancelImageView.setImage(cancelButtonOnMouseEntered);
     }
 
     @FXML
-    private void cancelHBoxOnMouseExited(MouseEvent event)
-    {
+    private void cancelHBoxOnMouseExited(MouseEvent event) {
         cancelImageView.setImage(cancelButton);
     }
 
     /**
      * @return the newFieldDialogStage
      */
-    public Stage getNewFieldDialogStage()
-    {
+    public Stage getNewFieldDialogStage() {
         return newFieldDialogStage;
     }
 
     /**
      * @param newFieldDialogStage the newFieldDialogStage to set
      */
-    public void setNewFieldDialogStage(Stage newFieldDialogStage)
-    {
+    public void setNewFieldDialogStage(Stage newFieldDialogStage) {
         this.newFieldDialogStage = newFieldDialogStage;
     }
 
