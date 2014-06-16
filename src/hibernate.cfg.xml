@@ -8,6 +8,7 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping resource="jclasschin/entity/Term.hbm.xml"/>
     <mapping resource="jclasschin/entity/Schedule.hbm.xml"/>
     <mapping resource="jclasschin/entity/Course.hbm.xml"/>
