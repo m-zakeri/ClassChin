@@ -35,7 +35,7 @@ public class DashboardLayoutController implements Initializable
 
     private final FXMLLoader inboxNewMailDialogLoader,dashboardTermNewDailogLoader;
     private final AnchorPane inboxNewMailDialogLayout,dashboardTermNewDailogLayout;
-    private final Scene inboxNewMailDialogScene,dashboardTermNewDailogScenec;
+    private final Scene inboxNewMailDialogScene,dashboardTermNewDailogScene;
     private final Stage inboxNewMailDialogStage,dashboardTermNewDailogStage;
     
     
@@ -83,9 +83,7 @@ public class DashboardLayoutController implements Initializable
         inboxNewMailDialogLoader = 
                 new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
-
         inboxNewMailDialogScene = new Scene(inboxNewMailDialogLayout);
-
         inboxNewMailDialogStage = new Stage();
         inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
         inboxNewMailDialogStage.setTitle("New Mail");
@@ -93,13 +91,20 @@ public class DashboardLayoutController implements Initializable
         inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
         inboxNewMailDialogStage.setResizable(false);
         inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
-          // inboxNewMailDialogStage.close();
+        // inboxNewMailDialogStage.close();
+        
         
         dashboardTermNewDailogLoader = 
                 new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
         dashboardTermNewDailogLayout = (AnchorPane) dashboardTermNewDailogLoader.load();
+        dashboardTermNewDailogScene = new Scene(dashboardTermNewDailogLayout);
         dashboardTermNewDailogStage = new Stage();
-        d
+        dashboardTermNewDailogStage.setScene(dashboardTermNewDailogScene);
+        dashboardTermNewDailogStage.setTitle("New Term");
+        dashboardTermNewDailogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardTermNewDailogStage.initOwner(JClassChin.getMainStage());
+        dashboardTermNewDailogStage.setResizable(false);
+        dashboardTermNewDailogStage.initStyle(StageStyle.UTILITY);
         
         
         mail = new Mail();
