@@ -17,6 +17,18 @@
         <many-to-one name="personBySenderPersonId" class="jclasschin.entity.Person" fetch="select">
             <column name="sender_person_id" not-null="true" />
         </many-to-one>
+        
+        
+       <!-- 
+         <property name="senderRemove" type="java.lang.Boolean">
+            <column name="sender_remove" />
+         </property>
+         
+         <property name="receiverRemove" type="java.lang.Boolean">
+            <column name="receiver_remove" />   
+         </property>
+         -->
+            
         <property name="type" type="string">
             <column name="type" length="45" />
         </property>

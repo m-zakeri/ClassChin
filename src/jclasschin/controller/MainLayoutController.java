@@ -241,6 +241,12 @@ public class MainLayoutController implements Initializable
         JClassChin.getMainLayout().setCenter(fieldsLayout);
         fieldsImageView.setImage(fieldButtonOnMouseClicked);
         fieldsHBoxOnMouseClickedFlag = true;
+        
+        
+        /* update field tableview  */
+        
+        FieldsLayoutController flc = new FieldsLayoutController();
+        flc.updateFieldTableView();
     }
 
     //___________________________________________________________________

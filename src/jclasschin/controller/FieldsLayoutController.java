@@ -98,6 +98,7 @@ public class FieldsLayoutController implements Initializable
         newFieldDialogStage.setResizable(false);
         newFieldDialogStage.initStyle(StageStyle.UTILITY);
          //newFieldDialogStage.close();
+        //this.updateFieldTableView();
 
     }
 
@@ -129,7 +130,7 @@ public class FieldsLayoutController implements Initializable
     @FXML
     private void deleteHBoxOnMouseClicked(MouseEvent event)
     {
-
+        
     }
 
     @FXML
@@ -144,9 +145,12 @@ public class FieldsLayoutController implements Initializable
         
     }
 
-    private void updateFieldTableView()
+    /*
+         update field table after any change! 
+    */
+    public void updateFieldTableView()
     {
-         //update field table after any change!
+         
         
         FieldManager fm = new FieldManager();
         ObservableList<Field> fieldList = FXCollections.observableArrayList();

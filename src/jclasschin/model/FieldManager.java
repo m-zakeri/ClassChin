@@ -51,6 +51,7 @@ public class FieldManager
             session.beginTransaction();
             session.save(field);
             session.getTransaction().commit();
+           
             return true;
         }
 
