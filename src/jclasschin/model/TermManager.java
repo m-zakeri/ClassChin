@@ -24,6 +24,7 @@
 
 package jclasschin.model;
 
+import java.awt.Color;
 import java.util.List;
 import jclasschin.entity.Term;
 import jclasschin.util.HibernateUtil;
@@ -36,45 +37,76 @@ import org.hibernate.Session;
  */
 public class TermManager
 {
+
     private Term term;
     private Session session;
-
+    
     public boolean insert(String termName)
     {
         term = new Term();
         term.setName(termName);
-
+        
         try
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(term);
             session.getTransaction().commit();
-           
+            
             return true;
         }
-
+        
         catch (HibernateException he)
         {
             return false;
         }
-
     }
-
-    public boolean delete(int termId)
+    
+    public boolean delete(int termID)
     {
-        return false;
-
+         try
+        { 
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Term t = (Term) session.load(Term.class, termID);
+            session.delete(t);
+            session.getTransaction().commit(); 
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
     }
-
+    
+    public boolean update(int termID, String newTermName)
+    {
+        try
+        { 
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Term t = (Term) session.load(Term.class, termID);
+            t.setName(newTermName);
+            session.update(t);
+            session.getTransaction().commit(); 
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
+        
+    }
+    
     public List selectAll()
     {
         try
         {
-
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            
+
             //Query q = session.createQuery(hql);
             List resultList = session.createQuery("from Term").list();
             //displayResult(resultList);
@@ -88,5 +120,5 @@ public class TermManager
         }
         return null;
     }
-
+    
 }

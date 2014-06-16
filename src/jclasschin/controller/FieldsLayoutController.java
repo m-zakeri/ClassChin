@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.io.IOException;
@@ -55,15 +54,16 @@ import jclasschin.model.FieldManager;
 public class FieldsLayoutController implements Initializable
 {
 
-    private final FXMLLoader newFieldDialogLoader;
-    private final AnchorPane newFieldDialogAnchorPane;
-    private final Scene newFieldDialogScene;
-    private final Stage newFieldDialogStage;
+    private final FXMLLoader newFieldDialogLoader, fieldsEditDialogLoader,fieldsDeleteDialogLoader;
+    private final AnchorPane newFieldDialogAnchorPane, fieldsEditDialogLayout,fieldsDeleteDialogLayout;
+    private final Scene newFieldDialogScene, fieldsEditDialogScene, fieldsDeleteDialogScene;
+    private final Stage newFieldDialogStage, fieldsEditDialogStage, fieldsDeleteDialogStage;
 
     private FieldsNewDialogController newFieldDialogController;
-    
-    //private ObservableList<Field> fieldList = FXCollections.observableArrayList();
+    private FieldsEditDialogController fieldsEditDialogController;
+     private FieldsDeleteDialogController fieldsDeleteDialogController;
 
+    //private ObservableList<Field> fieldList = FXCollections.observableArrayList();
     @FXML
     private HBox newHBox;
     @FXML
@@ -76,20 +76,17 @@ public class FieldsLayoutController implements Initializable
     private TableColumn<Field, String> idTableColumn;
     @FXML
     private TableColumn<Field, String> nameTableColumn;
-    
-     /**
+
+    /**
      * Initializes the controller class constructor
+     *
      * @throws java.io.IOException
      */
-
     public FieldsLayoutController() throws IOException
     {
         newFieldDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsNewDialog.fxml"));
-
         newFieldDialogAnchorPane = (AnchorPane) newFieldDialogLoader.load();
-
         newFieldDialogScene = new Scene(newFieldDialogAnchorPane);
-
         newFieldDialogStage = new Stage();
         newFieldDialogStage.setScene(newFieldDialogScene);
         newFieldDialogStage.setTitle("New Field");
@@ -97,8 +94,31 @@ public class FieldsLayoutController implements Initializable
         newFieldDialogStage.initOwner(JClassChin.getMainStage());
         newFieldDialogStage.setResizable(false);
         newFieldDialogStage.initStyle(StageStyle.UTILITY);
-         //newFieldDialogStage.close();
-        //this.updateFieldTableView();
+
+        /* Edit Dialog Init */
+        fieldsEditDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsEditDialog.fxml"));
+        fieldsEditDialogLayout = (AnchorPane) fieldsEditDialogLoader.load();
+        fieldsEditDialogScene = new Scene(fieldsEditDialogLayout);
+        fieldsEditDialogStage = new Stage();
+        fieldsEditDialogStage.setScene(fieldsEditDialogScene);
+        fieldsEditDialogStage.setTitle("Edit Field");
+        fieldsEditDialogStage.initModality(Modality.WINDOW_MODAL);
+        fieldsEditDialogStage.initOwner(JClassChin.getMainStage());
+        fieldsEditDialogStage.setResizable(false);
+        fieldsEditDialogStage.initStyle(StageStyle.UTILITY);
+        
+        
+        /* Delete Dialog Init */
+        fieldsDeleteDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsDeleteDialog.fxml"));
+        fieldsDeleteDialogLayout = (AnchorPane) fieldsDeleteDialogLoader.load();
+        fieldsDeleteDialogScene = new Scene(fieldsDeleteDialogLayout);
+        fieldsDeleteDialogStage = new Stage();
+        fieldsDeleteDialogStage.setScene(fieldsDeleteDialogScene);
+        fieldsDeleteDialogStage.setTitle("Delete Field");
+        fieldsDeleteDialogStage.initModality(Modality.WINDOW_MODAL);
+        fieldsDeleteDialogStage.initOwner(JClassChin.getMainStage());
+        fieldsDeleteDialogStage.setResizable(false);
+        fieldsDeleteDialogStage.initStyle(StageStyle.UTILITY);
 
     }
 
@@ -114,56 +134,78 @@ public class FieldsLayoutController implements Initializable
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
-        //newFieldDialogController = new NewFieldDialogController();
+
         newFieldDialogController = newFieldDialogLoader.getController();
         newFieldDialogController.setNewFieldDialogStage(newFieldDialogStage);
         newFieldDialogStage.showAndWait();
-       // newFieldDialogStage.close();
-       updateFieldTableView();
+
+        updateFieldTableView();
     }
 
     @FXML
     private void editHBoxOnMouseClicked(MouseEvent event)
     {
+        if (fieldsTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Field f = fieldsTableView.getSelectionModel().getSelectedItem();
+            //fieldsEditDialogController = new FieldsEditDialogController();
+            fieldsEditDialogController = fieldsEditDialogLoader.getController();
+            fieldsEditDialogController.initialize(null, null);
+            fieldsEditDialogController.setFieldsEditDialogStage(fieldsEditDialogStage);
+            fieldsEditDialogController.setField(f);
+            fieldsEditDialogStage.showAndWait();
+            
+            updateFieldTableView();
+        }
     }
 
     @FXML
     private void deleteHBoxOnMouseClicked(MouseEvent event)
     {
-        
+        if (fieldsTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Field f = fieldsTableView.getSelectionModel().getSelectedItem();
+            fieldsDeleteDialogController = fieldsDeleteDialogLoader.getController();
+            fieldsDeleteDialogController.initialize(null, null);
+            fieldsDeleteDialogController.setFieldsDeleteDialogStage(fieldsDeleteDialogStage);
+            fieldsDeleteDialogController.setField(f);
+            fieldsDeleteDialogStage.showAndWait();
+            
+            updateFieldTableView();
+        }
     }
 
     @FXML
     private void newHBoxOnMouseExited(MouseEvent event)
     {
-        
+
     }
 
     @FXML
     private void newHBoxOnMouseEntered(MouseEvent event)
     {
-        
+
     }
 
     /*
-         update field table after any change! 
-    */
+     update field table after any change! 
+     */
     public void updateFieldTableView()
     {
-         
-        
+
         FieldManager fm = new FieldManager();
         ObservableList<Field> fieldList = FXCollections.observableArrayList();
-        
+
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = fm.selectAll();
         l.stream().forEach((f) ->
         {
-            fieldList.add((Field)f);
+            fieldList.add((Field) f);
+           
         });
-        
+
         fieldsTableView.setItems(fieldList);
-     }
+    }
 
 }

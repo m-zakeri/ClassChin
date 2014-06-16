@@ -24,7 +24,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
-import jclasschin.entity.Field;
 import jclasschin.entity.Mail;
 import jclasschin.entity.Status;
 import jclasschin.entity.Term;
@@ -37,13 +36,20 @@ import jclasschin.model.TermManager;
  */
 public class DashboardLayoutController implements Initializable
 {
-    private final FXMLLoader inboxNewMailDialogLoader,dashboardTermNewDailogLoader;
-    private final AnchorPane inboxNewMailDialogLayout,dashboardTermNewDailogLayout;
-    private final Scene inboxNewMailDialogScene,dashboardTermNewDailogScene;
-    private final Stage inboxNewMailDialogStage,dashboardTermNewDailogStage;
-    
+
+    private final FXMLLoader inboxNewMailDialogLoader, dashboardTermNewDailogLoader, 
+            dashboardTermEditDailogLoader,dashboardTermDeleteDailogLoader;
+    private final AnchorPane inboxNewMailDialogLayout, dashboardTermNewDailogLayout,
+            dashboardTermEditDailogLayout,dashboardTermDeleteDailogLayout;
+    private final Scene inboxNewMailDialogScene, dashboardTermNewDailogScene,
+            dashboardTermEditDailogScene,dashboardTermDeleteDailogScene;
+    private final Stage inboxNewMailDialogStage, dashboardTermNewDailogStage,
+            dashboardTermEditDailogStage,dashboardTermDeleteDailogStage;
+
     private DashboardInboxNewDialogController inboxNewMailDialogController;
     private DashboardTermNewDialogController dashboardTermNewDialogController;
+    private DashboardTermEditDialogController dashboardTermEditDialogController;
+    private DashboardTermDeleteDialogController dashboardTermDeleteDialogController;
 
     private Mail mail;
     private ObservableList<Mail> mailList = FXCollections.observableArrayList();
@@ -72,7 +78,7 @@ public class DashboardLayoutController implements Initializable
     private HBox deleteTermHBox;
     @FXML
     private ComboBox<?> currentTermComboBox;
-    
+
     @FXML
     private TableView<Mail> inboxTableView;
     @FXML
@@ -81,26 +87,23 @@ public class DashboardLayoutController implements Initializable
     private TableColumn<Mail, String> subjectTableColumn;
     @FXML
     private TableColumn<Mail, String> messegeTableColumn;
-    
-    
+
     @FXML
     private TableView<Term> termTableView;
     @FXML
     private TableColumn<Term, String> termIdTableColumn;
     @FXML
     private TableColumn<Term, String> termNameTableColumn;
-    
-    
+
     @FXML
     private TableView<Status> statusTableView;
     @FXML
     private TableColumn<Mail, String> idTableColumn;
-    
 
     public DashboardLayoutController() throws IOException
     {
-        inboxNewMailDialogLoader = 
-                new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
+        inboxNewMailDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
         inboxNewMailDialogScene = new Scene(inboxNewMailDialogLayout);
         inboxNewMailDialogStage = new Stage();
@@ -111,10 +114,9 @@ public class DashboardLayoutController implements Initializable
         inboxNewMailDialogStage.setResizable(false);
         inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
         // inboxNewMailDialogStage.close();
-        
-        
-        dashboardTermNewDailogLoader = 
-                new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
+
+        dashboardTermNewDailogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
         dashboardTermNewDailogLayout = (AnchorPane) dashboardTermNewDailogLoader.load();
         dashboardTermNewDailogScene = new Scene(dashboardTermNewDailogLayout);
         dashboardTermNewDailogStage = new Stage();
@@ -124,16 +126,39 @@ public class DashboardLayoutController implements Initializable
         dashboardTermNewDailogStage.initOwner(JClassChin.getMainStage());
         dashboardTermNewDailogStage.setResizable(false);
         dashboardTermNewDailogStage.initStyle(StageStyle.UTILITY);
+
+        dashboardTermEditDailogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermEditDialog.fxml"));
+        dashboardTermEditDailogLayout = (AnchorPane) dashboardTermEditDailogLoader.load();
+        dashboardTermEditDailogScene = new Scene(dashboardTermEditDailogLayout);
+        dashboardTermEditDailogStage = new Stage();
+        dashboardTermEditDailogStage.setScene(dashboardTermEditDailogScene);
+        dashboardTermEditDailogStage.setTitle("Edit Term");
+        dashboardTermEditDailogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardTermEditDailogStage.initOwner(JClassChin.getMainStage());
+        dashboardTermEditDailogStage.setResizable(false);
+        dashboardTermEditDailogStage.initStyle(StageStyle.UTILITY);
         
         
+         dashboardTermDeleteDailogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermDeleteDialog.fxml"));
+        dashboardTermDeleteDailogLayout = (AnchorPane) dashboardTermDeleteDailogLoader.load();
+        dashboardTermDeleteDailogScene = new Scene(dashboardTermDeleteDailogLayout);
+        dashboardTermDeleteDailogStage = new Stage();
+        dashboardTermDeleteDailogStage.setScene(dashboardTermDeleteDailogScene);
+        dashboardTermDeleteDailogStage.setTitle("Delete Term");
+        dashboardTermDeleteDailogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardTermDeleteDailogStage.initOwner(JClassChin.getMainStage());
+        dashboardTermDeleteDailogStage.setResizable(false);
+        dashboardTermDeleteDailogStage.initStyle(StageStyle.UTILITY);
+        
+
         mail = new Mail();
         mail.setType("New Class Needed");
         mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
         mailList.add(mail);
-        
-    } 
-    
-    
+
+    }
 
     /**
      * Initializes the controller class.
@@ -173,7 +198,7 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void replyHBoxOnMouseExited(MouseEvent event)
     {
-        
+
     }
 
     @FXML
@@ -270,30 +295,50 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void editTermHBoxOnMouseClicked(MouseEvent event)
     {
-        
+        if (termTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Term t = termTableView.getSelectionModel().getSelectedItem();
+            dashboardTermEditDialogController = new DashboardTermEditDialogController();
+            dashboardTermEditDialogController = dashboardTermEditDailogLoader.getController();
+            dashboardTermEditDialogController.initialize(null, null);
+            dashboardTermEditDialogController.setDashboardTermEditDialogStage(dashboardTermEditDailogStage);
+            dashboardTermEditDialogController.setEditableTerm(t);
+            dashboardTermEditDailogStage.showAndWait();
+            
+            updateTermTableView();
+        }
     }
 
     @FXML
     private void deleteTermHBoxOnMouseClicked(MouseEvent event)
     {
+         if (termTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Term t = termTableView.getSelectionModel().getSelectedItem();
+            dashboardTermDeleteDialogController = new DashboardTermDeleteDialogController();
+            dashboardTermDeleteDialogController = dashboardTermDeleteDailogLoader.getController();
+            dashboardTermDeleteDialogController.initialize(null, null);
+            dashboardTermDeleteDialogController.setDashboardTermDeleteDailogStage(dashboardTermDeleteDailogStage);
+            dashboardTermDeleteDialogController.setEditableTerm(t);
+            dashboardTermDeleteDailogStage.showAndWait();
+            
+            updateTermTableView();
+        }
     }
 
-    
-     public void updateTermTableView()
+    public void updateTermTableView()
     {
-         
-        
         TermManager tm = new TermManager();
         ObservableList<Term> termList = FXCollections.observableArrayList();
-        
+
         termIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         termNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = tm.selectAll();
         l.stream().forEach((t) ->
         {
-            termList.add((Term)t);
+            termList.add((Term) t);
         });
-        
+
         termTableView.setItems(termList);
-     }
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -33,8 +32,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import jclasschin.entity.Term;
 import jclasschin.model.TermManager;
 
 /**
@@ -42,12 +41,13 @@ import jclasschin.model.TermManager;
  *
  * @author HP
  */
-public class DashboardTermNewDialogController implements Initializable
+public class DashboardTermEditDialogController implements Initializable
 {
-    
-    private Stage dashboardTermNewDialogStage;
-    
-    
+
+    private Stage dashboardTermEditDialogStage;
+    private Term editableTerm;
+    private TermManager termManager;
+
     @FXML
     private TextField termNameTextField;
     @FXML
@@ -68,7 +68,7 @@ public class DashboardTermNewDialogController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void okHBoxOnMouseExited(MouseEvent event)
@@ -83,45 +83,12 @@ public class DashboardTermNewDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
-         TermManager termManager;
-        if (getTermNameTextField().getText() == null || "".equals(getTermNameTextField().getText()))
-        {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be NULL!");
-
-        }
-        else if (getTermNameTextField().getText().matches("\\d*"))
-        {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be only number!");
-            
-        }
-        else if (getTermNameTextField().getText().matches("\\d+[a-zA-Z_$1-9]*"))
-        {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be start with number!");
-            
-        }
-        else
+        if (termNameTextField.getText() != null)
         {
             termManager = new TermManager();
-            if (termManager.insert(getTermNameTextField().getText()))
-            {
-                System.out.println(getTermNameTextField().getText());
-                programMessageLable.setTextFill(Color.GREEN);
-                programMessageLable.setText("New Field add successfully!!!");
-                getTermNameTextField().setText("");
-                
-                dashboardTermNewDialogStage.close();
-                
-            }
-            else
-            {
-                programMessageLable.setTextFill(Color.RED);
-                programMessageLable.setText("Failed to add New Field!");
-            }
+            termManager.update(editableTerm.getId(), termNameTextField.getText());
         }
-
+        dashboardTermEditDialogStage.close();
     }
 
     @FXML
@@ -137,31 +104,41 @@ public class DashboardTermNewDialogController implements Initializable
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
-        dashboardTermNewDialogStage.close();
+        dashboardTermEditDialogStage.close();
     }
 
     /**
-     * @return the dashboardTermNewDialogStage
+     * @return the dashboardTermEditDialogStage
      */
-    public Stage getDashboardTermNewDialogStage()
+    public Stage getDashboardTermEditDialogStage()
     {
-        return dashboardTermNewDialogStage;
+        return dashboardTermEditDialogStage;
     }
 
     /**
-     * @param dashboardTermNewDialogStage the dashboardTermNewDialogStage to set
+     * @param dashboardTermEditDialogStage the dashboardTermEditDialogStage to
+     * set
      */
-    public void setDashboardTermNewDialogStage(Stage dashboardTermNewDialogStage)
+    public void setDashboardTermEditDialogStage(Stage dashboardTermEditDialogStage)
     {
-        this.dashboardTermNewDialogStage = dashboardTermNewDialogStage;
+        this.dashboardTermEditDialogStage = dashboardTermEditDialogStage;
     }
 
     /**
-     * @return the termNameTextField
+     * @return the editableTerm
      */
-    public TextField getTermNameTextField()
+    public Term getEditableTerm()
     {
-        return termNameTextField;
+        return editableTerm;
     }
-  
+
+    /**
+     * @param editableTerm the editableTerm to set
+     */
+    public void setEditableTerm(Term editableTerm)
+    {
+        this.editableTerm = editableTerm;
+        termNameTextField.setText(this.editableTerm.getName());
+    }
+
 }

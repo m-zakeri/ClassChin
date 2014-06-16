@@ -32,6 +32,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Term;
+import jclasschin.model.TermManager;
 
 /**
  * FXML Controller class
@@ -40,6 +43,12 @@ import javafx.scene.layout.HBox;
  */
 public class DashboardTermDeleteDialogController implements Initializable
 {
+    
+    
+    private Stage dashboardTermDeleteDailogStage;
+    private Term editableTerm;
+    private TermManager termManager;
+    
     @FXML
     private HBox yesHBox;
     @FXML
@@ -73,6 +82,9 @@ public class DashboardTermDeleteDialogController implements Initializable
     @FXML
     private void yesHBoxOnMouseClicked(MouseEvent event)
     {
+        termManager = new TermManager();
+        termManager.delete(editableTerm.getId());
+        dashboardTermDeleteDailogStage.close();
     }
 
     @FXML
@@ -88,6 +100,41 @@ public class DashboardTermDeleteDialogController implements Initializable
     @FXML
     private void noHBoxOnMouseClicked(MouseEvent event)
     {
+         dashboardTermDeleteDailogStage.close();
+    }
+
+    /**
+     * @return the dashboardTermDeleteDailogStage
+     */
+    public Stage getDashboardTermDeleteDailogStage()
+    {
+        return dashboardTermDeleteDailogStage;
+    }
+
+    /**
+     * @param dashboardTermDeleteDailogStage the dashboardTermDeleteDailogStage to set
+     */
+    public void setDashboardTermDeleteDailogStage(Stage dashboardTermDeleteDailogStage)
+    {
+        this.dashboardTermDeleteDailogStage = dashboardTermDeleteDailogStage;
+    }
+
+    /**
+     * @return the editableTerm
+     */
+    public Term getEditableTerm()
+    {
+        return editableTerm;
+    }
+
+    /**
+     * @param editableTerm the editableTerm to set
+     */
+    public void setEditableTerm(Term editableTerm)
+    {
+        this.editableTerm = editableTerm;
+        programMessageLable.setText("Are you sure to delete term " + editableTerm.getName() +" ? ");
+        
     }
     
 }

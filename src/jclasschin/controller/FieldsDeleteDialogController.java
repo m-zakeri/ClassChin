@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -32,6 +31,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Field;
+import jclasschin.model.FieldManager;
 
 /**
  * FXML Controller class
@@ -40,6 +42,11 @@ import javafx.scene.layout.HBox;
  */
 public class FieldsDeleteDialogController implements Initializable
 {
+
+    private Stage fieldsDeleteDialogStage;
+    private Field field;
+    private FieldManager fieldManaer;
+
     @FXML
     private HBox yesHBox;
     @FXML
@@ -58,7 +65,7 @@ public class FieldsDeleteDialogController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void yesHBoxOnMouseExited(MouseEvent event)
@@ -73,6 +80,10 @@ public class FieldsDeleteDialogController implements Initializable
     @FXML
     private void yesHBoxOnMouseClicked(MouseEvent event)
     {
+        fieldManaer = new FieldManager();
+        fieldManaer.delete(field.getId());
+        
+        fieldsDeleteDialogStage.close();
     }
 
     @FXML
@@ -88,6 +99,40 @@ public class FieldsDeleteDialogController implements Initializable
     @FXML
     private void noHBoxOnMouseClicked(MouseEvent event)
     {
+        fieldsDeleteDialogStage.close();
     }
-    
+
+    /**
+     * @return the fieldsDeleteDialogStage
+     */
+    public Stage getFieldsDeleteDialogStage()
+    {
+        return fieldsDeleteDialogStage;
+    }
+
+    /**
+     * @param fieldsDeleteDialogStage the fieldsDeleteDialogStage to set
+     */
+    public void setFieldsDeleteDialogStage(Stage fieldsDeleteDialogStage)
+    {
+        this.fieldsDeleteDialogStage = fieldsDeleteDialogStage;
+    }
+
+    /**
+     * @return the field
+     */
+    public Field getField()
+    {
+        return field;
+    }
+
+    /**
+     * @param field the field to set
+     */
+    public void setField(Field field)
+    {
+        this.field = field;
+        programMessageLable.setText("Are you want to delete field  " + this.field.getName() +"  ?");
+    }
+
 }
