@@ -27,7 +27,7 @@ import jclasschin.JClassChin;
  */
 public class MainLayoutController implements Initializable
 {
-
+    
     private BorderPane mainLayout;
     private final AnchorPane dashboardLayout,
             fieldsLayout,
@@ -36,6 +36,12 @@ public class MainLayoutController implements Initializable
             classLayout;
 //            scheduleLayout,
 //            reportsLayout;
+    
+    FXMLLoader  dashboardLayoutLoader,
+                fieldsLayoutLoader,
+                usersLayoutLoader,
+                groupsLayoutLoader,
+                classLayoutLoader;
 
     private final Image homeButton,
             homeButtonOnMouseEntered,
@@ -92,15 +98,15 @@ public class MainLayoutController implements Initializable
 
     public MainLayoutController() throws IOException
     {
-        FXMLLoader dashboardLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
+        dashboardLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
         dashboardLayout = (AnchorPane) dashboardLayoutLoader.load();
-        FXMLLoader fieldsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsLayout.fxml"));
+        fieldsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsLayout.fxml"));
         fieldsLayout = new AnchorPane((AnchorPane) fieldsLayoutLoader.load());
-        FXMLLoader usersLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersLayout.fxml"));
+        usersLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersLayout.fxml"));
         usersLayout = new AnchorPane((AnchorPane) usersLayoutLoader.load());
-        FXMLLoader groupsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/GroupsLayout.fxml"));
+        groupsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/GroupsLayout.fxml"));
         groupsLayout = new AnchorPane((AnchorPane) groupsLayoutLoader.load());
-        FXMLLoader classLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ClassLayout.fxml"));
+        classLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ClassLayout.fxml"));
         classLayout = new AnchorPane((AnchorPane) classLayoutLoader.load());
 //        FXMLLoader scheduleLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ScheduleLayout.fxml"));
 //        scheduleLayout = new AnchorPane((AnchorPane) scheduleLayoutLoader.load());
@@ -245,7 +251,7 @@ public class MainLayoutController implements Initializable
         
         /* update field tableview  */
         
-        FieldsLayoutController flc = new FieldsLayoutController();
+        FieldsLayoutController flc = fieldsLayoutLoader.getController();
         flc.updateFieldTableView();
     }
 
