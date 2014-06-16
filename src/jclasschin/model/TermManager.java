@@ -36,7 +36,7 @@ import org.hibernate.Session;
  */
 public class TermManager
 {
-     private Term term;
+    private Term term;
     private Session session;
 
     public boolean insert(String termName)

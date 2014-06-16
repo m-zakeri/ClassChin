@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="182.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.DashboardTermNewDialogController">
+<AnchorPane id="AnchorPane" prefHeight="182.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.DashboardTermNewDialogController">
   <children>
-    <TextField id="subjectTextField" fx:id="fieldNameTextField" prefWidth="264.0" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="55.0" />
+    <TextField id="subjectTextField" fx:id="termNameTextField" prefWidth="264.0" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="55.0" />
     <VBox id="VBox" alignment="TOP_LEFT" layoutX="21.0" layoutY="55.0" spacing="20.0">
       <children>
         <Label text="Term Name :" />
@@ -25,7 +25,7 @@
           <children>
             <ImageView id="okButton" fx:id="okImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
               <image>
-                <Image url="@../gallery/image/okButton.png" preserveRatio="true" smooth="true" />
+                <Image preserveRatio="true" smooth="true" url="@../gallery/image/okButton.png" />
               </image>
             </ImageView>
             <Label text="Ok" />
@@ -35,7 +35,7 @@
           <children>
             <ImageView id="okButton" fx:id="cancelImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
               <image>
-                <Image url="@../gallery/image/cancelButton.png" preserveRatio="true" smooth="true" />
+                <Image preserveRatio="true" smooth="true" url="@../gallery/image/cancelButton.png" />
               </image>
             </ImageView>
             <Label text="Cancel" />

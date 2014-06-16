@@ -33,7 +33,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import jclasschin.model.TermManager;
 
 /**
  * FXML Controller class
@@ -46,9 +48,8 @@ public class DashboardTermNewDialogController implements Initializable
     private Stage dashboardTermNewDialogStage;
     
     
-    
     @FXML
-    private TextField fieldNameTextField;
+    private TextField termNameTextField;
     @FXML
     private HBox okHBox;
     @FXML
@@ -82,6 +83,45 @@ public class DashboardTermNewDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
+         TermManager termManager;
+        if (termNameTextField.getText() == null || "".equals(termNameTextField.getText()))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field Name can not be NULL!");
+
+        }
+        else if (termNameTextField.getText().matches("\\d*"))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field Name can not be only number!");
+            
+        }
+        else if (termNameTextField.getText().matches("\\d+[a-zA-Z_$1-9]*"))
+        {
+            programMessageLable.setTextFill(Color.RED);
+            programMessageLable.setText("Field Name can not be start with number!");
+            
+        }
+        else
+        {
+            termManager = new TermManager();
+            if (termManager.insert(termNameTextField.getText()))
+            {
+                System.out.println(termNameTextField.getText());
+                programMessageLable.setTextFill(Color.GREEN);
+                programMessageLable.setText("New Field add successfully!!!");
+                termNameTextField.setText("");
+                
+                dashboardTermNewDialogStage.close();
+                
+            }
+            else
+            {
+                programMessageLable.setTextFill(Color.RED);
+                programMessageLable.setText("Failed to add New Field!");
+            }
+        }
+
     }
 
     @FXML
@@ -97,6 +137,23 @@ public class DashboardTermNewDialogController implements Initializable
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardTermNewDialogStage.close();
+    }
+
+    /**
+     * @return the dashboardTermNewDialogStage
+     */
+    public Stage getDashboardTermNewDialogStage()
+    {
+        return dashboardTermNewDialogStage;
+    }
+
+    /**
+     * @param dashboardTermNewDialogStage the dashboardTermNewDialogStage to set
+     */
+    public void setDashboardTermNewDialogStage(Stage dashboardTermNewDialogStage)
+    {
+        this.dashboardTermNewDialogStage = dashboardTermNewDialogStage;
     }
     
 }

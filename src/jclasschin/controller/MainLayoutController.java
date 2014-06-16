@@ -218,6 +218,10 @@ public class MainLayoutController implements Initializable
         JClassChin.getMainLayout().setCenter(dashboardLayout);
         dashboardImageView.setImage(homeButtonOnMouseClicked);
         dashboardHBoxOnMouseClickedFlag = true;
+        
+        
+        DashboardLayoutController dlc = dashboardLayoutLoader.getController();
+        dlc.updateTermTableView();
     }
 
     //___________________________________________________________________

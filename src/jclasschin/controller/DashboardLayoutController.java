@@ -5,6 +5,7 @@ package jclasschin.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +24,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
+import jclasschin.entity.Field;
 import jclasschin.entity.Mail;
+import jclasschin.entity.Status;
+import jclasschin.entity.Term;
+import jclasschin.model.TermManager;
 
 /**
  * FXML Controller class
@@ -32,19 +37,15 @@ import jclasschin.entity.Mail;
  */
 public class DashboardLayoutController implements Initializable
 {
-
     private final FXMLLoader inboxNewMailDialogLoader,dashboardTermNewDailogLoader;
     private final AnchorPane inboxNewMailDialogLayout,dashboardTermNewDailogLayout;
     private final Scene inboxNewMailDialogScene,dashboardTermNewDailogScene;
     private final Stage inboxNewMailDialogStage,dashboardTermNewDailogStage;
     
-    
     private DashboardInboxNewDialogController inboxNewMailDialogController;
     private DashboardTermNewDialogController dashboardTermNewDialogController;
-    
 
     private Mail mail;
-
     private ObservableList<Mail> mailList = FXCollections.observableArrayList();
 
     @FXML
@@ -71,12 +72,30 @@ public class DashboardLayoutController implements Initializable
     private HBox deleteTermHBox;
     @FXML
     private ComboBox<?> currentTermComboBox;
+    
     @FXML
     private TableView<Mail> inboxTableView;
+    @FXML
+    private TableView<Mail> outboxTableView;
     @FXML
     private TableColumn<Mail, String> subjectTableColumn;
     @FXML
     private TableColumn<Mail, String> messegeTableColumn;
+    
+    
+    @FXML
+    private TableView<Term> termTableView;
+    @FXML
+    private TableColumn<Term, String> termIdTableColumn;
+    @FXML
+    private TableColumn<Term, String> termNameTableColumn;
+    
+    
+    @FXML
+    private TableView<Status> statusTableView;
+    @FXML
+    private TableColumn<Mail, String> idTableColumn;
+    
 
     public DashboardLayoutController() throws IOException
     {
@@ -240,11 +259,18 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void newTermHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardTermNewDialogController = new DashboardTermNewDialogController();
+        dashboardTermNewDialogController = dashboardTermNewDailogLoader.getController();
+        dashboardTermNewDialogController.initialize(null, null);
+        dashboardTermNewDialogController.setDashboardTermNewDialogStage(dashboardTermNewDailogStage);
+        dashboardTermNewDailogStage.showAndWait();
+        updateTermTableView();
     }
 
     @FXML
     private void editTermHBoxOnMouseClicked(MouseEvent event)
     {
+        
     }
 
     @FXML
@@ -252,4 +278,22 @@ public class DashboardLayoutController implements Initializable
     {
     }
 
+    
+     public void updateTermTableView()
+    {
+         
+        
+        TermManager tm = new TermManager();
+        ObservableList<Term> termList = FXCollections.observableArrayList();
+        
+        termIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        termNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        List l = tm.selectAll();
+        l.stream().forEach((t) ->
+        {
+            termList.add((Term)t);
+        });
+        
+        termTableView.setItems(termList);
+     }
 }
