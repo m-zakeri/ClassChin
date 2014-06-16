@@ -82,7 +82,6 @@ public class DashboardLayoutController implements Initializable
     {
         inboxNewMailDialogLoader = 
                 new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
-
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
 
         inboxNewMailDialogScene = new Scene(inboxNewMailDialogLayout);
@@ -95,12 +94,21 @@ public class DashboardLayoutController implements Initializable
         inboxNewMailDialogStage.setResizable(false);
         inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
           // inboxNewMailDialogStage.close();
-
+        
+        dashboardTermNewDailogLoader = 
+                new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
+        dashboardTermNewDailogLayout = (AnchorPane) dashboardTermNewDailogLoader.load();
+        dashboardTermNewDailogStage = new Stage();
+        d
+        
+        
         mail = new Mail();
         mail.setType("New Class Needed");
         mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
         mailList.add(mail);
-    }
+        
+    } 
+    
     
 
     /**
@@ -141,6 +149,7 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void replyHBoxOnMouseExited(MouseEvent event)
     {
+        
     }
 
     @FXML
