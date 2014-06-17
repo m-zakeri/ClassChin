@@ -55,8 +55,8 @@ public class FieldsDeleteDialogController implements Initializable
     private HBox noHBox;
     @FXML
     private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+//    @FXML
+//    private Label programMessageLable;
 
     /**
      * Initializes the controller class.
@@ -132,7 +132,7 @@ public class FieldsDeleteDialogController implements Initializable
     public void setField(Field field)
     {
         this.field = field;
-        programMessageLable.setText("Are you want to delete field  " + this.field.getName() +"  ?");
+//        programMessageLable.setText("Are you want to delete field  " + this.field.getName() +"  ?");
     }
 
 }

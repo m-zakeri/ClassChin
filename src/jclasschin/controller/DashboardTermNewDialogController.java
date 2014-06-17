@@ -58,8 +58,7 @@ public class DashboardTermNewDialogController implements Initializable
     private HBox cancelHBox;
     @FXML
     private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+//    private Label programMessageLable;
 
     /**
      * Initializes the controller class.
@@ -86,20 +85,20 @@ public class DashboardTermNewDialogController implements Initializable
          TermManager termManager;
         if (getTermNameTextField().getText() == null || "".equals(getTermNameTextField().getText()))
         {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be NULL!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be NULL!");
 
         }
         else if (getTermNameTextField().getText().matches("\\d*"))
         {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be only number!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be only number!");
             
         }
         else if (getTermNameTextField().getText().matches("\\d+[a-zA-Z_$1-9]*"))
         {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be start with number!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be start with number!");
             
         }
         else
@@ -108,8 +107,8 @@ public class DashboardTermNewDialogController implements Initializable
             if (termManager.insert(getTermNameTextField().getText()))
             {
                 System.out.println(getTermNameTextField().getText());
-                programMessageLable.setTextFill(Color.GREEN);
-                programMessageLable.setText("New Field add successfully!!!");
+//                programMessageLable.setTextFill(Color.GREEN);
+//                programMessageLable.setText("New Field add successfully!!!");
                 getTermNameTextField().setText("");
                 
                 dashboardTermNewDialogStage.close();
@@ -117,8 +116,8 @@ public class DashboardTermNewDialogController implements Initializable
             }
             else
             {
-                programMessageLable.setTextFill(Color.RED);
-                programMessageLable.setText("Failed to add New Field!");
+//                programMessageLable.setTextFill(Color.RED);
+//                programMessageLable.setText("Failed to add New Field!");
             }
         }
 

@@ -56,8 +56,8 @@ public class DashboardTermDeleteDialogController implements Initializable
     private HBox noHBox;
     @FXML
     private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+//    @FXML
+//    private Label programMessageLable;
 
     /**
      * Initializes the controller class.
@@ -132,7 +132,7 @@ public class DashboardTermDeleteDialogController implements Initializable
     public void setEditableTerm(Term editableTerm)
     {
         this.editableTerm = editableTerm;
-        programMessageLable.setText("Are you sure to delete term " + editableTerm.getName() +" ? ");
+//        programMessageLable.setText("Are you sure to delete term " + editableTerm.getName() +" ? ");
         
     }
     

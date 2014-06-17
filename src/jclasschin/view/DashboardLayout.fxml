@@ -205,20 +205,17 @@
                         </HBox>
                       </children>
                     </HBox>
-                    <HBox id="HBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="23.5" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.5">
-                      <children>
-                        <Label text="ترم جاری" />
-                        <ComboBox fx:id="currentTermComboBox" prefWidth="141.0">
-                          <items>
-                            <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Item 1" />
-                              <String fx:value="Item 2" />
-                              <String fx:value="Item 3" />
-                            </FXCollections>
-                          </items>
-                        </ComboBox>
-                      </children>
-                    </HBox>
+                    <HBox id="HBox" alignment="CENTER" layoutX="774.0" layoutY="14.5" spacing="10.0" AnchorPane.bottomAnchor="31.5" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.5" />
+                  <ComboBox fx:id="currentTermComboBox" layoutX="818.0" layoutY="20.0" prefHeight="30.0" prefWidth="141.0">
+                    <items>
+                      <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Item 1" />
+                        <String fx:value="Item 2" />
+                        <String fx:value="Item 3" />
+                      </FXCollections>
+                    </items>
+                  </ComboBox>
+                  <Label layoutX="751.0" layoutY="25.0" text="ترم جاری" />
                   </children>
                 </AnchorPane>
               </top>

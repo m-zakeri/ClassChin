@@ -1,21 +1,15 @@
 .label {
 -fx-font-family : "B Nazanin";
 -fx-font-size:21px;
+-fx-font-weight:bold;
 }
 
-.label:hover {
--fx-font-weight :bold;
+.text-field {
+-fx-font-family : "B Nazanin";
+-fx-font-size:20px;
 }
 
-.imageView {
-    -fx-image: url("homeButton.png");
-}
-
-.imageView:hover {
-         -fx-image:url("homeButtonEntered.png");
-	-fx-background-color:black;
-}
-
-.imageView:selected{
-    -fx-image: url("homeButtonClicked.png");
+.combo-box {
+-fx-font-family : "B Nazanin";
+-fx-font-size:20px;
 }

@@ -58,8 +58,8 @@ public class DashboardTermEditDialogController implements Initializable
     private HBox cancelHBox;
     @FXML
     private ImageView cancelImageView;
-    @FXML
-    private Label programMessageLable;
+//    @FXML
+//    private Label programMessageLable;
 
     /**
      * Initializes the controller class.

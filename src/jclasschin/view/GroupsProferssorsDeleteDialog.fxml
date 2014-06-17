@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="false" depthTest="DISABLE" disable="false" focusTraversable="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="169.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.FieldsDeleteDialogController">
+<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="false" depthTest="DISABLE" disable="false" focusTraversable="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="169.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.GroupsProferssorsDeleteDialogController">
   <children>
     <VBox id="VBox" alignment="TOP_LEFT" layoutX="21.0" layoutY="55.0" spacing="20.0" />
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
@@ -18,7 +18,7 @@
             <Image url="@../gallery/image/warningIcon.png" />
          </image>
       </ImageView>
-      <Label layoutX="80.0" layoutY="33.0" prefHeight="27.0" prefWidth="419.0" text="آیا مطمئن هستید که می خواهید این رشته را حذف کنید؟">
+      <Label layoutX="80.0" layoutY="33.0" prefHeight="27.0" prefWidth="419.0" text="آیا مطمئن هستید که می خواهید این استاد را حذف کنید؟">
          <font>
             <Font size="14.0" />
          </font>

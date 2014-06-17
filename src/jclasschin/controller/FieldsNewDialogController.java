@@ -29,14 +29,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import jclasschin.JClassChin;
 import jclasschin.model.FieldManager;
@@ -57,17 +54,16 @@ public class FieldsNewDialogController implements Initializable {
             cancelButton, cancelButtonOnMouseEntered, cancelButtonOnMouseClicked;
 
     @FXML
-    private TextField fieldNameTextField;
-    @FXML
     private HBox okHBox;
     @FXML
     private HBox cancelHBox;
-    @FXML
-    private Label programMessageLable;
+//    private Label programMessageLable;
     @FXML
     private ImageView okImageView;
     @FXML
     private ImageView cancelImageView;
+    @FXML
+    private TextField fieldNameTextField;
 
     public FieldsNewDialogController() throws IOException {
         
@@ -90,7 +86,7 @@ public class FieldsNewDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        programMessageLable.setText("");
+//        programMessageLable.setText("");
     }
 
     @FXML
@@ -103,33 +99,33 @@ public class FieldsNewDialogController implements Initializable {
         
         FieldManager fieldManager;
         if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText())) {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be NULL!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be NULL!");
            
            // mainLayoutController.statusBarLable.setTextFill(Color.RED);
             mainLayoutController.statusBarLable.setText("texttttt");
 
         } else if (fieldNameTextField.getText().matches("\\d*")) {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be only number!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be only number!");
 
         } else if (fieldNameTextField.getText().matches("\\d+[a-zA-Z_$1-9]*")) {
-            programMessageLable.setTextFill(Color.RED);
-            programMessageLable.setText("Field Name can not be start with number!");
+//            programMessageLable.setTextFill(Color.RED);
+//            programMessageLable.setText("Field Name can not be start with number!");
 
         } else {
             fieldManager = new FieldManager();
             if (fieldManager.insert(fieldNameTextField.getText())) {
                 System.out.println(fieldNameTextField.getText());
-                programMessageLable.setTextFill(Color.GREEN);
-                programMessageLable.setText("New Field add successfully!!!");
+//                programMessageLable.setTextFill(Color.GREEN);
+//                programMessageLable.setText("New Field add successfully!!!");
                 fieldNameTextField.setText("");
 
                 newFieldDialogStage.close();
 
             } else {
-                programMessageLable.setTextFill(Color.RED);
-                programMessageLable.setText("Failed to add New Field!");
+//                programMessageLable.setTextFill(Color.RED);
+//                programMessageLable.setText("Failed to add New Field!");
             }
         }
 

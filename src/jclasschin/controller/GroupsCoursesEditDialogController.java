@@ -29,27 +29,17 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class DashboardInboxNewDialogController implements Initializable {
-    
-    private Mail mail;
-    
-    @FXML
-    private TextField subjectTextField;
-    @FXML
-    private TextArea messegeTextArea;
-    @FXML
-    private ComboBox<?> toComboBox;
+public class GroupsCoursesEditDialogController implements Initializable {
     @FXML
     private HBox okHBox;
     @FXML
@@ -58,26 +48,25 @@ public class DashboardInboxNewDialogController implements Initializable {
     private HBox cancelHBox;
     @FXML
     private ImageView cancelImageView;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private ComboBox<?> typeComboBox;
 
-    public DashboardInboxNewDialogController(){
-    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         subjectTextField.setText("");
-         messegeTextArea.setText("");
-
-
         // TODO
     }    
-    
-    public Mail getMail(){
-        mail=new Mail();
-        mail.setType(subjectTextField.getText());
-        mail.setText(messegeTextArea.getText());
-        return mail;
+
+    @FXML
+    private void okHBoxOnMouseClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event) {
     }
     
 }
