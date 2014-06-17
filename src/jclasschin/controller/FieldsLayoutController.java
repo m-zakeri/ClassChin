@@ -191,8 +191,10 @@ public class FieldsLayoutController implements Initializable {
             fieldList.add((Field) f);
 
         });
-
         fieldsTableView.setItems(fieldList);
+//        
+//        
+//        fieldsTableView.getColumns().add(index, idTableColumn);
     }
 
 }

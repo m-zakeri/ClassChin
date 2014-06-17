@@ -23,6 +23,7 @@
  */
 package jclasschin.model;
 
+import java.util.List;
 import jclasschin.entity.Field;
 import jclasschin.entity.Job;
 import jclasschin.entity.Person;
@@ -79,6 +80,29 @@ public class UserManager
         {
             return false;
         }
+    }
+    
+    
+        public List selectAll()
+    {
+        try
+        {
+
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            //Query q = session.createQuery(hql);
+            List resultList = session.createQuery("from Person,").list();
+            //displayResult(resultList);
+
+            session.getTransaction().commit();
+            return resultList;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+        }
+        return null;
     }
 
 }

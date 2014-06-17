@@ -278,6 +278,9 @@ public class MainLayoutController implements Initializable {
         JClassChin.getMainLayout().setCenter(usersLayout);
         usersImageView.setImage(userButtonOnMouseClicked);
         usersHBoxOnMouseClickedFlag = true;
+        
+        UsersLayoutController ulc = usersLayoutLoader.getController();
+        ulc.updateUsersTableView();
     }
 
 //___________________________________________________________________
