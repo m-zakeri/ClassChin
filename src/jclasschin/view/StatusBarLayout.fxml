@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="45.0" prefWidth="1245.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.StatusBarLayoutController">
+   <children>
+      <Label id="dateTimeLabel" fx:id="statusBarLable" layoutX="40.0" layoutY="8.0" text="نوار وضعیت">
+         <font>
+            <Font name="B Nazanin" size="20.0" />
+         </font>
+      </Label>
+      <Separator prefWidth="1245.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
