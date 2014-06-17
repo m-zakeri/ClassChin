@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import jclasschin.JClassChin;
-import org.controlsfx.control.Notifications;
+//import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class

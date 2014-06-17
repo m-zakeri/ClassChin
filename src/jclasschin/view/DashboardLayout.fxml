@@ -10,17 +10,17 @@
   <children>
     <TabPane prefHeight="614.0" prefWidth="991.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
-        <Tab text="Inbox">
+        <Tab text="نامه های دریافتی">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView fx:id="inboxTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="From" />
-                    <TableColumn fx:id="subjectTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Subject" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="Date" />
-                    <TableColumn fx:id="messegeTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Messege" />
+                    <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="ردیف" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="از" />
+                    <TableColumn fx:id="subjectTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="موضوع" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="تاریخ" />
+                    <TableColumn fx:id="messegeTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="پیام" />
                   </columns>
                 </TableView>
               </center>
@@ -36,7 +36,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" fx:id="replyHBox" alignment="CENTER" onMouseClicked="#replyHBoxOnMouseClicked" onMouseEntered="#replyHBoxOnMouseEntered" onMouseExited="#replyHBoxOnMouseExited" spacing="10.0">
@@ -46,7 +46,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/replyButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Reply" />
+                            <Label text="پاسخ" />
                           </children>
                         </HBox>
                         <HBox id="HBox" fx:id="deleteHBox" alignment="CENTER" onMouseClicked="#deleteHBoxOnMouseClicked" onMouseEntered="#deleteHBoxOnMouseEntered" onMouseExited="#replyHBoxOnMouseExited" spacing="10.0">
@@ -56,7 +56,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
@@ -68,7 +68,7 @@
                             <Image preserveRatio="true" smooth="true" url="@../gallery/image/refreshButton.png" />
                           </image>
                         </ImageView>
-                        <Label text="Refresh" />
+                        <Label text="به روز رسانی" />
                       </children>
                     </HBox>
                   </children>
@@ -77,17 +77,17 @@
             </BorderPane>
           </content>
         </Tab>
-        <Tab text="Outbox">
+        <Tab text="نامه های ارسالی">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView fx:id="outboxTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="To" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Subject" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="Date" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Messege" />
+                    <TableColumn prefWidth="75.0" text="ردیف" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="به" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="موضوع" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="تاریخ" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="پیام" />
                   </columns>
                 </TableView>
               </center>
@@ -103,7 +103,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" fx:id="delete2HBox" alignment="CENTER" onMouseClicked="#delete2HBoxOnMouseClicked" onMouseEntered="#delete2HBoxOnMouseEntered" onMouseExited="#delete2HBoxOnMouseExited" spacing="10.0">
@@ -113,7 +113,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
@@ -124,16 +124,16 @@
             </BorderPane>
           </content>
         </Tab>
-        <Tab text="Status">
+        <Tab text="وضعیت">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView fx:id="statusTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Field" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Last Update" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="State" />
+                    <TableColumn prefWidth="75.0" text="شماره" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="رشته" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="تاریخ آخرین تغییر" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="حالت" />
                   </columns>
                 </TableView>
               </center>
@@ -148,7 +148,7 @@
                             <Image preserveRatio="true" smooth="true" url="@../gallery/image/refreshButton.png" />
                           </image>
                         </ImageView>
-                        <Label text="Refresh" />
+                        <Label text="به روز رسانی" />
                       </children>
                     </HBox>
                   </children>
@@ -157,15 +157,14 @@
             </BorderPane>
           </content>
         </Tab>
-        <Tab text="Term">
+        <Tab text="ترم">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView fx:id="termTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn fx:id="termIdTableColumn" prefWidth="75.0" text="#" />
-                    <TableColumn fx:id="termNameTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Name" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Description" />
+                    <TableColumn fx:id="termIdTableColumn" prefWidth="75.0" text="ردیف" />
+                    <TableColumn fx:id="termNameTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="نام" />
                   </columns>
                 </TableView>
               </center>
@@ -181,7 +180,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" fx:id="editTermHBox" alignment="CENTER" onMouseClicked="#editTermHBoxOnMouseClicked" spacing="10.0">
@@ -191,7 +190,7 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/editButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Edit" />
+                            <Label text="ویرایش" />
                           </children>
                         </HBox>
                         <HBox id="HBox" fx:id="deleteTermHBox" alignment="CENTER" onMouseClicked="#deleteTermHBoxOnMouseClicked" spacing="10.0">
@@ -201,14 +200,14 @@
                                 <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
                     </HBox>
                     <HBox id="HBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="23.5" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.5">
                       <children>
-                        <Label text="Current Term" />
+                        <Label text="ترم جاری" />
                         <ComboBox fx:id="currentTermComboBox" prefWidth="141.0">
                           <items>
                             <FXCollections fx:factory="observableArrayList">
