@@ -8,21 +8,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-1.0" minWidth="-1.0" prefHeight="614.0" prefWidth="991.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.ClassLayoutController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-1.0" minWidth="-1.0" prefHeight="614.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.ClassLayoutController">
   <children>
     <TabPane prefHeight="614.0" prefWidth="991.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
-        <Tab text="List">
+        <Tab text="لیست کلاس ها">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Name" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Floor" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="169.0" text="Capacity" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Description" />
+                    <TableColumn prefWidth="75.0" text="ردیف" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="نام کلاس" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="110.0" text="طبقه" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="237.0" text="ظرفیت" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="ویدئو" />
+                              <TableColumn prefWidth="104.0" text="تخته سفید" />
+                              <TableColumn prefWidth="75.0" text="تخته سیاه" />
                   </columns>
                 </TableView>
               </center>
@@ -35,30 +37,30 @@
                           <children>
                             <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/addButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/editButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/editButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Edit" />
+                            <Label text="ویرایش" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                               <image>
-                                <Image url="@../gallery/image/deleteButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
@@ -69,16 +71,16 @@
             </BorderPane>
           </content>
         </Tab>
-        <Tab text="Dedication">
+        <Tab text="تخصیص کلاس">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Field" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Number of Classes" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="300.0" text="Class Names" />
+                    <TableColumn prefWidth="75.0" text="ردیف" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="204.0" text="نام رشته" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="156.0" text="تعداد کلاس های تخصیص یافته" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="443.0" text="نام کلاس ها" />
                   </columns>
                 </TableView>
               </center>
@@ -91,30 +93,30 @@
                           <children>
                             <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/addButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/editButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/editButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Edit" />
+                            <Label text="ویرایش" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                               <image>
-                                <Image url="@../gallery/image/deleteButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
@@ -125,16 +127,16 @@
             </BorderPane>
           </content>
         </Tab>
-        <Tab text="Schedule">
+        <Tab text="ساعات کلاسی">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
                 <TableView prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="#" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Name" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Number of Periods" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="372.0" text="Periods" />
+                    <TableColumn prefWidth="75.0" text="ردیف" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="نام دروه زمانی" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="تعداد بازه های زمانی" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="372.0" text="بازه های زمانی" />
                   </columns>
                 </TableView>
               </center>
@@ -147,37 +149,37 @@
                           <children>
                             <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/addButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="New" />
+                            <Label text="جدید" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
-                                <Image url="@../gallery/image/editButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/editButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Edit" />
+                            <Label text="ویرایش" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER" spacing="10.0">
                           <children>
                             <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                               <image>
-                                <Image url="@../gallery/image/deleteButton.png" preserveRatio="true" smooth="true" />
+                                <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                               </image>
                             </ImageView>
-                            <Label text="Delete" />
+                            <Label text="حذف" />
                           </children>
                         </HBox>
                       </children>
                     </HBox>
                     <HBox id="HBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="23.5" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.5">
                       <children>
-                        <Label text="Current Schedule" />
+                        <Label text="برنامه دوره جاری" />
                         <ComboBox prefWidth="141.0">
                           <items>
                             <FXCollections fx:factory="observableArrayList">
