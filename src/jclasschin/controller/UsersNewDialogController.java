@@ -28,10 +28,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.User;
+import jclasschin.model.UserManager;
 
 /**
  * FXML Controller class
@@ -40,12 +47,40 @@ import javafx.scene.text.Font;
  */
 public class UsersNewDialogController implements Initializable
 {
+    private Stage usersNewDialogStage;
+    private User newUser;
+    private UserManager userManager;
+    
     @FXML
-    private TextField subjectTextField;
+    private TextField lastNameTextField;
     @FXML
-    private Font x1;
+    private TextField firstNameTextField;
     @FXML
-    private Button lovButton;
+    private ComboBox<?> titleComboBox;
+    @FXML
+    private TextField phoneTextField;
+    @FXML
+    private RadioButton maleSexRadioButton;
+    @FXML
+    private RadioButton femaleSexRadioButton;
+    @FXML
+    private ComboBox<?> fieldComboBox;
+    @FXML
+    private ComboBox<?> jobComboBox;
+    @FXML
+    private HBox okHBox;
+    @FXML
+    private ImageView okImageView;
+    @FXML
+    private HBox cancelHBox;
+    @FXML
+    private ImageView cancelImageView;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private TextField userNameTextField;
+    @FXML
+    private CheckBox activeCheckBox;
 
     /**
      * Initializes the controller class.
@@ -56,9 +91,51 @@ public class UsersNewDialogController implements Initializable
         // TODO
     }    
 
-    @FXML
-    private void lovButtonOnMouseClicked(MouseEvent event)
+    /**
+     * @return the usersNewDialogStage
+     */
+    public Stage getUsersNewDialogStage()
     {
+        return usersNewDialogStage;
     }
+
+    /**
+     * @param usersNewDialogStage the usersNewDialogStage to set
+     */
+    public void setUsersNewDialogStage(Stage usersNewDialogStage)
+    {
+        this.usersNewDialogStage = usersNewDialogStage;
+    }
+
+    /**
+     * @return the newUser
+     */
+    public User getNewUser()
+    {
+        return newUser;
+    }
+
+    /**
+     * @param newUser the newUser to set
+     */
+    public void setNewUser(User newUser)
+    {
+        this.newUser = newUser;
+    }
+
+    @FXML
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        
+       usersNewDialogStage.close(); 
+    }
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+        usersNewDialogStage.close();
+    }
+    
+    
     
 }

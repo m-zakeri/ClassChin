@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="991.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jclasschin.controller.UsersLayoutController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.UsersLayoutController">
   <children>
     <BorderPane prefHeight="614.0" prefWidth="991.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="usersTableView" prefHeight="200.0" prefWidth="200.0">
           <columns>
-            <TableColumn prefWidth="75.0" text="#" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Name" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="178.0" text="Field" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="192.0" text="Job" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="224.0" text="State" />
+            <TableColumn prefWidth="75.0" text="ردیف" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="239.0" text="نام" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="211.0" text="رشته" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="سمت" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="وضعیت" />
           </columns>
         </TableView>
       </center>
@@ -31,30 +31,30 @@
                   <children>
                     <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                       <image>
-                        <Image url="@../gallery/image/addButton.png" preserveRatio="true" smooth="true" />
+                        <Image preserveRatio="true" smooth="true" url="@../gallery/image/addButton.png" />
                       </image>
                     </ImageView>
-                    <Label text="New" />
+                    <Label text="جدید" />
                   </children>
                 </HBox>
                 <HBox id="HBox" fx:id="editHBox" alignment="CENTER" onMouseClicked="#editHBoxOnMouseClicked" spacing="10.0">
                   <children>
                     <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                       <image>
-                        <Image url="@../gallery/image/editButton.png" preserveRatio="true" smooth="true" />
+                        <Image preserveRatio="true" smooth="true" url="@../gallery/image/editButton.png" />
                       </image>
                     </ImageView>
-                    <Label text="Edit" />
+                    <Label text="ویرایش" />
                   </children>
                 </HBox>
                 <HBox id="HBox" fx:id="deleteHBox" alignment="CENTER" onMouseClicked="#deleteHBoxOnMouseClicked" spacing="10.0">
                   <children>
                     <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                       <image>
-                        <Image url="@../gallery/image/deleteButton.png" preserveRatio="true" smooth="true" />
+                        <Image preserveRatio="true" smooth="true" url="@../gallery/image/deleteButton.png" />
                       </image>
                     </ImageView>
-                    <Label text="Delete" />
+                    <Label text="حذف" />
                   </children>
                 </HBox>
               </children>
