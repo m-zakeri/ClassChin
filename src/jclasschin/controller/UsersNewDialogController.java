@@ -43,6 +43,7 @@ import jclasschin.entity.Field;
 import jclasschin.entity.Job;
 import jclasschin.entity.User;
 import jclasschin.model.FieldManager;
+import jclasschin.model.JobManager;
 import jclasschin.model.UserManager;
 
 /**
@@ -128,11 +129,14 @@ public class UsersNewDialogController implements Initializable {
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event) {
         userManager = new UserManager();
+        
         userManager.insert(titleComboBox.getValue(), firstNameTextField.getText(),
                 lastNameTextField.getText(), maleSexRadioButton.isSelected(),
                 phoneTextField.getText(), userNameTextField.getText(),
                 passwordField.getText(), activeCheckBox.isSelected(),
-                jobComboBox.getValue(), fieldComboBox.getValue());
+                jobComboBox.getValue(), fieldComboBox.getValue()
+        );
+        
         usersNewDialogStage.close();
     }
 
@@ -143,14 +147,19 @@ public class UsersNewDialogController implements Initializable {
 
     void initDialog() {
         titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
-        jobComboBox.getItems().addAll("مدیرآموزش", "مدیر گروه", "کارشناس گروه");
 
         FieldManager fm = new FieldManager();
-        List l = fm.selectAll();
-        l.stream().forEach((f) -> {
+        List fl = fm.selectAll();
+        fl.stream().forEach((f) -> {
             fieldComboBox.getItems().add(((Field) f).getName());
         });
-
+        
+        JobManager jm = new JobManager();
+        List jl = jm.selectAll();
+        jl.stream().forEach((j) -> {
+            jobComboBox.getItems().add(((Job) j).getTitle());
+        });
+        
         sexToggelGroup = new ToggleGroup();
         maleSexRadioButton.setToggleGroup(sexToggelGroup);
         femaleSexRadioButton.setToggleGroup(sexToggelGroup);

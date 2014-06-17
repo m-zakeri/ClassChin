@@ -23,62 +23,68 @@
  */
 package jclasschin.model;
 
-import jclasschin.entity.Field;
+import java.util.List;
 import jclasschin.entity.Job;
-import jclasschin.entity.Person;
-import jclasschin.entity.User;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
  *
  * @author HP
  */
-public class UserManager
+public class JobManager
 {
 
-    private User user;
-    private Person person;
-
-    private Field field;
-    private FieldManager fieldManager;
-
     private Job job;
-    private JobManager jobManager;
-
     private Session session;
 
-    public boolean insert(String title, String firstName, String lastName, boolean sex, String phone,
-            String username, String password, boolean state, String jobTitle, String fieldTitle)
+    public List selectAll()
     {
-        fieldManager = new FieldManager();
-        field = fieldManager.selectByName(fieldTitle);
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        jobManager = new JobManager();
-        job = jobManager.selectByName(jobTitle);
+            //Query q = session.createQuery(hql);
+            List resultList = session.createQuery("from Job").list();
+            //displayResult(resultList);
 
-        person = new Person(firstName, lastName, sex);
-        person.setTitle(title);
-        person.setPhone(phone);
-        person.setField(field);
-        person.setJob(job);
+            session.getTransaction().commit();
+            return resultList;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return null;
+        }
+    }
 
-        user = new User(person, username, password, state);
+    public Job selectByName(String jobName)
+    {
 
         try
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(person);
-            session.save(user);
+
+            Query q = session.createQuery("from Job j where j.title=:jn");
+            q.setParameter("jn", jobName);
+            List resultList = q.list();
+            //session.createQuery("from Field f where f.name=\""+fieldName+"\"").list();
             session.getTransaction().commit();
-            return true;
+
+            job = (Job) resultList.get(0);
+            return job;
+
         }
         catch (HibernateException he)
         {
-            return false;
+            he.printStackTrace();
         }
+        return null;
+
     }
 
 }
