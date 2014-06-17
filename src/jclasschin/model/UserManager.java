@@ -30,6 +30,8 @@ import jclasschin.entity.Person;
 import jclasschin.entity.User;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 /**
@@ -81,22 +83,32 @@ public class UserManager
             return false;
         }
     }
-    
-    
-        public List selectAll()
+
+    public List selectAll()
     {
         try
         {
 
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            
-            //Query q = session.createQuery(hql);
-            List resultList = session.createQuery("from User").list();
-            //displayResult(resultList);
+//            String sqlQuery = "select person.id,person.title,first_name,last_name,sex,phone,job.title,username "
+//                    + "from user join person ON user.person_id = person.id "
+//                    + "join field ON person.field_id = field.id "
+//                    + "join job ON job.id = person.job_id";
 
+    //        Query q = session.createQuery("from Person");
+
+            //session.
+      //      List resultList = q.list();
+
+  //          System.out.println(((Person)resultList.get(3)).getField().getName());
+
+            Query q2 = session.createQuery("from User");
+            List resultList2 = q2.list();
+//            System.out.println(((User)resultList.get(3)).getPerson().getField().getName());
+            
             session.getTransaction().commit();
-            return resultList;
+            return resultList2;
         }
         catch (HibernateException he)
         {

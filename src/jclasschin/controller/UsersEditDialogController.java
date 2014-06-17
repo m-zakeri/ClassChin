@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -42,13 +41,15 @@ import javafx.scene.layout.HBox;
  *
  * @author Ali
  */
-public class UsersEditDialogController implements Initializable {
+public class UsersEditDialogController implements Initializable
+{
+
     @FXML
     private TextField lastNameTextField;
     @FXML
     private TextField firstNameTextField;
     @FXML
-    private ComboBox<?> titleComboBox;
+    private ComboBox<String> titleComboBox;
     @FXML
     private TextField phoneTextField;
     @FXML
@@ -56,9 +57,9 @@ public class UsersEditDialogController implements Initializable {
     @FXML
     private RadioButton femaleSexRadioButton;
     @FXML
-    private ComboBox<?> fieldComboBox;
+    private ComboBox<String> fieldComboBox;
     @FXML
-    private ComboBox<?> jobComboBox;
+    private ComboBox<String> jobComboBox;
     @FXML
     private HBox okHBox;
     @FXML
@@ -78,16 +79,20 @@ public class UsersEditDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        
     }
-    
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
 }

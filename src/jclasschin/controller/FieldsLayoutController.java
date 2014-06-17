@@ -189,9 +189,11 @@ public class FieldsLayoutController implements Initializable {
         List l = fm.selectAll();
         l.stream().forEach((f) -> {
             fieldList.add((Field) f);
-
+        
         });
         fieldsTableView.setItems(fieldList);
+       
+        
 //        
 //        
 //        fieldsTableView.getColumns().add(index, idTableColumn);

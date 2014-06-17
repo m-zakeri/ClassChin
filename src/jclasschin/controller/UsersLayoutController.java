@@ -1,5 +1,3 @@
-
-
 package jclasschin.controller;
 
 import java.io.IOException;
@@ -21,11 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Pair;
 import jclasschin.JClassChin;
-import jclasschin.entity.Field;
-import jclasschin.entity.Job;
-import jclasschin.entity.Person;
 import jclasschin.entity.User;
 import jclasschin.model.UserManager;
 
@@ -34,17 +28,16 @@ import jclasschin.model.UserManager;
  *
  * @author Ali
  */
-public class UsersLayoutController implements Initializable {
-    
+public class UsersLayoutController implements Initializable
+{
+
     private final FXMLLoader usersNewDialogLoader;
     private final AnchorPane usersNewDialogLayout;
     private final Scene usersNewDialogScene;
     private final Stage usersNewDialogStage;
 
     private UsersNewDialogController usersNewDialogController;
-    
-    
-    
+
     @FXML
     private HBox newHBox;
     @FXML
@@ -52,22 +45,18 @@ public class UsersLayoutController implements Initializable {
     @FXML
     private HBox deleteHBox;
     @FXML
-    private TableView<Object> usersTableView;
+    private TableView<User> usersTableView;
     @FXML
     private TableColumn<User, String> idTableColumn;
     @FXML
-    private TableColumn<Person, String> nameTableColumn;
+    private TableColumn<User, String> nameTableColumn;
     @FXML
-    private TableColumn<Field, String> fieldTableColumn;
+    private TableColumn<User, String> fieldTableColumn;
     @FXML
-    private TableColumn<Job, String> jobTableColumn;
+    private TableColumn<User, String> jobTableColumn;
     @FXML
     private TableColumn<User, Boolean> stateTableColumn;
 
-    
-    
-    
-    
     public UsersLayoutController() throws IOException
     {
         usersNewDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersNewDialog.fxml"));
@@ -81,14 +70,15 @@ public class UsersLayoutController implements Initializable {
         usersNewDialogStage.setResizable(false);
         usersNewDialogStage.initStyle(StageStyle.UTILITY);
     }
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
+    }
 
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
@@ -97,7 +87,7 @@ public class UsersLayoutController implements Initializable {
         usersNewDialogController.setUsersNewDialogStage(usersNewDialogStage);
         usersNewDialogController.initDialog();
         usersNewDialogStage.showAndWait();
-        
+
         updateUsersTableView();
     }
 
@@ -113,19 +103,23 @@ public class UsersLayoutController implements Initializable {
 
     public void updateUsersTableView()
     {
-        UserManager um=new UserManager();
+
+        UserManager um = new UserManager();
         ObservableList<User> userList = FXCollections.observableArrayList();
-        
-//        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//        fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        um.selectAll();
+
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("person.firstName"));
+        //fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = um.selectAll();
-        l.stream().forEach((u) -> {
+        l.stream().forEach((u) ->
+        {
             userList.add((User) u);
 
         });
 
-      //  usersTableView.setItems(userList);
+        usersTableView.setItems(userList);
     }
-    
+
 }
