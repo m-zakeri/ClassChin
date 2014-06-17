@@ -72,8 +72,8 @@
                   </RadioButton>
                </children>
             </HBox>
-            <ComboBox fx:id="fieldComboBox" layoutX="140.0" layoutY="273.0" prefHeight="31.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="jobComboBox" layoutX="140.0" layoutY="315.0" prefHeight="31.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="fieldComboBox" layoutX="140.0" layoutY="273.0" prefHeight="31.0" prefWidth="187.0" promptText="انتخاب نمایید . . . " GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="jobComboBox" layoutX="140.0" layoutY="315.0" prefHeight="31.0" prefWidth="187.0" promptText="انتخاب نمایید . . ." GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label layoutX="36.0" layoutY="315.0" text="سمت :" GridPane.rowIndex="6">
                <font>
                   <Font name="B Nazanin Bold" size="20.0" />
@@ -138,7 +138,7 @@
          </children>
       </GridPane>
       <Separator layoutY="355.0" prefHeight="3.0" prefWidth="357.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="355.0" />
-      <CheckBox fx:id="activeCheckBox" layoutX="194.0" layoutY="480.0" mnemonicParsing="false" text="فعال">
+      <CheckBox fx:id="activeCheckBox" layoutX="140.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#activeCheckBoxOnMouseClicked" prefHeight="28.0" prefWidth="183.0" text="کاربر فعال نیست.">
          <font>
             <Font name="B Nazanin" size="20.0" />
          </font>

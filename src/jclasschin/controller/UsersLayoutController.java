@@ -74,6 +74,7 @@ public class UsersLayoutController implements Initializable {
     {
         usersNewDialogController = usersNewDialogLoader.getController();
         usersNewDialogController.setUsersNewDialogStage(usersNewDialogStage);
+        usersNewDialogController.initDialog();
         usersNewDialogStage.showAndWait();
         
         updateUsersTableView();

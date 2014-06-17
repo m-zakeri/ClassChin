@@ -25,9 +25,11 @@
 package jclasschin.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -37,7 +39,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import jclasschin.entity.Field;
+import jclasschin.entity.Job;
 import jclasschin.entity.User;
+import jclasschin.model.FieldManager;
 import jclasschin.model.UserManager;
 
 /**
@@ -56,7 +61,7 @@ public class UsersNewDialogController implements Initializable
     @FXML
     private TextField firstNameTextField;
     @FXML
-    private ComboBox<?> titleComboBox;
+    private ComboBox<String> titleComboBox;
     @FXML
     private TextField phoneTextField;
     @FXML
@@ -64,9 +69,9 @@ public class UsersNewDialogController implements Initializable
     @FXML
     private RadioButton femaleSexRadioButton;
     @FXML
-    private ComboBox<?> fieldComboBox;
+    private ComboBox<String> fieldComboBox;
     @FXML
-    private ComboBox<?> jobComboBox;
+    private ComboBox<String> jobComboBox;
     @FXML
     private HBox okHBox;
     @FXML
@@ -136,6 +141,33 @@ public class UsersNewDialogController implements Initializable
         usersNewDialogStage.close();
     }
     
-    
+    void initDialog()
+    {
+        titleComboBox.getItems().addAll("آقا","خانم","دکتر","مهندس");
+        jobComboBox.getItems().addAll("مدیرآموزش","مدیر گروه","کارشناس گروه");
+        
+        FieldManager fm = new FieldManager();
+        List l = fm.selectAll();
+        l.stream().forEach((f) ->
+        {
+            fieldComboBox.getItems().add(((Field)f).getName()); 
+        });
+        
+        userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        passwordField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+    }
+
+    @FXML
+    private void activeCheckBoxOnMouseClicked(MouseEvent event)
+    {
+        if(activeCheckBox.isSelected())
+        {
+            activeCheckBox.setText("کاربر فعال است.");
+        }
+        else
+        {
+            activeCheckBox.setText("کاربر فعال نیست.");
+        }
+    }
     
 }
