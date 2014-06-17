@@ -23,28 +23,54 @@
  */
 package jclasschin.model;
 
+import jclasschin.entity.Field;
 import jclasschin.entity.Job;
 import jclasschin.entity.Person;
 import jclasschin.entity.User;
+import jclasschin.util.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
  *
  * @author HP
  */
-public class UserManager
-{
+public class UserManager {
 
     private User user;
     private Person person;
     private Job job;
+    private Field field;
+    private FieldManager fieldManager;
     private Session session;
 
-    boolean insert(String titel, String firstName, String lastName, boolean sex, String phone,
-            String username, String password, boolean state, String jobTitle)
-    {
+    public boolean insert(String title, String firstName, String lastName, boolean sex, String phone,
+            String username, String password, boolean state, String jobTitle, String fieldTitle) {
+        fieldManager=new FieldManager();
         
-        return false;
+        person = new Person(firstName, lastName, sex);
+        person.setTitle(title);
+        person.setPhone(phone);
+
+        user = new User(person, username, password, state);
+        //field=null;
+        field = fieldManager.selectByName(fieldTitle);
+        person.setField(field);
+        user.setPerson(person);
+        person.setJob(null);
+
+        try {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(person);
+            session.save(user);
+            session.getTransaction().commit();
+
+            return true;
+        } catch (HibernateException he) {
+            return false;
+        }
+
     }
 
 }

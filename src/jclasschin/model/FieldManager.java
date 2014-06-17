@@ -75,7 +75,6 @@ public class FieldManager
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
             return false;
         }
     }
@@ -120,6 +119,33 @@ public class FieldManager
             he.printStackTrace();
         }
         return null;
+    }
+    
+    public Field selectByName(String fieldName){
+        
+        try
+        {
+
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            Query q = session.createQuery("from Field f where f.name=:fn");
+            q.setParameter("fn", fieldName);
+            
+            List resultList = q.list();
+                    //session.createQuery("from Field f where f.name=\""+fieldName+"\"").list();
+            session.getTransaction().commit();
+            
+             field=(Field) resultList.get(0);
+             return field;
+           
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+        }
+        return null;
+        
     }
 
 }

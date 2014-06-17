@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -51,14 +50,14 @@ import jclasschin.model.UserManager;
  *
  * @author HP
  */
-public class UsersNewDialogController implements Initializable
-{
+public class UsersNewDialogController implements Initializable {
+
     private Stage usersNewDialogStage;
     private User newUser;
     private UserManager userManager;
-    
+
     private ToggleGroup sexToggelGroup;
-    
+
     @FXML
     private TextField lastNameTextField;
     @FXML
@@ -94,88 +93,80 @@ public class UsersNewDialogController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     /**
      * @return the usersNewDialogStage
      */
-    public Stage getUsersNewDialogStage()
-    {
+    public Stage getUsersNewDialogStage() {
         return usersNewDialogStage;
     }
 
     /**
      * @param usersNewDialogStage the usersNewDialogStage to set
      */
-    public void setUsersNewDialogStage(Stage usersNewDialogStage)
-    {
+    public void setUsersNewDialogStage(Stage usersNewDialogStage) {
         this.usersNewDialogStage = usersNewDialogStage;
     }
 
     /**
      * @return the newUser
      */
-    public User getNewUser()
-    {
+    public User getNewUser() {
         return newUser;
     }
 
     /**
      * @param newUser the newUser to set
      */
-    public void setNewUser(User newUser)
-    {
+    public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
 
     @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event)
-    {
-        
-       usersNewDialogStage.close(); 
+    private void okHBoxOnMouseClicked(MouseEvent event) {
+        userManager = new UserManager();
+        userManager.insert(titleComboBox.getValue(), firstNameTextField.getText(),
+                lastNameTextField.getText(), maleSexRadioButton.isSelected(),
+                phoneTextField.getText(), userNameTextField.getText(),
+                passwordField.getText(), activeCheckBox.isSelected(),
+                jobComboBox.getValue(), fieldComboBox.getValue());
+        usersNewDialogStage.close();
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void cancelHBoxOnMouseClicked(MouseEvent event) {
         usersNewDialogStage.close();
     }
-    
-    void initDialog()
-    {
-        titleComboBox.getItems().addAll("آقا","خانم","دکتر","مهندس");
-        jobComboBox.getItems().addAll("مدیرآموزش","مدیر گروه","کارشناس گروه");
-        
+
+    void initDialog() {
+        titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
+        jobComboBox.getItems().addAll("مدیرآموزش", "مدیر گروه", "کارشناس گروه");
+
         FieldManager fm = new FieldManager();
         List l = fm.selectAll();
-        l.stream().forEach((f) ->
-        {
-            fieldComboBox.getItems().add(((Field)f).getName()); 
+        l.stream().forEach((f) -> {
+            fieldComboBox.getItems().add(((Field) f).getName());
         });
-        
-        sexToggelGroup  = new ToggleGroup();
+
+        sexToggelGroup = new ToggleGroup();
         maleSexRadioButton.setToggleGroup(sexToggelGroup);
         femaleSexRadioButton.setToggleGroup(sexToggelGroup);
-        maleSexRadioButton.setSelected(true);
-        
+
         userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         passwordField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
     }
 
     @FXML
-    private void activeCheckBoxOnMouseClicked(MouseEvent event)
-    {
-        if(activeCheckBox.isSelected())
-        {
+    private void activeCheckBoxOnMouseClicked(MouseEvent event) {
+        if (activeCheckBox.isSelected()) {
             activeCheckBox.setText("کاربر فعال است.");
-        }
-        else
-        {
+        } else {
             activeCheckBox.setText("کاربر فعال نیست.");
         }
     }
-    
+
+
 }
