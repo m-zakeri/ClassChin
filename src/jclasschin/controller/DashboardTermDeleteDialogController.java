@@ -44,7 +44,6 @@ import jclasschin.model.TermManager;
 public class DashboardTermDeleteDialogController implements Initializable
 {
     
-    
     private Stage dashboardTermDeleteDailogStage;
     private Term editableTerm;
     private TermManager termManager;

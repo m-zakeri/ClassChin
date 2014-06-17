@@ -77,7 +77,7 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private HBox deleteTermHBox;
     @FXML
-    private ComboBox<?> currentTermComboBox;
+    private ComboBox<String> currentTermComboBox;
 
     @FXML
     private TableView<Mail> inboxTableView;
@@ -102,6 +102,7 @@ public class DashboardLayoutController implements Initializable
 
     public DashboardLayoutController() throws IOException
     {
+        /* Inbox New Dialog   */
         inboxNewMailDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
         inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
@@ -113,8 +114,8 @@ public class DashboardLayoutController implements Initializable
         inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
         inboxNewMailDialogStage.setResizable(false);
         inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
-        // inboxNewMailDialogStage.close();
 
+        
         dashboardTermNewDailogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
         dashboardTermNewDailogLayout = (AnchorPane) dashboardTermNewDailogLoader.load();
@@ -127,6 +128,7 @@ public class DashboardLayoutController implements Initializable
         dashboardTermNewDailogStage.setResizable(false);
         dashboardTermNewDailogStage.initStyle(StageStyle.UTILITY);
 
+        
         dashboardTermEditDailogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermEditDialog.fxml"));
         dashboardTermEditDailogLayout = (AnchorPane) dashboardTermEditDailogLoader.load();
@@ -328,6 +330,7 @@ public class DashboardLayoutController implements Initializable
 
     public void updateTermTableView()
     {
+        currentTermComboBox.getItems().clear();
         TermManager tm = new TermManager();
         ObservableList<Term> termList = FXCollections.observableArrayList();
 
@@ -337,8 +340,10 @@ public class DashboardLayoutController implements Initializable
         l.stream().forEach((t) ->
         {
             termList.add((Term) t);
+            currentTermComboBox.getItems().add(((Term)t).getName());
+            currentTermComboBox.setValue(((Term)t).getName());
         });
-
+       
         termTableView.setItems(termList);
     }
 }
