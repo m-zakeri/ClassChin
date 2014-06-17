@@ -21,8 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.model;
+
+import jclasschin.entity.Job;
+import jclasschin.entity.Person;
+import jclasschin.entity.User;
+import org.hibernate.Session;
 
 /**
  *
@@ -30,5 +34,17 @@ package jclasschin.model;
  */
 public class UserManager
 {
-    
+
+    private User user;
+    private Person person;
+    private Job job;
+    private Session session;
+
+    boolean insert(String titel, String firstName, String lastName, boolean sex, String phone,
+            String username, String password, boolean state, String jobTitle)
+    {
+        
+        return false;
+    }
+
 }

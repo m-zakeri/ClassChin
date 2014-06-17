@@ -35,6 +35,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -55,6 +56,8 @@ public class UsersNewDialogController implements Initializable
     private Stage usersNewDialogStage;
     private User newUser;
     private UserManager userManager;
+    
+    private ToggleGroup sexToggelGroup;
     
     @FXML
     private TextField lastNameTextField;
@@ -152,6 +155,11 @@ public class UsersNewDialogController implements Initializable
         {
             fieldComboBox.getItems().add(((Field)f).getName()); 
         });
+        
+        sexToggelGroup  = new ToggleGroup();
+        maleSexRadioButton.setToggleGroup(sexToggelGroup);
+        femaleSexRadioButton.setToggleGroup(sexToggelGroup);
+        maleSexRadioButton.setSelected(true);
         
         userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         passwordField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
