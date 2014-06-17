@@ -40,6 +40,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import jclasschin.entity.Field;
+import jclasschin.entity.Job;
 import jclasschin.entity.User;
 import jclasschin.model.FieldManager;
 import jclasschin.model.JobManager;

@@ -116,9 +116,9 @@ public class UsersLayoutController implements Initializable {
         UserManager um=new UserManager();
         ObservableList<User> userList = FXCollections.observableArrayList();
         
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+//        fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = um.selectAll();
         l.stream().forEach((u) -> {
             userList.add((User) u);

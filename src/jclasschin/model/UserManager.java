@@ -92,7 +92,7 @@ public class UserManager
             session.beginTransaction();
             
             //Query q = session.createQuery(hql);
-            List resultList = session.createQuery("from Person,").list();
+            List resultList = session.createQuery("from User").list();
             //displayResult(resultList);
 
             session.getTransaction().commit();
