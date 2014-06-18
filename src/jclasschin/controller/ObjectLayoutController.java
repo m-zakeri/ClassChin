@@ -26,35 +26,33 @@ package jclasschin.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import jclasschin.JClassChin;
-import jclasschin.model.*;
+import jclasschin.model.Effect;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class PreloaderLayoutController implements Initializable {
+public class ObjectLayoutController implements Initializable {
 
-    private FXMLLoader mainLayoutLoader;
-    private BorderPane mainLayout;
-    private MainLayoutController mainLayoutController;
+    private FXMLLoader preloaderLayoutLoader;
+    private AnchorPane preloaderLayout;
+    private PreloaderLayoutController preloaderLayoutController;
 
     @FXML
-    private ProgressIndicator progressIndicator;
+    private BorderPane objectLayoutBorderPane;
 
-    public PreloaderLayoutController() throws IOException {
+    public ObjectLayoutController() throws IOException {
 
-        mainLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
-        mainLayout = (BorderPane) mainLayoutLoader.load();
-        mainLayoutController = mainLayoutLoader.getController();
+        preloaderLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/PreloaderLayout.fxml"));
+        preloaderLayout = (AnchorPane) preloaderLayoutLoader.load();
+        preloaderLayoutController = preloaderLayoutLoader.getController();
     }
 
     /**
@@ -63,44 +61,13 @@ public class PreloaderLayoutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        progressIndicator.setProgress(0.001F);
     }
 
     public void start() throws InterruptedException {
-
-        Task loadingTask = new Task<Void>() {
-            @Override
-            public Void call() {
-
-                TermManager.selectAll();
-                FieldManager.selectAll();
-                return null;
-            }
-        };
-
-        Task progressIndicatorTask = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-
-                double max = 10000000;
-                for (double i = 0; i <= max; i += 0.1) {
-                    if (isCancelled()) {
-                        break;
-                    }
-                    updateProgress(i, max);
-                }
-                return null;
-            }
-        };
-
-        progressIndicator.progressProperty().bind(progressIndicatorTask.progressProperty());
-
-        Thread progressIndicatorThread = new Thread(progressIndicatorTask);
-        Thread loadingThread = new Thread(loadingTask);
-
-        progressIndicatorThread.start();
-        loadingThread.start();
-
+        new Effect().fadeInTransition(preloaderLayout,1000);
+        objectLayoutBorderPane.setCenter(preloaderLayout);
+        preloaderLayoutController.start();
+        
     }
 
 }
