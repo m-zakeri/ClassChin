@@ -158,7 +158,7 @@ public class UserManager
 //                    + "join field ON person.field_id = field.id "
 //                    + "join job ON job.id = person.job_id";
 
-    //        Query q = session.createQuery("from Person");
+            //        Query q = session.createQuery("from Person");
             //session.
             //      List resultList = q.list();
             //          System.out.println(((Person)resultList.get(3)).getField().getName());
@@ -172,8 +172,33 @@ public class UserManager
         catch (HibernateException he)
         {
             he.printStackTrace();
+            return null;
         }
-        return null;
+    }
+
+    
+    public User selectByUserNameAndPassWord(String userName, String passWord)
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Query q = session.createQuery("from User u where u.username=:un and u.password=:pass");
+            q.setParameter("un", userName);
+            q.setParameter("pass",passWord );
+            List resultList = q.list();
+            session.getTransaction().commit();
+
+            user = (User) resultList.get(0);
+            return user;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return null;
+        }
+
     }
 
 }

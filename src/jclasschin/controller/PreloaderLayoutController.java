@@ -47,7 +47,8 @@ public class PreloaderLayoutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        progressIndicator.setProgress(0.0F);
+        progressIndicator.setProgress(0.0001F);
+        //progressIndicator.;
     }
 
     public void loading() throws InterruptedException {
@@ -115,8 +116,10 @@ public class PreloaderLayoutController implements Initializable {
 
         //task1Thread.setPriority(Thread.MAX_PRIORITY);
         //task2Thread.setPriority(Thread.MIN_PRIORITY);
+                task2Thread.start();
+
         task1Thread.start();
-        task2Thread.start();
+        //task2Thread.start();
 
 //        task1Thread.
 //        ThreadGroup threadGroup=new ThreadGroup("TASKS");
