@@ -47,7 +47,7 @@
                </font>
             </Label>
             <ComboBox fx:id="titleComboBox" layoutX="140.0" layoutY="30.0" prefHeight="31.0" prefWidth="187.0" promptText="انتخاب نمایید . . . " GridPane.columnIndex="1" />
-            <TextField fx:id="phoneTextField" layoutX="140.0" layoutY="216.0" promptText="حداکثر طول مجاز 11 حرف است" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="phoneTextField" layoutX="140.0" layoutY="216.0" onKeyTyped="#phoneTextFieldOnKeyTyped" promptText="حداکثر طول مجاز 11 حرف است" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label layoutX="36.0" layoutY="273.0" text="رشته :" GridPane.rowIndex="5">
                <font>
                   <Font name="B Nazanin Bold" size="20.0" />
