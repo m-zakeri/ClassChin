@@ -28,7 +28,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -40,9 +39,9 @@ import jclasschin.entity.Mail;
  *
  * @author HP
  */
-public class DashboardInboxDeleteDialogController implements Initializable
+public class DashboardOutboxDeleteDialogController implements Initializable
 {
-    private Stage dashboardInboxDeleteDialogStage;
+    private Stage dashboardOutboxDeleteDialogStage;
     private Mail mail;
     
     @FXML
@@ -76,7 +75,7 @@ public class DashboardInboxDeleteDialogController implements Initializable
     @FXML
     private void yesHBoxOnMouseClicked(MouseEvent event)
     {
-        dashboardInboxDeleteDialogStage.close();
+        dashboardOutboxDeleteDialogStage.close();
     }
 
     @FXML
@@ -92,23 +91,23 @@ public class DashboardInboxDeleteDialogController implements Initializable
     @FXML
     private void noHBoxOnMouseClicked(MouseEvent event)
     {
-        dashboardInboxDeleteDialogStage.close();
+        dashboardOutboxDeleteDialogStage.close();
     }
 
     /**
-     * @return the dashboardInboxDeleteDialogStage
+     * @return the dashboardOutboxDeleteDialogStage
      */
-    public Stage getDashboardInboxDeleteDialogStage()
+    public Stage getDashboardOutboxDeleteDialogStage()
     {
-        return dashboardInboxDeleteDialogStage;
+        return dashboardOutboxDeleteDialogStage;
     }
 
     /**
-     * @param dashboardInboxDeleteDialogStage the dashboardInboxDeleteDialogStage to set
+     * @param dashboardOutboxDeleteDialogStage the dashboardOutboxDeleteDialogStage to set
      */
-    public void setDashboardInboxDeleteDialogStage(Stage dashboardInboxDeleteDialogStage)
+    public void setDashboardOutboxDeleteDialogStage(Stage dashboardOutboxDeleteDialogStage)
     {
-        this.dashboardInboxDeleteDialogStage = dashboardInboxDeleteDialogStage;
+        this.dashboardOutboxDeleteDialogStage = dashboardOutboxDeleteDialogStage;
     }
 
     /**

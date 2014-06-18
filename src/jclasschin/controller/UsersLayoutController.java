@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import jclasschin.JClassChin;
 import jclasschin.entity.User;
 import jclasschin.model.UserManager;
@@ -30,14 +32,17 @@ import jclasschin.model.UserManager;
  *
  * @author Ali
  */
-public class UsersLayoutController implements Initializable {
+public class UsersLayoutController implements Initializable
+{
 
-    private final FXMLLoader usersNewDialogLoader;
-    private final AnchorPane usersNewDialogLayout;
-    private final Scene usersNewDialogScene;
-    private final Stage usersNewDialogStage;
+    private final FXMLLoader usersNewDialogLoader, usersEditDialogLoader, usersDeleteDialogLoader;
+    private final AnchorPane usersNewDialogLayout, usersEditDialogLayout, usersDeleteDialogLayout;
+    private final Scene usersNewDialogScene, usersEditDialogScene, usersDeleteDialogScene;
+    private final Stage usersNewDialogStage, usersEditDialogStage, usersDeleteDialogStage;
 
     private UsersNewDialogController usersNewDialogController;
+    private UsersEditDialogController usersEditDialogController;
+    private UsersDeleteDialogController usersDeleteDialogController;
 
     @FXML
     private HBox newHBox;
@@ -58,7 +63,10 @@ public class UsersLayoutController implements Initializable {
     @FXML
     private TableColumn<User, String> stateTableColumn;
 
-    public UsersLayoutController() throws IOException {
+    public UsersLayoutController() throws IOException
+    {
+
+        /*  New User */
         usersNewDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersNewDialog.fxml"));
         usersNewDialogLayout = (AnchorPane) usersNewDialogLoader.load();
         usersNewDialogScene = new Scene(usersNewDialogLayout);
@@ -69,18 +77,45 @@ public class UsersLayoutController implements Initializable {
         usersNewDialogStage.initOwner(JClassChin.getMainStage());
         usersNewDialogStage.setResizable(false);
         usersNewDialogStage.initStyle(StageStyle.UTILITY);
+        
+        /* Edit User */
+        usersEditDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersEditDialog.fxml"));
+        usersEditDialogLayout = (AnchorPane) usersEditDialogLoader.load();
+        usersEditDialogScene = new Scene(usersEditDialogLayout);
+        usersEditDialogStage = new Stage();
+        usersEditDialogStage.setScene(usersEditDialogScene);
+        usersEditDialogStage.setTitle("حذف کاربر");
+        usersEditDialogStage.initModality(Modality.WINDOW_MODAL);
+        usersEditDialogStage.initOwner(JClassChin.getMainStage());
+        usersEditDialogStage.setResizable(false);
+        usersEditDialogStage.initStyle(StageStyle.UTILITY);
+
+        /*  Delete User */
+        usersDeleteDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersDeleteDialog.fxml"));
+        usersDeleteDialogLayout = (AnchorPane) usersDeleteDialogLoader.load();
+        usersDeleteDialogScene = new Scene(usersDeleteDialogLayout);
+        usersDeleteDialogStage = new Stage();
+        usersDeleteDialogStage.setScene(usersDeleteDialogScene);
+        usersDeleteDialogStage.setTitle("حذف کاربر");
+        usersDeleteDialogStage.initModality(Modality.WINDOW_MODAL);
+        usersDeleteDialogStage.initOwner(JClassChin.getMainStage());
+        usersDeleteDialogStage.setResizable(false);
+        usersDeleteDialogStage.initStyle(StageStyle.UTILITY);
+
     }
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
     @FXML
-    private void newHBoxOnMouseClicked(MouseEvent event) {
+    private void newHBoxOnMouseClicked(MouseEvent event)
+    {
         usersNewDialogController = usersNewDialogLoader.getController();
         usersNewDialogController.setUsersNewDialogStage(usersNewDialogStage);
         usersNewDialogController.initDialog();
@@ -90,18 +125,43 @@ public class UsersLayoutController implements Initializable {
     }
 
     @FXML
-    private void editHBoxOnMouseClicked(MouseEvent event) {
+    private void editHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (usersTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            User u = usersTableView.getSelectionModel().getSelectedItem();
+
+            usersEditDialogController = usersEditDialogLoader.getController();
+            usersEditDialogController.initialize(null, null);
+            usersEditDialogController.setUsersEditDialogStage(usersEditDialogStage);
+            usersEditDialogController.setEditableUser(u);
+            usersEditDialogController.initDialog();
+            usersEditDialogStage.showAndWait();
+
+            updateUsersTableView();
+        }
     }
 
     @FXML
-    private void deleteHBoxOnMouseClicked(MouseEvent event) {
+    private void deleteHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (usersTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            User u = usersTableView.getSelectionModel().getSelectedItem();
+
+            usersDeleteDialogController = usersEditDialogLoader.getController();
+            usersDeleteDialogController.initialize(null, null);
+            usersDeleteDialogController.setUsersEditDialogStage(usersDeleteDialogStage);
+            usersDeleteDialogController.setEditableUser(u);
+ 
+            usersEditDialogStage.showAndWait();
+
+            updateUsersTableView();
+        }
     }
 
-    private boolean isNull(String string){
-        return (string.equals(null));
-    }
-    
-    public void updateUsersTableView() {
+    public void updateUsersTableView()
+    {
 
         UserManager um = new UserManager();
         ObservableList<User> userList = FXCollections.observableArrayList();
@@ -112,15 +172,17 @@ public class UsersLayoutController implements Initializable {
 
         nameTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getFirstName() + " " + u.getValue().getPerson().getLastName()));
         fieldTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getField().getName()));
-        jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));
+        //jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));
         stateTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().isState() ? "فعال" : "غیر فعال"));
 
         //fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = um.selectAll();
-        l.stream().forEach((u) -> {
+        l.stream().forEach((u) ->
+        {
             userList.add((User) u);
 
         });
+
         usersTableView.setItems(userList);
     }
 

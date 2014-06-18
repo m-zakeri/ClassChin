@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
+import javafx.geometry.Point2D;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -36,6 +37,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -205,6 +207,8 @@ public class UsersEditDialogController implements Initializable
         lastNameTextField.setText(editableUser.getPerson().getLastName());
         phoneTextField.setText(editableUser.getPerson().getPhone());
         phoneTextField.setPrefColumnCount(11);
+
+        // phoneTextField.getText().length()>11
         phoneTextField.setPromptText("حداکثر طول مجاز 11 عدد است.");
         userNameTextField.setText("");
         passwordField.setText("");
@@ -225,5 +229,24 @@ public class UsersEditDialogController implements Initializable
     public void setEditableUser(User editableUser)
     {
         this.editableUser = editableUser;
+    }
+
+    @FXML
+    private void phoneTextFieldOnKeyTyped(KeyEvent event)
+    {
+//        String stringTyped=null;
+//        if(phoneTextField.getText().length() == 11)
+//        {
+//            stringTyped=phoneTextField.getText();
+//        }
+//        else if(phoneTextField.getText().length() > 11)
+//            phoneTextField.setText(stringTyped);
+
+        if (phoneTextField.getText().length() > 11)
+        {
+            String s = phoneTextField.getText();
+            String substring = s.substring(0, 11);
+            phoneTextField.setText(substring);
+        }
     }
 }

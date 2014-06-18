@@ -38,23 +38,28 @@ public class DashboardLayoutController implements Initializable
 {
 
     private final FXMLLoader dashboardInboxNewMailDialogLoader, dashboardInboxReplyMailDialogLoader,
-            dashboardInboxDeleteMailDialogLoader,dashboardTermNewDailogLoader,
+            dashboardInboxDeleteMailDialogLoader,dashboardOutboxDeleteMailDialogLoader,dashboardTermNewDailogLoader,
             dashboardTermEditDailogLoader, dashboardTermDeleteDailogLoader;
     private final AnchorPane dashboardInboxNewMailDialogLayout, dashboardInboxReplyMailDialogLayout,
-            dashboardInboxDeleteMailDialogLayout,dashboardTermNewDailogLayout,
+            dashboardInboxDeleteMailDialogLayout, dashboardOutboxDeleteMailDialogLayout,dashboardTermNewDailogLayout,
             dashboardTermEditDailogLayout, dashboardTermDeleteDailogLayout;
     private final Scene dashboardInboxNewMailDialogScene, dashboardInboxReplyMailDialogScene,
-            dashboardInboxDeleteMailDialogScene,dashboardTermNewDailogScene,
+            dashboardInboxDeleteMailDialogScene,dashboardOutboxDeleteMailDialogScene,dashboardTermNewDailogScene,
             dashboardTermEditDailogScene, dashboardTermDeleteDailogScene;
     private final Stage dashboardInboxNewMailDialogStage, dashboardInboxReplyMailDialogStage,
-            dashboardInboxDeleteMailDialogStage,dashboardTermNewDailogStage,
+            dashboardInboxDeleteMailDialogStage,dashboardOutboxDeleteMailDialogStage,dashboardTermNewDailogStage,
             dashboardTermEditDailogStage, dashboardTermDeleteDailogStage;
     
-    /* Mail */
+    /* Mail Inbox */
     private DashboardInboxNewDialogController dashboardInboxNewMailDialogController;
     private DashboardInboxReplyDialogController dashboardInboxReplyMailDialogController;
     private DashboardInboxDeleteDialogController dashboardInboxDeleteMailDialogController;
-
+    
+    /* Mail Outbox */
+    private DashboardOutboxDeleteDialogController dashboardOutboxDeleteMailDialogController;
+    
+    /* Status */
+    
     /* Term */
     private DashboardTermNewDialogController dashboardTermNewDialogController;
     private DashboardTermEditDialogController dashboardTermEditDialogController;
@@ -139,11 +144,25 @@ public class DashboardLayoutController implements Initializable
         dashboardInboxDeleteMailDialogScene = new Scene(dashboardInboxDeleteMailDialogLayout);
         dashboardInboxDeleteMailDialogStage = new Stage();
         dashboardInboxDeleteMailDialogStage.setScene(dashboardInboxDeleteMailDialogScene);
-        dashboardInboxDeleteMailDialogStage.setTitle("حذف نامه");
+        dashboardInboxDeleteMailDialogStage.setTitle("حذف نامه دریافتی");
         dashboardInboxDeleteMailDialogStage.initModality(Modality.WINDOW_MODAL);
         dashboardInboxDeleteMailDialogStage.initOwner(JClassChin.getMainStage());
         dashboardInboxDeleteMailDialogStage.setResizable(false);
         dashboardInboxDeleteMailDialogStage.initStyle(StageStyle.UTILITY);
+        
+        
+        /* Outbox Delete Dialog */
+        dashboardOutboxDeleteMailDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardOutboxDeleteDialog.fxml"));
+        dashboardOutboxDeleteMailDialogLayout = (AnchorPane) dashboardOutboxDeleteMailDialogLoader.load();
+        dashboardOutboxDeleteMailDialogScene = new Scene(dashboardOutboxDeleteMailDialogLayout);
+        dashboardOutboxDeleteMailDialogStage = new Stage();
+        dashboardOutboxDeleteMailDialogStage.setScene(dashboardOutboxDeleteMailDialogScene);
+        dashboardOutboxDeleteMailDialogStage.setTitle("حذف نامه ارسالی");
+        dashboardOutboxDeleteMailDialogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardOutboxDeleteMailDialogStage.initOwner(JClassChin.getMainStage());
+        dashboardOutboxDeleteMailDialogStage.setResizable(false);
+        dashboardOutboxDeleteMailDialogStage.initStyle(StageStyle.UTILITY);
         
         
         /* Term New Dialog */
@@ -252,7 +271,7 @@ public class DashboardLayoutController implements Initializable
         dashboardInboxDeleteMailDialogController.initialize(null, null);
         dashboardInboxDeleteMailDialogController.setDashboardInboxDeleteDialogStage(dashboardInboxDeleteMailDialogStage);
 
-        dashboardInboxNewMailDialogStage.showAndWait();
+        dashboardInboxDeleteMailDialogStage.showAndWait();
 
         updateInboxTableView();
     }
@@ -299,6 +318,13 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void delete2HBoxOnMouseExited(MouseEvent event)
     {
+        dashboardOutboxDeleteMailDialogController = dashboardOutboxDeleteMailDialogLoader.getController();
+        dashboardInboxDeleteMailDialogController.initialize(null, null);
+        dashboardOutboxDeleteMailDialogController.setDashboardOutboxDeleteDialogStage(dashboardOutboxDeleteMailDialogStage);
+
+        dashboardOutboxDeleteMailDialogStage.showAndWait();
+
+        updateOutboxTableView();
     }
 
     @FXML
