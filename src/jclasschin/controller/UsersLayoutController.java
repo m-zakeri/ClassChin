@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import jclasschin.JClassChin;
 import jclasschin.entity.User;
 import jclasschin.model.UserManager;
@@ -28,8 +32,7 @@ import jclasschin.model.UserManager;
  *
  * @author Ali
  */
-public class UsersLayoutController implements Initializable
-{
+public class UsersLayoutController implements Initializable {
 
     private final FXMLLoader usersNewDialogLoader;
     private final AnchorPane usersNewDialogLayout;
@@ -55,10 +58,9 @@ public class UsersLayoutController implements Initializable
     @FXML
     private TableColumn<User, String> jobTableColumn;
     @FXML
-    private TableColumn<User, Boolean> stateTableColumn;
+    private TableColumn<User, String> stateTableColumn;
 
-    public UsersLayoutController() throws IOException
-    {
+    public UsersLayoutController() throws IOException {
         usersNewDialogLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersNewDialog.fxml"));
         usersNewDialogLayout = (AnchorPane) usersNewDialogLoader.load();
         usersNewDialogScene = new Scene(usersNewDialogLayout);
@@ -75,14 +77,12 @@ public class UsersLayoutController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
     @FXML
-    private void newHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void newHBoxOnMouseClicked(MouseEvent event) {
         usersNewDialogController = usersNewDialogLoader.getController();
         usersNewDialogController.setUsersNewDialogStage(usersNewDialogStage);
         usersNewDialogController.initDialog();
@@ -92,17 +92,14 @@ public class UsersLayoutController implements Initializable
     }
 
     @FXML
-    private void editHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void editHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void deleteHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void deleteHBoxOnMouseClicked(MouseEvent event) {
     }
 
-    public void updateUsersTableView()
-    {
+    public void updateUsersTableView() {
 
         UserManager um = new UserManager();
         ObservableList<User> userList = FXCollections.observableArrayList();
@@ -110,11 +107,15 @@ public class UsersLayoutController implements Initializable
         um.selectAll();
 
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("person.firstName"));
+
+        nameTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getFirstName() + " " + u.getValue().getPerson().getLastName()));
+        fieldTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getField().getName()));
+        //jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));
+        stateTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().isState() ? "فعال" : "غیر فعال"));
+
         //fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         List l = um.selectAll();
-        l.stream().forEach((u) ->
-        {
+        l.stream().forEach((u) -> {
             userList.add((User) u);
 
         });

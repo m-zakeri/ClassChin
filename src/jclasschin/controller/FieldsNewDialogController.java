@@ -35,7 +35,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import jclasschin.JClassChin;
 import jclasschin.model.FieldManager;
 
 /**

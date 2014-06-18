@@ -66,6 +66,7 @@ public class User  implements java.io.Serializable {
     public void setState(boolean state) {
         this.state = state;
     }
+   
 
 
 
