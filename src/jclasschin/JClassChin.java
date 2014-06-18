@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import jclasschin.controller.PreloaderLayoutController;
 
 /**
  *
@@ -23,6 +24,9 @@ public class JClassChin extends Application {
     private static Stage mainStage;
     private static BorderPane mainLayout;
     private static AnchorPane dashboardLayout;
+    
+    private static AnchorPane preloaderLayout;
+    private PreloaderLayoutController preloaderLayoutController;
 
     /**
      * @return the mainStage
@@ -45,12 +49,29 @@ public class JClassChin extends Application {
         mainStage.setTitle("JClassChin");
         FXMLLoader mainLayoutLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
+        
+        FXMLLoader preloaderLayoutLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/PreloaderLayout.fxml"));
+        
         mainLayout = (BorderPane) mainLayoutLoader.load();
+        
+        preloaderLayout=(AnchorPane) preloaderLayoutLoader.load();
+        preloaderLayoutController=preloaderLayoutLoader.getController();
+        
         Scene mainScene = new Scene(getMainLayout());
-        mainStage.setScene(mainScene);
+        
+        Scene preloaderScene = new Scene(preloaderLayout);
+        
+//        mainStage.setScene(mainScene);
+        
+        mainStage.setScene(preloaderScene);
+        
         mainStage.setResizable(false);
         mainStage.centerOnScreen();
         mainStage.show();
+        
+        preloaderLayoutController.loading();
+        
     }
 
     /**

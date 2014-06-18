@@ -21,56 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package jclasschin.model;
 
-package jclasschin.controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import jclasschin.entity.Course;
+import java.util.List;
+import jclasschin.util.HibernateUtil;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
- * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesNewDialogController implements Initializable {
-    
-    @FXML
-    private HBox okHBox;
-    @FXML
-    private ImageView okImageView;
-    @FXML
-    private HBox cancelHBox;
-    @FXML
-    private ImageView cancelImageView;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private ComboBox<?> typeComboBox;
+public class CourseTypeManager {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    private Session session;
 
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
-        
+    public List selectAll() {
+        try {
+            
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            List resultList = session.createQuery("from Coursetype").list();
+            session.getTransaction().commit();
+            return resultList;
+            
+        } catch (HibernateException he) {
+            
+            he.printStackTrace();
+            
+        }
+        return null;
     }
 
-    @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
-    }
-
-    
 }

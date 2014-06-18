@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import jclasschin.JClassChin;
 import jclasschin.entity.User;
 import jclasschin.model.UserManager;
@@ -99,6 +97,10 @@ public class UsersLayoutController implements Initializable {
     private void deleteHBoxOnMouseClicked(MouseEvent event) {
     }
 
+    private boolean isNull(String string){
+        return (string.equals(null));
+    }
+    
     public void updateUsersTableView() {
 
         UserManager um = new UserManager();
@@ -110,7 +112,7 @@ public class UsersLayoutController implements Initializable {
 
         nameTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getFirstName() + " " + u.getValue().getPerson().getLastName()));
         fieldTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getField().getName()));
-        //jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));
+        jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));
         stateTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().isState() ? "فعال" : "غیر فعال"));
 
         //fieldTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -119,7 +121,6 @@ public class UsersLayoutController implements Initializable {
             userList.add((User) u);
 
         });
-
         usersTableView.setItems(userList);
     }
 

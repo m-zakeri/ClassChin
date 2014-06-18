@@ -37,10 +37,10 @@ import org.hibernate.Session;
 public class FieldManager
 {
 
-    private Field field;
-    private Session session;
+    private static Field field;
+    private static Session session;
 
-    public boolean insert(String fieldName)
+    public static boolean insert(String fieldName)
     {
         field = new Field();
         field.setName(fieldName);
@@ -62,7 +62,7 @@ public class FieldManager
 
     }
 
-    public boolean delete(int fieldId)
+    public static boolean delete(int fieldId)
     {
        try
         { 
@@ -79,7 +79,7 @@ public class FieldManager
         }
     }
     
-    public boolean update(int fieldId, String newFieldName)
+    public static boolean update(int fieldId, String newFieldName)
     {
         try
         { 
@@ -99,7 +99,7 @@ public class FieldManager
         
     }
 
-    public List selectAll()
+    public static List selectAll()
     {
         try
         {
@@ -121,7 +121,7 @@ public class FieldManager
         return null;
     }
     
-    public Field selectByName(String fieldName){
+    public static Field selectByName(String fieldName){
         
         try
         {

@@ -22,55 +22,12 @@
  * THE SOFTWARE.
  */
 
-package jclasschin.controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import jclasschin.entity.Course;
+package jclasschin.model;
 
 /**
- * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesNewDialogController implements Initializable {
-    
-    @FXML
-    private HBox okHBox;
-    @FXML
-    private ImageView okImageView;
-    @FXML
-    private HBox cancelHBox;
-    @FXML
-    private ImageView cancelImageView;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private ComboBox<?> typeComboBox;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
-        
-    }
-
-    @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
-    }
-
-    
+public class CourseManager {
+ 
 }

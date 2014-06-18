@@ -38,10 +38,10 @@ import org.hibernate.Session;
 public class TermManager
 {
 
-    private Term term;
-    private Session session;
+    private static Term term;
+    private static Session session;
     
-    public boolean insert(String termName)
+    public static boolean insert(String termName)
     {
         term = new Term();
         term.setName(termName);
@@ -62,7 +62,7 @@ public class TermManager
         }
     }
     
-    public boolean delete(int termID)
+    public static boolean delete(int termID)
     {
          try
         { 
@@ -80,7 +80,7 @@ public class TermManager
         }
     }
     
-    public boolean update(int termID, String newTermName)
+    public static boolean update(int termID, String newTermName)
     {
         try
         { 
@@ -100,7 +100,7 @@ public class TermManager
         
     }
     
-    public List selectAll()
+    public static List selectAll()
     {
         try
         {
