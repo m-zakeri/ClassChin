@@ -62,9 +62,9 @@ public class JClassChin extends Application {
         
         Scene preloaderScene = new Scene(preloaderLayout);
         
-//        mainStage.setScene(mainScene);
+       mainStage.setScene(mainScene);
         
-        mainStage.setScene(preloaderScene);
+    //    mainStage.setScene(preloaderScene);
         
         mainStage.setResizable(false);
         mainStage.centerOnScreen();

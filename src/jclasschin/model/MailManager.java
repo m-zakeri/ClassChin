@@ -21,47 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package jclasschin.model;
 
-import jclasschin.entity.User;
+package jclasschin.model;
 
 /**
  *
  * @author HP
  */
-public class Login
+public class MailManager
 {
-
-    private UserManager userManager;
-    private static User logedUser;
-
-    /**
-     * @return the logedUser
-     */
-    public static User getLogedUser()
-    {
-        return logedUser;
-    }
-
-    /**
-     * @param aLogedUser the logedUser to set
-     */
-    public static void setLogedUser(User aLogedUser)
-    {
-        logedUser = aLogedUser;
-    }
-
-    /**
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-    public boolean checkForLogin(String username, String password)
-    {
-        userManager = new UserManager();
-
-        setLogedUser(userManager.selectByUserNameAndPassWord(username, password));
-        return getLogedUser() != null;
-    }
+    
 }

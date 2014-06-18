@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 Ali.
+ * Copyright 2014 HP.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -32,24 +31,27 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
  *
- * @author Ali
+ * @author HP
  */
-public class DashboardInboxNewDialogController implements Initializable {
-    
+public class DashboardInboxNewDialogController implements Initializable
+{
+    private Stage dashboardIboxNewDialogStage;
     private Mail mail;
-    
+
     @FXML
     private TextField subjectTextField;
     @FXML
     private TextArea messegeTextArea;
     @FXML
-    private ComboBox<?> toComboBox;
+    private ComboBox<String> toComboBox;
     @FXML
     private HBox okHBox;
     @FXML
@@ -59,25 +61,44 @@ public class DashboardInboxNewDialogController implements Initializable {
     @FXML
     private ImageView cancelImageView;
 
-    public DashboardInboxNewDialogController(){
-    }
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-         subjectTextField.setText("");
-         messegeTextArea.setText("");
-
-
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-    
-    public Mail getMail(){
-        mail=new Mail();
-        mail.setType(subjectTextField.getText());
-        mail.setText(messegeTextArea.getText());
-        return mail;
     }
     
+    
+     @FXML
+    private void okHboxOnMouseClicked(MouseEvent event)
+    {
+        
+        dashboardIboxNewDialogStage.close();
+    }
+
+    @FXML
+    private void cancelHboxOnMouseClicked(MouseEvent event)
+    {
+        dashboardIboxNewDialogStage.close();
+    }
+
+    /**
+     * @return the dashboardIboxNewDialogStage
+     */
+    public Stage getDashboardIboxNewDialogStage()
+    {
+        return dashboardIboxNewDialogStage;
+    }
+
+    /**
+     * @param dashboardIboxNewDialogStage the dashboardIboxNewDialogStage to set
+     */
+    public void setDashboardIboxNewDialogStage(Stage dashboardIboxNewDialogStage)
+    {
+        this.dashboardIboxNewDialogStage = dashboardIboxNewDialogStage;
+    }
+
+  
 }

@@ -37,22 +37,29 @@ import jclasschin.model.TermManager;
 public class DashboardLayoutController implements Initializable
 {
 
-    private final FXMLLoader inboxNewMailDialogLoader, dashboardTermNewDailogLoader, 
-            dashboardTermEditDailogLoader,dashboardTermDeleteDailogLoader;
-    private final AnchorPane inboxNewMailDialogLayout, dashboardTermNewDailogLayout,
-            dashboardTermEditDailogLayout,dashboardTermDeleteDailogLayout;
-    private final Scene inboxNewMailDialogScene, dashboardTermNewDailogScene,
-            dashboardTermEditDailogScene,dashboardTermDeleteDailogScene;
-    private final Stage inboxNewMailDialogStage, dashboardTermNewDailogStage,
-            dashboardTermEditDailogStage,dashboardTermDeleteDailogStage;
+    private final FXMLLoader dashboardInboxNewMailDialogLoader, dashboardInboxReplyMailDialogLoader,
+            dashboardInboxDeleteMailDialogLoader,dashboardTermNewDailogLoader,
+            dashboardTermEditDailogLoader, dashboardTermDeleteDailogLoader;
+    private final AnchorPane dashboardInboxNewMailDialogLayout, dashboardInboxReplyMailDialogLayout,
+            dashboardInboxDeleteMailDialogLayout,dashboardTermNewDailogLayout,
+            dashboardTermEditDailogLayout, dashboardTermDeleteDailogLayout;
+    private final Scene dashboardInboxNewMailDialogScene, dashboardInboxReplyMailDialogScene,
+            dashboardInboxDeleteMailDialogScene,dashboardTermNewDailogScene,
+            dashboardTermEditDailogScene, dashboardTermDeleteDailogScene;
+    private final Stage dashboardInboxNewMailDialogStage, dashboardInboxReplyMailDialogStage,
+            dashboardInboxDeleteMailDialogStage,dashboardTermNewDailogStage,
+            dashboardTermEditDailogStage, dashboardTermDeleteDailogStage;
+    
+    /* Mail */
+    private DashboardInboxNewDialogController dashboardInboxNewMailDialogController;
+    private DashboardInboxReplyDialogController dashboardInboxReplyMailDialogController;
+    private DashboardInboxDeleteDialogController dashboardInboxDeleteMailDialogController;
 
-    private DashboardInboxNewDialogController inboxNewMailDialogController;
+    /* Term */
     private DashboardTermNewDialogController dashboardTermNewDialogController;
     private DashboardTermEditDialogController dashboardTermEditDialogController;
     private DashboardTermDeleteDialogController dashboardTermDeleteDialogController;
-
-    private Mail mail;
-    private ObservableList<Mail> mailList = FXCollections.observableArrayList();
+    
 
     @FXML
     private AnchorPane dashboardAnchorPane;
@@ -78,7 +85,6 @@ public class DashboardLayoutController implements Initializable
     private HBox deleteTermHBox;
     @FXML
     private ComboBox<String> currentTermComboBox;
-
     @FXML
     private TableView<Mail> inboxTableView;
     @FXML
@@ -87,14 +93,12 @@ public class DashboardLayoutController implements Initializable
     private TableColumn<Mail, String> subjectTableColumn;
     @FXML
     private TableColumn<Mail, String> messegeTableColumn;
-
     @FXML
     private TableView<Term> termTableView;
     @FXML
     private TableColumn<Term, String> termIdTableColumn;
     @FXML
     private TableColumn<Term, String> termNameTableColumn;
-
     @FXML
     private TableView<Status> statusTableView;
     @FXML
@@ -103,62 +107,83 @@ public class DashboardLayoutController implements Initializable
     public DashboardLayoutController() throws IOException
     {
         /* Inbox New Dialog   */
-        inboxNewMailDialogLoader
+        dashboardInboxNewMailDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxNewDialog.fxml"));
-        inboxNewMailDialogLayout = (AnchorPane) inboxNewMailDialogLoader.load();
-        inboxNewMailDialogScene = new Scene(inboxNewMailDialogLayout);
-        inboxNewMailDialogStage = new Stage();
-        inboxNewMailDialogStage.setScene(inboxNewMailDialogScene);
-        inboxNewMailDialogStage.setTitle("New Mail");
-        inboxNewMailDialogStage.initModality(Modality.WINDOW_MODAL);
-        inboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
-        inboxNewMailDialogStage.setResizable(false);
-        inboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
+        dashboardInboxNewMailDialogLayout = (AnchorPane) dashboardInboxNewMailDialogLoader.load();
+        dashboardInboxNewMailDialogScene = new Scene(dashboardInboxNewMailDialogLayout);
+        dashboardInboxNewMailDialogStage = new Stage();
+        dashboardInboxNewMailDialogStage.setScene(dashboardInboxNewMailDialogScene);
+        dashboardInboxNewMailDialogStage.setTitle("نامه جدید");
+        dashboardInboxNewMailDialogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardInboxNewMailDialogStage.initOwner(JClassChin.getMainStage());
+        dashboardInboxNewMailDialogStage.setResizable(false);
+        dashboardInboxNewMailDialogStage.initStyle(StageStyle.UTILITY);
 
+        /* Inbox Reply Dialog */
+        dashboardInboxReplyMailDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxReplyDialog.fxml"));
+        dashboardInboxReplyMailDialogLayout = (AnchorPane) dashboardInboxReplyMailDialogLoader.load();
+        dashboardInboxReplyMailDialogScene = new Scene(dashboardInboxReplyMailDialogLayout);
+        dashboardInboxReplyMailDialogStage = new Stage();
+        dashboardInboxReplyMailDialogStage.setScene(dashboardInboxReplyMailDialogScene);
+        dashboardInboxReplyMailDialogStage.setTitle("پاسخ به نامه");
+        dashboardInboxReplyMailDialogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardInboxReplyMailDialogStage.initOwner(JClassChin.getMainStage());
+        dashboardInboxReplyMailDialogStage.setResizable(false);
+        dashboardInboxReplyMailDialogStage.initStyle(StageStyle.UTILITY);
+
+        /* Inbox Delete Dialog */
+        dashboardInboxDeleteMailDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/DashboardInboxDeleteDialog.fxml"));
+        dashboardInboxDeleteMailDialogLayout = (AnchorPane) dashboardInboxDeleteMailDialogLoader.load();
+        dashboardInboxDeleteMailDialogScene = new Scene(dashboardInboxDeleteMailDialogLayout);
+        dashboardInboxDeleteMailDialogStage = new Stage();
+        dashboardInboxDeleteMailDialogStage.setScene(dashboardInboxDeleteMailDialogScene);
+        dashboardInboxDeleteMailDialogStage.setTitle("حذف نامه");
+        dashboardInboxDeleteMailDialogStage.initModality(Modality.WINDOW_MODAL);
+        dashboardInboxDeleteMailDialogStage.initOwner(JClassChin.getMainStage());
+        dashboardInboxDeleteMailDialogStage.setResizable(false);
+        dashboardInboxDeleteMailDialogStage.initStyle(StageStyle.UTILITY);
         
+        
+        /* Term New Dialog */
         dashboardTermNewDailogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermNewDialog.fxml"));
         dashboardTermNewDailogLayout = (AnchorPane) dashboardTermNewDailogLoader.load();
         dashboardTermNewDailogScene = new Scene(dashboardTermNewDailogLayout);
         dashboardTermNewDailogStage = new Stage();
         dashboardTermNewDailogStage.setScene(dashboardTermNewDailogScene);
-        dashboardTermNewDailogStage.setTitle("New Term");
+        dashboardTermNewDailogStage.setTitle("ترم جدید");
         dashboardTermNewDailogStage.initModality(Modality.WINDOW_MODAL);
         dashboardTermNewDailogStage.initOwner(JClassChin.getMainStage());
         dashboardTermNewDailogStage.setResizable(false);
         dashboardTermNewDailogStage.initStyle(StageStyle.UTILITY);
 
-        
+        /* Term Edit Dialog */
         dashboardTermEditDailogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermEditDialog.fxml"));
         dashboardTermEditDailogLayout = (AnchorPane) dashboardTermEditDailogLoader.load();
         dashboardTermEditDailogScene = new Scene(dashboardTermEditDailogLayout);
         dashboardTermEditDailogStage = new Stage();
         dashboardTermEditDailogStage.setScene(dashboardTermEditDailogScene);
-        dashboardTermEditDailogStage.setTitle("Edit Term");
+        dashboardTermEditDailogStage.setTitle("ویرایش ترم");
         dashboardTermEditDailogStage.initModality(Modality.WINDOW_MODAL);
         dashboardTermEditDailogStage.initOwner(JClassChin.getMainStage());
         dashboardTermEditDailogStage.setResizable(false);
         dashboardTermEditDailogStage.initStyle(StageStyle.UTILITY);
-        
-        
-         dashboardTermDeleteDailogLoader
+
+        /* Term Delete Dialog */
+        dashboardTermDeleteDailogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/DashboardTermDeleteDialog.fxml"));
         dashboardTermDeleteDailogLayout = (AnchorPane) dashboardTermDeleteDailogLoader.load();
         dashboardTermDeleteDailogScene = new Scene(dashboardTermDeleteDailogLayout);
         dashboardTermDeleteDailogStage = new Stage();
         dashboardTermDeleteDailogStage.setScene(dashboardTermDeleteDailogScene);
-        dashboardTermDeleteDailogStage.setTitle("Delete Term");
+        dashboardTermDeleteDailogStage.setTitle("حذف ترم");
         dashboardTermDeleteDailogStage.initModality(Modality.WINDOW_MODAL);
         dashboardTermDeleteDailogStage.initOwner(JClassChin.getMainStage());
         dashboardTermDeleteDailogStage.setResizable(false);
         dashboardTermDeleteDailogStage.initStyle(StageStyle.UTILITY);
-        
-
-        mail = new Mail();
-        mail.setType("New Class Needed");
-        mail.setText("Salam Chetori AKBARI! Class MIKHAYYYMM!!!");
-        mailList.add(mail);
 
     }
 
@@ -168,10 +193,7 @@ public class DashboardLayoutController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        subjectTableColumn.setCellValueFactory(new PropertyValueFactory<Mail, String>("type"));
-        messegeTableColumn.setCellValueFactory(new PropertyValueFactory<Mail, String>("text"));
 
-        inboxTableView.setItems(mailList);
     }
 
     @FXML
@@ -188,19 +210,18 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void newHBoxOnMouseClicked(MouseEvent event)
     {
-        inboxNewMailDialogController = new DashboardInboxNewDialogController();
-        inboxNewMailDialogController = inboxNewMailDialogLoader.getController();
-        inboxNewMailDialogController.initialize(null, null);
-        inboxNewMailDialogStage.showAndWait();
+        dashboardInboxNewMailDialogController = dashboardInboxNewMailDialogLoader.getController();
+        dashboardInboxNewMailDialogController.initialize(null, null);
+        dashboardInboxNewMailDialogController.setDashboardIboxNewDialogStage(dashboardInboxNewMailDialogStage);
 
-        mailList.add(inboxNewMailDialogController.getMail());
+        dashboardInboxNewMailDialogStage.showAndWait();
 
+        updateInboxTableView();
     }
 
     @FXML
     private void replyHBoxOnMouseExited(MouseEvent event)
     {
-
     }
 
     @FXML
@@ -211,6 +232,12 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void replyHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardInboxReplyMailDialogController = dashboardInboxReplyMailDialogLoader.getController();
+        dashboardInboxReplyMailDialogController.setDashboardInboxReplyMailDialogStage(dashboardInboxReplyMailDialogStage);
+        dashboardInboxReplyMailDialogController.initialize(null, null);
+        dashboardInboxReplyMailDialogStage.showAndWait();
+        
+        updateOutboxTableView();
     }
 
     @FXML
@@ -221,6 +248,13 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void deleteHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardInboxDeleteMailDialogController = dashboardInboxDeleteMailDialogLoader.getController();
+        dashboardInboxDeleteMailDialogController.initialize(null, null);
+        dashboardInboxDeleteMailDialogController.setDashboardInboxDeleteDialogStage(dashboardInboxDeleteMailDialogStage);
+
+        dashboardInboxNewMailDialogStage.showAndWait();
+
+        updateInboxTableView();
     }
 
     @FXML
@@ -236,11 +270,13 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void refreshHBoxOnMouseClicked(MouseEvent event)
     {
+        /* Refersh mail inbox table */
     }
 
     @FXML
     private void new2HBoxOnMouseExited(MouseEvent event)
     {
+
     }
 
     @FXML
@@ -251,6 +287,13 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void new2HBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardInboxNewMailDialogController = dashboardInboxNewMailDialogLoader.getController();
+        dashboardInboxNewMailDialogController.initialize(null, null);
+        dashboardInboxNewMailDialogController.setDashboardIboxNewDialogStage(dashboardInboxNewMailDialogStage);
+
+        dashboardInboxNewMailDialogStage.showAndWait();
+
+        updateInboxTableView();
     }
 
     @FXML
@@ -281,12 +324,13 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void refresh2HBoxOnMouseClicked(MouseEvent event)
     {
+         /* Refersh status table */
     }
 
     @FXML
     private void newTermHBoxOnMouseClicked(MouseEvent event)
     {
-        dashboardTermNewDialogController = new DashboardTermNewDialogController();
+        //dashboardTermNewDialogController = new DashboardTermNewDialogController();
         dashboardTermNewDialogController = dashboardTermNewDailogLoader.getController();
         dashboardTermNewDialogController.initialize(null, null);
         dashboardTermNewDialogController.setDashboardTermNewDialogStage(dashboardTermNewDailogStage);
@@ -300,13 +344,13 @@ public class DashboardLayoutController implements Initializable
         if (termTableView.getSelectionModel().getSelectedIndex() != -1)
         {
             Term t = termTableView.getSelectionModel().getSelectedItem();
-            dashboardTermEditDialogController = new DashboardTermEditDialogController();
+            //dashboardTermEditDialogController = new DashboardTermEditDialogController();
             dashboardTermEditDialogController = dashboardTermEditDailogLoader.getController();
             dashboardTermEditDialogController.initialize(null, null);
             dashboardTermEditDialogController.setDashboardTermEditDialogStage(dashboardTermEditDailogStage);
             dashboardTermEditDialogController.setEditableTerm(t);
             dashboardTermEditDailogStage.showAndWait();
-            
+
             updateTermTableView();
         }
     }
@@ -314,16 +358,16 @@ public class DashboardLayoutController implements Initializable
     @FXML
     private void deleteTermHBoxOnMouseClicked(MouseEvent event)
     {
-         if (termTableView.getSelectionModel().getSelectedIndex() != -1)
+        if (termTableView.getSelectionModel().getSelectedIndex() != -1)
         {
             Term t = termTableView.getSelectionModel().getSelectedItem();
-            dashboardTermDeleteDialogController = new DashboardTermDeleteDialogController();
+            //dashboardTermDeleteDialogController = new DashboardTermDeleteDialogController();
             dashboardTermDeleteDialogController = dashboardTermDeleteDailogLoader.getController();
             dashboardTermDeleteDialogController.initialize(null, null);
             dashboardTermDeleteDialogController.setDashboardTermDeleteDailogStage(dashboardTermDeleteDailogStage);
             dashboardTermDeleteDialogController.setEditableTerm(t);
             dashboardTermDeleteDailogStage.showAndWait();
-            
+
             updateTermTableView();
         }
     }
@@ -340,10 +384,20 @@ public class DashboardLayoutController implements Initializable
         l.stream().forEach((t) ->
         {
             termList.add((Term) t);
-            currentTermComboBox.getItems().add(((Term)t).getName());
-            currentTermComboBox.setValue(((Term)t).getName());
+            currentTermComboBox.getItems().add(((Term) t).getName());
+            currentTermComboBox.setValue(((Term) t).getName());
         });
-       
+
         termTableView.setItems(termList);
+    }
+
+    private void updateInboxTableView()
+    {
+
+    }
+
+    private void updateOutboxTableView()
+    {
+
     }
 }

@@ -32,6 +32,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Mail;
 
 /**
  * FXML Controller class
@@ -40,6 +42,9 @@ import javafx.scene.layout.HBox;
  */
 public class DashboardInboxDeleteDialogController implements Initializable
 {
+    private Stage dashboardInboxDeleteDialogStage;
+    private Mail mail;
+    
     @FXML
     private HBox yesHBox;
     @FXML
@@ -73,6 +78,7 @@ public class DashboardInboxDeleteDialogController implements Initializable
     @FXML
     private void yesHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardInboxDeleteDialogStage.close();
     }
 
     @FXML
@@ -88,6 +94,23 @@ public class DashboardInboxDeleteDialogController implements Initializable
     @FXML
     private void noHBoxOnMouseClicked(MouseEvent event)
     {
+        dashboardInboxDeleteDialogStage.close();
+    }
+
+    /**
+     * @return the dashboardInboxDeleteDialogStage
+     */
+    public Stage getDashboardInboxDeleteDialogStage()
+    {
+        return dashboardInboxDeleteDialogStage;
+    }
+
+    /**
+     * @param dashboardInboxDeleteDialogStage the dashboardInboxDeleteDialogStage to set
+     */
+    public void setDashboardInboxDeleteDialogStage(Stage dashboardInboxDeleteDialogStage)
+    {
+        this.dashboardInboxDeleteDialogStage = dashboardInboxDeleteDialogStage;
     }
     
 }
