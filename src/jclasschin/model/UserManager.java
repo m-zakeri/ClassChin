@@ -84,6 +84,68 @@ public class UserManager
         }
     }
 
+    public boolean update(int userID, int personID, String title, String firstName, String lastName,
+            boolean sex, String phone,
+            String username, String password, boolean state, String jobTitle, String fieldTitle)
+    {
+        try
+        {
+
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            person = (Person) session.load(Person.class, personID);
+            person.setTitle(title);
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setSex(sex);
+            person.setPhone(phone);
+
+            jobManager = new JobManager();
+            job = jobManager.selectByName(jobTitle);
+            person.setJob(job);
+
+            fieldManager = new FieldManager();
+            field = fieldManager.selectByName(fieldTitle);
+            person.setField(field);
+
+            user = (User) session.load(User.class, userID);
+            user.setPassword(password);
+            user.setUsername(username);
+            user.setState(state);
+            user.setPerson(person);
+
+            session.update(person);
+            session.update(user);
+
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean delete(int personID)
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            person = (Person) session.load(Person.class, personID);
+            session.delete(person);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            he.printStackTrace();
+            return false;
+        }
+    }
+
     public List selectAll()
     {
         try
@@ -97,16 +159,13 @@ public class UserManager
 //                    + "join job ON job.id = person.job_id";
 
     //        Query q = session.createQuery("from Person");
-
             //session.
-      //      List resultList = q.list();
-
-  //          System.out.println(((Person)resultList.get(3)).getField().getName());
-
+            //      List resultList = q.list();
+            //          System.out.println(((Person)resultList.get(3)).getField().getName());
             Query q2 = session.createQuery("from User");
             List resultList2 = q2.list();
 //            System.out.println(((User)resultList.get(3)).getPerson().getField().getName());
-            
+
             session.getTransaction().commit();
             return resultList2;
         }

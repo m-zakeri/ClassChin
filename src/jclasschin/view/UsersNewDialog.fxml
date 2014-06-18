@@ -47,7 +47,7 @@
                </font>
             </Label>
             <ComboBox fx:id="titleComboBox" layoutX="140.0" layoutY="30.0" prefHeight="31.0" prefWidth="187.0" promptText="انتخاب نمایید . . . " GridPane.columnIndex="1" />
-            <TextField fx:id="phoneTextField" layoutX="140.0" layoutY="216.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="phoneTextField" layoutX="140.0" layoutY="216.0" onMouseClicked="#phoneTextFieldOnMouseClicked" onMouseEntered="#phoneTextFieldOnMouseEntered" onMouseExited="#phoneTextFieldOnMouseExited" onMousePressed="#phoneTextFieldOnMousePressed" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label layoutX="36.0" layoutY="273.0" text="رشته :" GridPane.rowIndex="5">
                <font>
                   <Font name="B Nazanin Bold" size="20.0" />
@@ -62,12 +62,12 @@
                <children>
                   <RadioButton fx:id="maleSexRadioButton" layoutX="160.0" layoutY="169.0" mnemonicParsing="false" text="مرد" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
-                        <Font name="B Nazanin" size="20.0" />
+                        <Font name="B Nazanin" size="17.0" />
                      </font>
                   </RadioButton>
                   <RadioButton fx:id="femaleSexRadioButton" mnemonicParsing="false" text="زن" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
-                        <Font name="B Nazanin" size="20.0" />
+                        <Font name="B Nazanin" size="17.0" />
                      </font>
                   </RadioButton>
                </children>
@@ -123,8 +123,8 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <PasswordField fx:id="passwordField" layoutX="134.0" layoutY="447.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="userNameTextField" layoutX="134.0" layoutY="401.0" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="1" />
+            <PasswordField fx:id="passwordField" layoutX="134.0" layoutY="447.0" onMouseEntered="#passwordFieldOnMouseEntered" onMouseExited="#passwordFieldOnMouseExited" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="userNameTextField" layoutX="134.0" layoutY="401.0" onMouseEntered="#userNameTextFieldOnMouseEntered" onMouseExited="#userNameTextFieldOnMouseExited" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="1" />
             <Label layoutX="30.0" layoutY="404.0" text="نام کاربری :">
                <font>
                   <Font name="B Nazanin Bold" size="20.0" />
@@ -138,15 +138,24 @@
          </children>
       </GridPane>
       <Separator layoutY="355.0" prefHeight="3.0" prefWidth="357.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="355.0" />
-      <CheckBox fx:id="activeCheckBox" layoutX="140.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#activeCheckBoxOnMouseClicked" prefHeight="28.0" prefWidth="183.0" text="کاربر فعال نیست.">
-         <font>
-            <Font name="B Nazanin" size="20.0" />
-         </font>
-      </CheckBox>
       <Label layoutX="31.0" layoutY="479.0" text="وضعیت :">
          <font>
             <Font name="B Nazanin Bold" size="20.0" />
          </font>
       </Label>
+      <HBox fx:id="activeHBox" alignment="CENTER" layoutX="138.0" layoutY="479.0" prefHeight="27.0" prefWidth="183.0" spacing="40.0">
+         <children>
+            <RadioButton fx:id="activeRadioButton" layoutX="160.0" layoutY="169.0" mnemonicParsing="false" text="فعال" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="B Nazanin" size="17.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="deActiveRadioButton" mnemonicParsing="false" text="غیر فعال" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="B Nazanin" size="17.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

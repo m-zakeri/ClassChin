@@ -43,7 +43,7 @@ public class JClassChin extends Application {
     }
 
     @Override
-    public void start(Stage mainStage) throws IOException {
+    public void start(Stage mainStage) throws IOException, InterruptedException {
 
         JClassChin.mainStage = mainStage;
         mainStage.setTitle("JClassChin");

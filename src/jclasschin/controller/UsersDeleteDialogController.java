@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -31,13 +30,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.User;
+import jclasschin.model.UserManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class UsersDeleteDialogController implements Initializable {
+public class UsersDeleteDialogController implements Initializable
+{
+
+    private Stage usersEditDialogStage;
+    private User editableUser;
+    private UserManager userManager;
+
     @FXML
     private HBox yesHBox;
     @FXML
@@ -51,32 +59,76 @@ public class UsersDeleteDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void yesHBoxOnMouseExited(MouseEvent event) {
     }
 
     @FXML
-    private void yesHBoxOnMouseEntered(MouseEvent event) {
+    private void yesHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void yesHBoxOnMouseClicked(MouseEvent event) {
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
+
     }
 
     @FXML
-    private void noHBoxOnMouseExited(MouseEvent event) {
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+        userManager = new UserManager();
+        userManager.delete(editableUser.getPerson().getId());
+        usersEditDialogStage.close();
     }
 
     @FXML
-    private void noHBoxOnMouseEntered(MouseEvent event) {
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseClicked(MouseEvent event) {
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
     }
-    
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
+    {
+        usersEditDialogStage.close();
+    }
+
+    /**
+     * @return the usersEditDialogStage
+     */
+    public Stage getUsersEditDialogStage()
+    {
+        return usersEditDialogStage;
+    }
+
+    /**
+     * @param usersEditDialogStage the usersEditDialogStage to set
+     */
+    public void setUsersEditDialogStage(Stage usersEditDialogStage)
+    {
+        this.usersEditDialogStage = usersEditDialogStage;
+    }
+
+    /**
+     * @return the editableUser
+     */
+    public User getEditableUser()
+    {
+        return editableUser;
+    }
+
+    /**
+     * @param editableUser the editableUser to set
+     */
+    public void setEditableUser(User editableUser)
+    {
+        this.editableUser = editableUser;
+    }
+
 }

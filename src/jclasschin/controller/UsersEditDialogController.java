@@ -24,17 +24,27 @@
 package jclasschin.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Field;
+import jclasschin.entity.Job;
+import jclasschin.entity.User;
+import jclasschin.model.FieldManager;
+import jclasschin.model.JobManager;
+import jclasschin.model.UserManager;
 
 /**
  * FXML Controller class
@@ -43,6 +53,12 @@ import javafx.scene.layout.HBox;
  */
 public class UsersEditDialogController implements Initializable
 {
+
+    private Stage usersEditDialogStage;
+    private User editableUser;
+    private UserManager userManager;
+
+    private ToggleGroup sexToggleGroup, activeToggleGroup;
 
     @FXML
     private TextField lastNameTextField;
@@ -73,7 +89,9 @@ public class UsersEditDialogController implements Initializable
     @FXML
     private TextField userNameTextField;
     @FXML
-    private CheckBox activeCheckBox;
+    private RadioButton activeRadioButton;
+    @FXML
+    private RadioButton deActiveRadioButton;
 
     /**
      * Initializes the controller class.
@@ -87,12 +105,125 @@ public class UsersEditDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
-        
+
+        userManager = new UserManager();
+        userManager.update(editableUser.getId(), editableUser.getPerson().getId(), titleComboBox.getValue(),
+                firstNameTextField.getText(), lastNameTextField.getText(), maleSexRadioButton.isSelected(),
+                phoneTextField.getText(), userNameTextField.getText(), passwordField.getText(),
+                activeRadioButton.isSelected(), jobComboBox.getValue(), fieldComboBox.getValue());
+
+        usersEditDialogStage.close();
     }
 
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
+        usersEditDialogStage.close();
     }
 
+    /**
+     * @return the usersEditDialogStage
+     */
+    public Stage getUsersEditDialogStage()
+    {
+        return usersEditDialogStage;
+    }
+
+    /**
+     * @param usersEditDialogStage the usersEditDialogStage to set
+     */
+    public void setUsersEditDialogStage(Stage usersEditDialogStage)
+    {
+        this.usersEditDialogStage = usersEditDialogStage;
+    }
+
+    void initDialog()
+    {
+        clearDialogFields();
+
+        titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
+        titleComboBox.setValue(editableUser.getPerson().getTitle());
+
+        FieldManager fm = new FieldManager();
+        List fl = fm.selectAll();
+        fl.stream().forEach((f) ->
+        {
+            fieldComboBox.getItems().add(((Field) f).getName());
+        });
+        fieldComboBox.setValue(editableUser.getPerson().getField().getName());
+
+        JobManager jm = new JobManager();
+        List jl = jm.selectAll();
+        jl.stream().forEach((j) ->
+        {
+            jobComboBox.getItems().add(((Job) j).getTitle());
+        });
+        jobComboBox.setValue(editableUser.getPerson().getJob().getTitle());
+
+        sexToggleGroup = new ToggleGroup();
+        maleSexRadioButton.setToggleGroup(sexToggleGroup);
+        femaleSexRadioButton.setToggleGroup(sexToggleGroup);
+        if (editableUser.getPerson().isSex())
+        {
+            maleSexRadioButton.setSelected(true);
+        }
+        else
+        {
+            femaleSexRadioButton.setSelected(true);
+        }
+
+        activeToggleGroup = new ToggleGroup();
+        activeRadioButton.setToggleGroup(activeToggleGroup);
+        deActiveRadioButton.setToggleGroup(activeToggleGroup);
+        if (editableUser.isState())
+        {
+            activeRadioButton.setSelected(true);
+        }
+        else
+        {
+            deActiveRadioButton.setSelected(true);
+        }
+
+        userNameTextField.setText(editableUser.getPassword());
+        passwordField.setText(editableUser.getPassword());
+
+        userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        passwordField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+    }
+
+    private void clearDialogFields()
+    {
+        titleComboBox.getItems().clear();
+        fieldComboBox.getItems().clear();
+        jobComboBox.getItems().clear();
+
+//        maleSexRadioButton.setSelected(false);
+//        femaleSexRadioButton.setSelected(false);
+//        activeRadioButton.setSelected(false);
+//        deActiveRadioButton.setSelected(false);
+        firstNameTextField.setText(editableUser.getPerson().getFirstName());
+        lastNameTextField.setText(editableUser.getPerson().getLastName());
+        phoneTextField.setText(editableUser.getPerson().getPhone());
+        phoneTextField.setPrefColumnCount(11);
+        phoneTextField.setPromptText("حداکثر طول مجاز 11 عدد است.");
+        userNameTextField.setText("");
+        passwordField.setText("");
+
+    }
+
+    /**
+     * @return the editableUser
+     */
+    public User getEditableUser()
+    {
+        return editableUser;
+    }
+
+    /**
+     * @param editableUser the editableUser to set
+     */
+    public void setEditableUser(User editableUser)
+    {
+        this.editableUser = editableUser;
+    }
 }

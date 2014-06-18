@@ -38,6 +38,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import jclasschin.entity.Field;
 import jclasschin.entity.Job;
@@ -57,7 +58,7 @@ public class UsersNewDialogController implements Initializable {
     private User newUser;
     private UserManager userManager;
 
-    private ToggleGroup sexToggelGroup;
+    private ToggleGroup sexToggleGroup,activeToggleGroup;
 
     @FXML
     private TextField lastNameTextField;
@@ -88,7 +89,11 @@ public class UsersNewDialogController implements Initializable {
     @FXML
     private TextField userNameTextField;
     @FXML
-    private CheckBox activeCheckBox;
+    private HBox activeHBox;
+    @FXML
+    private RadioButton activeRadioButton;
+    @FXML
+    private RadioButton deActiveRadioButton;
 
     /**
      * Initializes the controller class.
@@ -133,7 +138,7 @@ public class UsersNewDialogController implements Initializable {
         userManager.insert(titleComboBox.getValue(), firstNameTextField.getText(),
                 lastNameTextField.getText(), maleSexRadioButton.isSelected(),
                 phoneTextField.getText(), userNameTextField.getText(),
-                passwordField.getText(), activeCheckBox.isSelected(),
+                passwordField.getText(), activeRadioButton.isSelected(),
                 jobComboBox.getValue(), fieldComboBox.getValue()
         );
         
@@ -146,8 +151,9 @@ public class UsersNewDialogController implements Initializable {
     }
 
     void initDialog() {
+        clearDialogFields();
         titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
-
+        
         FieldManager fm = new FieldManager();
         List fl = fm.selectAll();
         fl.stream().forEach((f) -> {
@@ -160,22 +166,83 @@ public class UsersNewDialogController implements Initializable {
             jobComboBox.getItems().add(((Job) j).getTitle());
         });
         
-        sexToggelGroup = new ToggleGroup();
-        maleSexRadioButton.setToggleGroup(sexToggelGroup);
-        femaleSexRadioButton.setToggleGroup(sexToggelGroup);
-
+        sexToggleGroup = new ToggleGroup();
+        maleSexRadioButton.setToggleGroup(sexToggleGroup);
+        femaleSexRadioButton.setToggleGroup(sexToggleGroup);
+        
+        activeToggleGroup = new ToggleGroup();
+        activeRadioButton.setToggleGroup(activeToggleGroup);
+        deActiveRadioButton.setToggleGroup(activeToggleGroup);
+        
         userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         passwordField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
     }
 
-    @FXML
-    private void activeCheckBoxOnMouseClicked(MouseEvent event) {
-        if (activeCheckBox.isSelected()) {
-            activeCheckBox.setText("کاربر فعال است.");
-        } else {
-            activeCheckBox.setText("کاربر فعال نیست.");
-        }
+    
+
+    private void clearDialogFields()
+    {
+        titleComboBox.getItems().clear();
+        fieldComboBox.getItems().clear();
+        jobComboBox.getItems().clear();
+        
+        maleSexRadioButton.setSelected(false);
+        femaleSexRadioButton.setSelected(false);
+        activeRadioButton.setSelected(false);
+        deActiveRadioButton.setSelected(false);
+        
+        firstNameTextField.setText("");
+        lastNameTextField.setText("");
+        phoneTextField.setText("");
+        phoneTextField.setPrefColumnCount(11);
+        phoneTextField.setPromptText("حداکثر طول مجاز 11 عدد است.");
+        userNameTextField.setText("");
+        passwordField.setText("");
+        
     }
 
+    @FXML
+    private void phoneTextFieldOnMouseEntered(MouseEvent event)
+    {
+        
+    }
+
+    @FXML
+    private void phoneTextFieldOnMouseExited(MouseEvent event)
+    {
+        phoneTextField.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+    }
+
+    @FXML
+    private void passwordFieldOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void passwordFieldOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void userNameTextFieldOnMouseExited(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void userNameTextFieldOnMouseEntered(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void phoneTextFieldOnMouseClicked(MouseEvent event)
+    {
+        phoneTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+    }
+
+    @FXML
+    private void phoneTextFieldOnMousePressed(MouseEvent event)
+    {
+    }
+    
 
 }
