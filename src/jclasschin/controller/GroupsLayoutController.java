@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Last edit by Morteza
  */
 package jclasschin.controller;
 
@@ -77,7 +75,10 @@ public class GroupsLayoutController implements Initializable {
         courseNewDialogController = new GroupsCoursesNewDialogController();
         courseNewDialogController = courseNewDialogLoader.getController();
         courseNewDialogController.initialize(null, null);
+        courseNewDialogController.setGroupsCoursesNewDialog(courseNewDialogStage);
+        
         courseNewDialogStage.showAndWait();
+        updateCourseTableView();
 
     }
 
@@ -87,6 +88,11 @@ public class GroupsLayoutController implements Initializable {
 
     @FXML
     private void deleteHBoxOnMouseClicked(MouseEvent event) {
+    }
+
+    private void updateCourseTableView()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -33,14 +32,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import jclasschin.entity.Course;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesNewDialogController implements Initializable {
+public class GroupsCoursesNewDialogController implements Initializable
+{
+    
+    private Stage groupsCoursesNewDialog;
+    
     
     @FXML
     private HBox okHBox;
@@ -59,18 +62,36 @@ public class GroupsCoursesNewDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
-        
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+
     }
 
-    
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    /**
+     * @return the groupsCoursesNewDialog
+     */
+    public Stage getGroupsCoursesNewDialog()
+    {
+        return groupsCoursesNewDialog;
+    }
+
+    /**
+     * @param groupsCoursesNewDialog the groupsCoursesNewDialog to set
+     */
+    public void setGroupsCoursesNewDialog(Stage groupsCoursesNewDialog)
+    {
+        this.groupsCoursesNewDialog = groupsCoursesNewDialog;
+    }
+
 }
