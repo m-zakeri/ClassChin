@@ -22,6 +22,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import jclasschin.JClassChin;
+import jclasschin.entity.User;
+import jclasschin.model.Effect;
 //import org.controlsfx.control.Notifications;
 
 /**
@@ -31,8 +33,10 @@ import jclasschin.JClassChin;
  */
 public class MainLayoutController implements Initializable {
 
+    private BorderPane objectLayout;
     private BorderPane mainLayout;
-    private final AnchorPane dashboardLayout,
+
+    private AnchorPane dashboardLayout,
             fieldsLayout,
             usersLayout,
             groupsLayout,
@@ -40,11 +44,17 @@ public class MainLayoutController implements Initializable {
 //            scheduleLayout,
 //            reportsLayout;
 
-    FXMLLoader dashboardLayoutLoader,
+    private FXMLLoader dashboardLayoutLoader,
             fieldsLayoutLoader,
             usersLayoutLoader,
             groupsLayoutLoader,
             classLayoutLoader;
+
+    private DashboardLayoutController dashboardLayoutController;
+    private FieldsLayoutController fieldsLayoutController;
+    private UsersLayoutController usersLayoutController;
+    private GroupsLayoutController groupsLayoutController;
+    private ClassLayoutController classLayoutController;
 
     private final Image homeButton,
             homeButtonOnMouseEntered,
@@ -103,6 +113,7 @@ public class MainLayoutController implements Initializable {
     public MainLayoutController() throws IOException {
         dashboardLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
         dashboardLayout = (AnchorPane) dashboardLayoutLoader.load();
+        dashboardLayoutController = dashboardLayoutLoader.getController();
         fieldsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsLayout.fxml"));
         fieldsLayout = new AnchorPane((AnchorPane) fieldsLayoutLoader.load());
         usersLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersLayout.fxml"));
@@ -158,6 +169,14 @@ public class MainLayoutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    void start() {
+        new Effect().fadeInTransition(dashboardLayout, 1000);
+        mainLayout.setCenter(dashboardLayout);
+        dashboardImageView.setImage(homeButtonOnMouseClicked);
+        dashboardHBoxOnMouseClickedFlag = true;
+        dashboardLayoutController.updateTermTableView();
     }
 
     private void resetAllButtons() {
@@ -218,7 +237,7 @@ public class MainLayoutController implements Initializable {
 
         resetAllButtons();
         playFadeTransition(dashboardLayout);
-        JClassChin.getMainLayout().setCenter(dashboardLayout);
+        mainLayout.setCenter(dashboardLayout);
         dashboardImageView.setImage(homeButtonOnMouseClicked);
         dashboardHBoxOnMouseClickedFlag = true;
 
@@ -246,7 +265,7 @@ public class MainLayoutController implements Initializable {
     private void fieldsHBoxOnMouseClicked(MouseEvent event) throws IOException {
         resetAllButtons();
         playFadeTransition(fieldsLayout);
-        JClassChin.getMainLayout().setCenter(fieldsLayout);
+        mainLayout.setCenter(fieldsLayout);
         fieldsImageView.setImage(fieldButtonOnMouseClicked);
         fieldsHBoxOnMouseClickedFlag = true;
 
@@ -275,10 +294,10 @@ public class MainLayoutController implements Initializable {
     private void usersHBoxOnMouseClicked(MouseEvent event) throws IOException {
         resetAllButtons();
         playFadeTransition(usersLayout);
-        JClassChin.getMainLayout().setCenter(usersLayout);
+        mainLayout.setCenter(usersLayout);
         usersImageView.setImage(userButtonOnMouseClicked);
         usersHBoxOnMouseClickedFlag = true;
-        
+
         UsersLayoutController ulc = usersLayoutLoader.getController();
         ulc.updateUsersTableView();
     }
@@ -303,7 +322,7 @@ public class MainLayoutController implements Initializable {
     private void groupsHBoxOnMouseClicked(MouseEvent event) throws IOException {
         resetAllButtons();
         playFadeTransition(groupsLayout);
-        JClassChin.getMainLayout().setCenter(groupsLayout);
+        mainLayout.setCenter(groupsLayout);
         groupsImageView.setImage(courseGroupButtonOnMouseClicked);
         groupsHBoxOnMouseClickedFlag = true;
     }
@@ -314,6 +333,23 @@ public class MainLayoutController implements Initializable {
 
     @FXML
     private void scheduleHBoxOnMouseClicked(MouseEvent event) {
+    }
+
+//    public void start() {
+//        mainLayout.setCenter(dashboardLayout);
+//        dashboardImageView.setImage(homeButtonOnMouseClicked);
+//        dashboardHBoxOnMouseClickedFlag = true;
+//
+////        DashboardLayoutController dlc = dashboardLayoutLoader.getController();
+////        dlc.updateTermTableView();
+//    }
+
+    public void setObjectLayout(BorderPane objectLayout) {
+        this.objectLayout = objectLayout;
+    }
+
+    public void setLayout(BorderPane mainLayout) {
+        this.mainLayout = mainLayout;
     }
 
 }

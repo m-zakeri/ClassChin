@@ -26,7 +26,6 @@ package jclasschin.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -41,18 +40,25 @@ import jclasschin.model.Effect;
  */
 public class ObjectLayoutController implements Initializable {
 
-    private FXMLLoader preloaderLayoutLoader;
+    private BorderPane objectLayout;
+
+//    private FXMLLoader loginLayoutLoader;
+//    private AnchorPane loginLayout;
+//    private LoginLayoutController loginLayoutController;
     private AnchorPane preloaderLayout;
+    private FXMLLoader preloaderLayoutLoader;
     private PreloaderLayoutController preloaderLayoutController;
 
-    @FXML
-    private BorderPane objectLayoutBorderPane;
 
     public ObjectLayoutController() throws IOException {
 
+//        loginLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/LoginLayout.fxml"));
+//        loginLayout = (AnchorPane) loginLayoutLoader.load();
+//        loginLayoutController = loginLayoutLoader.getController();
         preloaderLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/PreloaderLayout.fxml"));
         preloaderLayout = (AnchorPane) preloaderLayoutLoader.load();
         preloaderLayoutController = preloaderLayoutLoader.getController();
+
     }
 
     /**
@@ -63,11 +69,38 @@ public class ObjectLayoutController implements Initializable {
         // TODO
     }
 
-    public void start() throws InterruptedException {
-        new Effect().fadeInTransition(preloaderLayout,1000);
-        objectLayoutBorderPane.setCenter(preloaderLayout);
+    public void start() {
+        new Effect().fadeInTransition(preloaderLayout, 1000);
+        objectLayout.setCenter(preloaderLayout);
+        preloaderLayoutController.setObjectLayout(objectLayout);
         preloaderLayoutController.start();
-        
     }
+
+    public void setObjectLayout(BorderPane objectLayout) {
+        this.objectLayout = objectLayout;
+    }
+//
+//    private void end() throws InterruptedException {
+// preloaderLayoutController.startThreads();
+//    }
+//
+//    private void end2() throws InterruptedException {
+//
+//    Task layoutTask = new Task<Void>() {
+//            @Override
+//            public Void call() {
+//                System.out.println("TASK 5 STARTED");
+//                objectLayout.setCenter(preloaderLayout);
+//                System.out.println("TASK 5 FINISHED");
+//                return null;
+////            }
+////        };
+//    
+//            Thread layoutThread = new Thread(layoutTask);
+//layoutThread.start();
+//layoutThread.join();
+//    
+//    
+//    }
 
 }
