@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="jclasschin.entity.Field" table="field" catalog="class_chin_db">
         <id name="id" type="java.lang.Integer">

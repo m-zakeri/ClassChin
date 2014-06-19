@@ -1,5 +1,5 @@
 package jclasschin.entity;
-// Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0
+// Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -17,6 +17,8 @@ public class Mail  implements java.io.Serializable {
      private String type;
      private String text;
      private Date date;
+     private Boolean receiverDelete;
+     private Boolean senderDelete;
 
     public Mail() {
     }
@@ -26,13 +28,15 @@ public class Mail  implements java.io.Serializable {
         this.personByReceiverPersonId = personByReceiverPersonId;
         this.personBySenderPersonId = personBySenderPersonId;
     }
-    public Mail(Term term, Person personByReceiverPersonId, Person personBySenderPersonId, String type, String text, Date date) {
+    public Mail(Term term, Person personByReceiverPersonId, Person personBySenderPersonId, String type, String text, Date date, Boolean receiverDelete, Boolean senderDelete) {
        this.term = term;
        this.personByReceiverPersonId = personByReceiverPersonId;
        this.personBySenderPersonId = personBySenderPersonId;
        this.type = type;
        this.text = text;
        this.date = date;
+       this.receiverDelete = receiverDelete;
+       this.senderDelete = senderDelete;
     }
    
     public Integer getId() {
@@ -83,6 +87,20 @@ public class Mail  implements java.io.Serializable {
     
     public void setDate(Date date) {
         this.date = date;
+    }
+    public Boolean getReceiverDelete() {
+        return this.receiverDelete;
+    }
+    
+    public void setReceiverDelete(Boolean receiverDelete) {
+        this.receiverDelete = receiverDelete;
+    }
+    public Boolean getSenderDelete() {
+        return this.senderDelete;
+    }
+    
+    public void setSenderDelete(Boolean senderDelete) {
+        this.senderDelete = senderDelete;
     }
 
 

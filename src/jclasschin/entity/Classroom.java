@@ -1,5 +1,5 @@
 package jclasschin.entity;
-// Generated May 13, 2014 4:54:01 PM by Hibernate Tools 3.6.0
+// Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;

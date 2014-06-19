@@ -185,6 +185,7 @@ public class UserManager
             q.setParameter("pass",passWord );
             List resultList = q.list();
             session.getTransaction().commit();
+            
             user = (User) resultList.get(0);
             return user;
         }

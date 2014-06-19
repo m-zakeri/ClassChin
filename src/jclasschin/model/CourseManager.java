@@ -35,10 +35,10 @@ import org.hibernate.Session;
 public class CourseManager
 {
 
-    private  Course course;
-    private  Session session;
+    private Course course;
+    private Session session;
     private CourseTypeManager courseTypeManager;
-    
+
     public boolean insert(String courseName, String courseType)
     {
 
@@ -47,16 +47,16 @@ public class CourseManager
         course.setName(courseName);
         course.setCoursetype(courseTypeManager.selectByName(courseType));
         course.setField(Login.getLogedUser().getPerson().getField());
-        
+
 //        try
 //        {
-            session = (Session) HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(course);
-            session.getTransaction().commit();
+        session = (Session) HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(course);
+        session.getTransaction().commit();
             //session.close();
-            //HibernateUtil.getSessionFactory().close();
-            return true;
+        //HibernateUtil.getSessionFactory().close();
+        return true;
 //        }
 
 //        catch (HibernateException he)

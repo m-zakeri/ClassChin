@@ -4,23 +4,22 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://172.20.5.32:3306/class_chin_db?UseUnicode=true&amp;characterEncoding=utf8</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/class_chin_db?UseUnicode=true&amp;characterEncoding=utf8</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.show_sql">true</property>
     <mapping resource="jclasschin/entity/Term.hbm.xml"/>
     <mapping resource="jclasschin/entity/Schedule.hbm.xml"/>
     <mapping resource="jclasschin/entity/Course.hbm.xml"/>
-    <mapping resource="jclasschin/entity/Weekday.hbm.xml"/>
     <mapping resource="jclasschin/entity/Job.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Weekday.hbm.xml"/>
     <mapping resource="jclasschin/entity/Status.hbm.xml"/>
     <mapping resource="jclasschin/entity/Mail.hbm.xml"/>
     <mapping resource="jclasschin/entity/Field.hbm.xml"/>
     <mapping resource="jclasschin/entity/Person.hbm.xml"/>
     <mapping resource="jclasschin/entity/Dedication.hbm.xml"/>
-    <mapping resource="jclasschin/entity/Period.hbm.xml"/>
     <mapping resource="jclasschin/entity/Classroom.hbm.xml"/>
+    <mapping resource="jclasschin/entity/Period.hbm.xml"/>
     <mapping resource="jclasschin/entity/User.hbm.xml"/>
     <mapping resource="jclasschin/entity/Cctm.hbm.xml"/>
     <mapping resource="jclasschin/entity/Coursetype.hbm.xml"/>
