@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -31,13 +30,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Course;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesDeleteDialogController implements Initializable {
+public class GroupsCoursesDeleteDialogController implements Initializable
+{
+
+    private Stage groupsCoursesDeleteDialogStage;
+    private Course editableCourse;
+    
     @FXML
     private HBox yesHBox;
     @FXML
@@ -51,32 +57,73 @@ public class GroupsCoursesDeleteDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void yesHBoxOnMouseExited(MouseEvent event) {
     }
 
     @FXML
-    private void yesHBoxOnMouseEntered(MouseEvent event) {
+    private void yesHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void yesHBoxOnMouseClicked(MouseEvent event) {
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseExited(MouseEvent event) {
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupsCoursesDeleteDialogStage.close();
     }
 
     @FXML
-    private void noHBoxOnMouseEntered(MouseEvent event) {
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseClicked(MouseEvent event) {
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
     }
-    
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupsCoursesDeleteDialogStage.close();
+    }
+
+    /**
+     * @return the groupsCoursesEditDialogStage
+     */
+    public Stage getGroupsCoursesDeleteDialogStage()
+    {
+        return groupsCoursesDeleteDialogStage;
+    }
+
+    /**
+     * @param groupsCoursesEditDialogStage the groupsCoursesEditDialogStage to set
+     */
+    public void setGroupsCoursesDeleteDialogStage(Stage groupsCoursesDeleteDialogStage)
+    {
+        this.groupsCoursesDeleteDialogStage = groupsCoursesDeleteDialogStage;
+    }
+
+    /**
+     * @return the editableCourse
+     */
+    public Course getEditableCourse()
+    {
+        return editableCourse;
+    }
+
+    /**
+     * @param editableCourse the editableCourse to set
+     */
+    public void setEditableCourse(Course editableCourse)
+    {
+        this.editableCourse = editableCourse;
+    }
+
 }

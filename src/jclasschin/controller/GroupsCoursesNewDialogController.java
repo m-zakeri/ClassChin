@@ -24,6 +24,7 @@
 package jclasschin.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import jclasschin.entity.Coursetype;
+import jclasschin.model.CourseTypeManager;
 
 /**
  * FXML Controller class
@@ -56,7 +59,7 @@ public class GroupsCoursesNewDialogController implements Initializable
     @FXML
     private TextField nameTextField;
     @FXML
-    private ComboBox<?> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     /**
      * Initializes the controller class.
@@ -70,12 +73,15 @@ public class GroupsCoursesNewDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
-
+        
+        
+        groupsCoursesNewDialog.close();
     }
 
     @FXML
     private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
+        groupsCoursesNewDialog.close();
     }
 
     /**
@@ -92,6 +98,17 @@ public class GroupsCoursesNewDialogController implements Initializable
     public void setGroupsCoursesNewDialog(Stage groupsCoursesNewDialog)
     {
         this.groupsCoursesNewDialog = groupsCoursesNewDialog;
+    }
+    
+    public void initDialog()
+    {
+        typeComboBox.getItems().clear();
+        nameTextField.setText("");
+        
+        List courseTypeList = CourseTypeManager.selectAll();
+                courseTypeList.stream().forEach((ct) -> {
+            typeComboBox.getItems().add(((Coursetype) ct).getType());
+        });
     }
 
 }

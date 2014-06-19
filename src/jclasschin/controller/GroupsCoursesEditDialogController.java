@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,13 +33,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Course;
+import jclasschin.entity.Coursetype;
+import jclasschin.model.CourseTypeManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesEditDialogController implements Initializable {
+public class GroupsCoursesEditDialogController implements Initializable
+{
+
+    private Stage groupsCoursesEditDialogStage;
+    private Course editableCourse;
+
     @FXML
     private HBox okHBox;
     @FXML
@@ -51,22 +60,75 @@ public class GroupsCoursesEditDialogController implements Initializable {
     @FXML
     private TextField nameTextField;
     @FXML
-    private ComboBox<?> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupsCoursesEditDialogStage.close();
     }
-    
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupsCoursesEditDialogStage.close();
+    }
+
+    /**
+     * @return the groupsCoursesEditDialogStage
+     */
+    public Stage getGroupsCoursesEditDialogStage()
+    {
+        return groupsCoursesEditDialogStage;
+    }
+
+    /**
+     * @param groupsCoursesEditDialogStage the groupsCoursesEditDialogStage to
+     * set
+     */
+    public void setGroupsCoursesEditDialogStage(Stage groupsCoursesEditDialogStage)
+    {
+        this.groupsCoursesEditDialogStage = groupsCoursesEditDialogStage;
+    }
+
+    /**
+     * @return the editableCourse
+     */
+    public Course getEditableCourse()
+    {
+        return editableCourse;
+    }
+
+    /**
+     * @param editableCourse the editableCourse to set
+     */
+    public void setEditableCourse(Course editableCourse)
+    {
+        this.editableCourse = editableCourse;
+    }
+
+    public void initDialog()
+    {
+        typeComboBox.getItems().clear();
+        //nameTextField.setText(editableCourse.getName());
+
+        List courseTypeList = CourseTypeManager.selectAll();
+        courseTypeList.stream().forEach((ct) ->
+        {
+            typeComboBox.getItems().add(((Coursetype) ct).getType());
+        });
+        
+        //typeComboBox.setValue(editableCourse.getCoursetype().getType());
+        
+    }
+
 }
