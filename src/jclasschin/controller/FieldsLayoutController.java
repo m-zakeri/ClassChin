@@ -62,7 +62,6 @@ public class FieldsLayoutController implements Initializable {
     private FieldsEditDialogController fieldsEditDialogController;
     private FieldsDeleteDialogController fieldsDeleteDialogController;
 
-    //private ObservableList<Field> fieldList = FXCollections.observableArrayList();
     @FXML
     private HBox newHBox;
     @FXML
@@ -87,7 +86,7 @@ public class FieldsLayoutController implements Initializable {
         newFieldDialogScene = new Scene(newFieldDialogAnchorPane);
         newFieldDialogStage = new Stage();
         newFieldDialogStage.setScene(newFieldDialogScene);
-        newFieldDialogStage.setTitle("New Field");
+        newFieldDialogStage.setTitle("رشته جدید");
         newFieldDialogStage.initModality(Modality.WINDOW_MODAL);
         newFieldDialogStage.initOwner(JClassChin.getMainStage());
         newFieldDialogStage.setResizable(false);
@@ -99,7 +98,7 @@ public class FieldsLayoutController implements Initializable {
         fieldsEditDialogScene = new Scene(fieldsEditDialogLayout);
         fieldsEditDialogStage = new Stage();
         fieldsEditDialogStage.setScene(fieldsEditDialogScene);
-        fieldsEditDialogStage.setTitle("Edit Field");
+        fieldsEditDialogStage.setTitle("ویرایش رشته");
         fieldsEditDialogStage.initModality(Modality.WINDOW_MODAL);
         fieldsEditDialogStage.initOwner(JClassChin.getMainStage());
         fieldsEditDialogStage.setResizable(false);
@@ -111,7 +110,7 @@ public class FieldsLayoutController implements Initializable {
         fieldsDeleteDialogScene = new Scene(fieldsDeleteDialogLayout);
         fieldsDeleteDialogStage = new Stage();
         fieldsDeleteDialogStage.setScene(fieldsDeleteDialogScene);
-        fieldsDeleteDialogStage.setTitle("Delete Field");
+        fieldsDeleteDialogStage.setTitle("حذف رشته");
         fieldsDeleteDialogStage.initModality(Modality.WINDOW_MODAL);
         fieldsDeleteDialogStage.initOwner(JClassChin.getMainStage());
         fieldsDeleteDialogStage.setResizable(false);
@@ -131,6 +130,7 @@ public class FieldsLayoutController implements Initializable {
     private void newHBoxOnMouseClicked(MouseEvent event) {
 
         newFieldDialogController = newFieldDialogLoader.getController();
+        newFieldDialogController.initialize(null, null);
         newFieldDialogController.setNewFieldDialogStage(newFieldDialogStage);
         newFieldDialogStage.showAndWait();
 

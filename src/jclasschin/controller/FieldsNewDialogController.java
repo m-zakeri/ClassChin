@@ -46,8 +46,8 @@ public class FieldsNewDialogController implements Initializable {
 
     private Stage newFieldDialogStage;
 
-    FXMLLoader mainLayoutLoader;
-    MainLayoutController mainLayoutController;
+   // FXMLLoader mainLayoutLoader;
+  //  MainLayoutController mainLayoutController;
 
     private final Image okButton, okButtonOnMouseEntered, okButtonOnMouseClicked,
             cancelButton, cancelButtonOnMouseEntered, cancelButtonOnMouseClicked;
@@ -56,7 +56,6 @@ public class FieldsNewDialogController implements Initializable {
     private HBox okHBox;
     @FXML
     private HBox cancelHBox;
-//    private Label programMessageLable;
     @FXML
     private ImageView okImageView;
     @FXML
@@ -91,12 +90,7 @@ public class FieldsNewDialogController implements Initializable {
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event) throws IOException {
 
-//        mainLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/MainLayout.fxml"));
-//        mainLayoutLoader.load();
-//        mainLayoutController = (MainLayoutController) mainLayoutLoader.getController();
-        
-        
-        FieldManager fieldManager;
+
 //        if (fieldNameTextField.getText() == null || "".equals(fieldNameTextField.getText())) {
 ////            programMessageLable.setTextFill(Color.RED);
 ////            programMessageLable.setText("Field Name can not be NULL!");
@@ -113,19 +107,18 @@ public class FieldsNewDialogController implements Initializable {
 ////            programMessageLable.setText("Field Name can not be start with number!");
 //
 //        } else {
-            fieldManager = new FieldManager();
-            if (fieldManager.insert(fieldNameTextField.getText())) {
-                System.out.println(fieldNameTextField.getText());
-//                programMessageLable.setTextFill(Color.GREEN);
+           
+            FieldManager.insert(fieldNameTextField.getText());
+            //      programMessageLable.setTextFill(Color.GREEN);
 //                programMessageLable.setText("New Field add successfully!!!");
-                fieldNameTextField.setText("");
+                //fieldNameTextField.setText("");
 
                 newFieldDialogStage.close();
 
-            } else {
+            
 //                programMessageLable.setTextFill(Color.RED);
 //                programMessageLable.setText("Failed to add New Field!");
-            }
+            
 //        }
 
     }

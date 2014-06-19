@@ -45,7 +45,7 @@ public class FieldsEditDialogController implements Initializable
 
     private Stage fieldsEditDialogStage;
     private Field field;
-    private FieldManager fieldManaer;
+    //private FieldManager fieldManaer;
 
 //    private TextField fieldNameTextField;
     @FXML
@@ -83,8 +83,8 @@ public class FieldsEditDialogController implements Initializable
     {
         if (fieldNameTextField.getText() != null)
         {
-            fieldManaer = new FieldManager();
-            fieldManaer.update(field.getId(), fieldNameTextField.getText());
+            //fieldManaer = new FieldManager();
+            FieldManager.update(field.getId(), fieldNameTextField.getText());
             
             fieldsEditDialogStage.close();
         }
