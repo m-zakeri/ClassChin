@@ -33,23 +33,27 @@ import org.hibernate.Session;
  *
  * @author Ali
  */
-public class CourseTypeManager {
+public class CourseTypeManager
+{
+    private static Session session;
 
-    private Session session;
+    public static List selectAll()
+    {
+        try
+        {
 
-    public List selectAll() {
-        try {
-            
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             List resultList = session.createQuery("from Coursetype").list();
             session.getTransaction().commit();
             return resultList;
-            
-        } catch (HibernateException he) {
-            
+
+        }
+        catch (HibernateException he)
+        {
+
             he.printStackTrace();
-            
+
         }
         return null;
     }
