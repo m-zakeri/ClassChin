@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 Ali.
+ * Copyright 2014 HP.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ import jclasschin.model.UserManager;
 /**
  * FXML Controller class
  *
- * @author Ali
+ * @author HP
  */
 public class UsersDeleteDialogController implements Initializable
 {

@@ -84,7 +84,7 @@ public class UsersLayoutController implements Initializable
         usersEditDialogScene = new Scene(usersEditDialogLayout);
         usersEditDialogStage = new Stage();
         usersEditDialogStage.setScene(usersEditDialogScene);
-        usersEditDialogStage.setTitle("حذف کاربر");
+        usersEditDialogStage.setTitle("ویرایش کاربر");
         usersEditDialogStage.initModality(Modality.WINDOW_MODAL);
         usersEditDialogStage.initOwner(JClassChin.getMainStage());
         usersEditDialogStage.setResizable(false);
@@ -149,12 +149,12 @@ public class UsersLayoutController implements Initializable
         {
             User u = usersTableView.getSelectionModel().getSelectedItem();
 
-            usersDeleteDialogController = usersEditDialogLoader.getController();
+            usersDeleteDialogController = usersDeleteDialogLoader.getController();
             usersDeleteDialogController.initialize(null, null);
             usersDeleteDialogController.setUsersEditDialogStage(usersDeleteDialogStage);
             usersDeleteDialogController.setEditableUser(u);
  
-            usersEditDialogStage.showAndWait();
+            usersDeleteDialogStage.showAndWait();
 
             updateUsersTableView();
         }
