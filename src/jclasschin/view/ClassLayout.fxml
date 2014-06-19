@@ -33,7 +33,7 @@
                   <children>
                     <HBox id="HBox" alignment="CENTER" spacing="30.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                       <children>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#newClassHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
@@ -43,7 +43,7 @@
                             <Label text="جدید" />
                           </children>
                         </HBox>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#editClassHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
@@ -53,7 +53,7 @@
                             <Label text="ویرایش" />
                           </children>
                         </HBox>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#deleteClassHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                               <image>

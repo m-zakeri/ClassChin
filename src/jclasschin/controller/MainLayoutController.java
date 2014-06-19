@@ -111,22 +111,31 @@ public class MainLayoutController implements Initializable {
     public Label statusBarLable;
 
     public MainLayoutController() throws IOException {
+
         dashboardLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/DashboardLayout.fxml"));
         dashboardLayout = (AnchorPane) dashboardLayoutLoader.load();
         dashboardLayoutController = dashboardLayoutLoader.getController();
+
         fieldsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/FieldsLayout.fxml"));
         fieldsLayout = new AnchorPane((AnchorPane) fieldsLayoutLoader.load());
+        fieldsLayoutController = fieldsLayoutLoader.getController();
+
         usersLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/UsersLayout.fxml"));
         usersLayout = new AnchorPane((AnchorPane) usersLayoutLoader.load());
+        usersLayoutController = usersLayoutLoader.getController();
+
         groupsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/GroupsLayout.fxml"));
         groupsLayout = new AnchorPane((AnchorPane) groupsLayoutLoader.load());
+        groupsLayoutController = groupsLayoutLoader.getController();
+
         classLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ClassLayout.fxml"));
         classLayout = new AnchorPane((AnchorPane) classLayoutLoader.load());
+        classLayoutController = classLayoutLoader.getController();
+
 //        FXMLLoader scheduleLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ScheduleLayout.fxml"));
 //        scheduleLayout = new AnchorPane((AnchorPane) scheduleLayoutLoader.load());
 //        FXMLLoader reportsLayoutLoader = new FXMLLoader(JClassChin.class.getResource("view/ReportsLayout.fxml"));
 //        reportsLayout = new AnchorPane((AnchorPane) reportsLayoutLoader.load());
-
         homeButton = new Image("jclasschin/gallery/image/homeButton.png");
         homeButtonOnMouseEntered = new Image("jclasschin/gallery/image/homeButtonEntered.png");
         homeButtonOnMouseClicked = new Image("jclasschin/gallery/image/homeButtonClicked.png");
@@ -153,6 +162,7 @@ public class MainLayoutController implements Initializable {
 //        reportButton = new Image("jclasschin/gallery/image/reportButton.png");
 //        reportButtonOnMouseEntered = new Image("jclasschin/gallery/image/reportButtonEntered.png");
 //        reportButtonOnMouseClicked = new Image("jclasschin/gallery/image/reportButtonClicked.png");
+        
         dashboardHBoxOnMouseClickedFlag = false;
         fieldsHBoxOnMouseClickedFlag = false;
         usersHBoxOnMouseClickedFlag = false;
@@ -328,7 +338,26 @@ public class MainLayoutController implements Initializable {
     }
 
     @FXML
+    private void classHBoxOnMouseEntered(MouseEvent event) {
+        classImageView.setImage(classButtonOnMouseEntered);
+    }
+
+    @FXML
+    private void classHBoxOnMouseExited(MouseEvent event) {
+        if (!classHBoxOnMouseClickedFlag) {
+            classImageView.setImage(classButton);
+        } else {
+            classImageView.setImage(classButtonOnMouseClicked);
+        }
+    }
+
+    @FXML
     private void classHBoxOnMouseClicked(MouseEvent event) {
+        resetAllButtons();
+        new Effect().fadeInTransition(classLayout, 1000);
+        mainLayout.setCenter(classLayout);
+        classImageView.setImage(classButtonOnMouseClicked);
+        classHBoxOnMouseClickedFlag = true;
     }
 
     @FXML
@@ -343,7 +372,6 @@ public class MainLayoutController implements Initializable {
 ////        DashboardLayoutController dlc = dashboardLayoutLoader.getController();
 ////        dlc.updateTermTableView();
 //    }
-
     public void setObjectLayout(BorderPane objectLayout) {
         this.objectLayout = objectLayout;
     }
