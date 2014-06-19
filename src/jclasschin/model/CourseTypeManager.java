@@ -24,6 +24,7 @@
 package jclasschin.model;
 
 import java.util.List;
+import jclasschin.entity.Coursetype;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -35,9 +36,10 @@ import org.hibernate.Session;
  */
 public class CourseTypeManager
 {
-    private static Session session;
 
-    public static List selectAll()
+    private  Session session;
+
+    public List selectAll()
     {
         try
         {
@@ -46,16 +48,38 @@ public class CourseTypeManager
             session.beginTransaction();
             List resultList = session.createQuery("from Coursetype").list();
             session.getTransaction().commit();
+            session.close();
+            //HibernateUtil.getSessionFactory().close();
             return resultList;
 
         }
         catch (HibernateException he)
         {
+            return null;
+        }
 
-            he.printStackTrace();
+    }
+
+    public Coursetype selectByName(String type)
+    {
+        try
+        { 
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery("from Coursetype where type=:t");
+            q.setParameter("t", type);
+            List resultList = q.list();
+            session.getTransaction().commit();
+            session.close();
+            //HibernateUtil.getSessionFactory().close();
+            return (Coursetype) resultList.get(0);
 
         }
-        return null;
+        catch (HibernateException he)
+        {
+            return null;
+        }
+
     }
 
 }

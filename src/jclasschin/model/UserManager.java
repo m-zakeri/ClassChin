@@ -55,7 +55,7 @@ public class UserManager
     public boolean insert(String title, String firstName, String lastName, boolean sex, String phone,
             String username, String password, boolean state, String jobTitle, String fieldTitle)
     {
-        fieldManager = new FieldManager();
+        
         field = fieldManager.selectByName(fieldTitle);
 
         jobManager = new JobManager();
@@ -105,7 +105,7 @@ public class UserManager
             job = jobManager.selectByName(jobTitle);
             person.setJob(job);
 
-            fieldManager = new FieldManager();
+           // fieldManager = new FieldManager();
             field = fieldManager.selectByName(fieldTitle);
             person.setField(field);
 
@@ -123,7 +123,6 @@ public class UserManager
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
             return false;
         }
     }
@@ -141,7 +140,6 @@ public class UserManager
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
             return false;
         }
     }
@@ -171,7 +169,6 @@ public class UserManager
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
             return null;
         }
     }
@@ -183,19 +180,16 @@ public class UserManager
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
             Query q = session.createQuery("from User u where u.username=:un and u.password=:pass");
             q.setParameter("un", userName);
             q.setParameter("pass",passWord );
             List resultList = q.list();
             session.getTransaction().commit();
-
             user = (User) resultList.get(0);
             return user;
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
             return null;
         }
 

@@ -37,10 +37,10 @@ import org.hibernate.Session;
 public class FieldManager
 {
 
-    private static Field field;
-    private static Session session;
+    private Field field;
+    private  Session session;
 
-    public static boolean insert(String fieldName)
+    public boolean insert(String fieldName)
     {
         field = new Field();
         field.setName(fieldName);
@@ -51,7 +51,7 @@ public class FieldManager
             session.beginTransaction();
             session.save(field);
             session.getTransaction().commit();
-           
+            session.close();
             return true;
         }
 
@@ -62,33 +62,38 @@ public class FieldManager
 
     }
 
-    public static boolean delete(int fieldId)
+    public  boolean delete(int fieldId)
     {
-       try
-        { 
+        try
+        {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Field f = (Field) session.load(Field.class, fieldId);
             session.delete(f);
-            session.getTransaction().commit(); 
+            session.getTransaction().commit();
             return true;
         }
         catch (HibernateException he)
         {
             return false;
         }
+        finally
+        {
+            session.close();
+        }
     }
-    
-    public static boolean update(int fieldId, String newFieldName)
+
+    public boolean update(int fieldId, String newFieldName)
     {
         try
-        { 
+        {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Field f = (Field) session.load(Field.class, fieldId);
             f.setName(newFieldName);
             session.update(f);
-            session.getTransaction().commit(); 
+            session.getTransaction().commit();
+            session.close();
             return true;
         }
         catch (HibernateException he)
@@ -96,22 +101,23 @@ public class FieldManager
             he.printStackTrace();
             return false;
         }
-        
+
     }
 
-    public static List selectAll()
+    public  List selectAll()
     {
         try
         {
 
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            
+
             //Query q = session.createQuery(hql);
             List resultList = session.createQuery("from Field").list();
             //displayResult(resultList);
 
             session.getTransaction().commit();
+            session.close();
             return resultList;
         }
         catch (HibernateException he)
@@ -120,32 +126,33 @@ public class FieldManager
         }
         return null;
     }
-    
-    public static Field selectByName(String fieldName){
-        
+
+    public Field selectByName(String fieldName)
+    {
+
         try
         {
 
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            
+
             Query q = session.createQuery("from Field f where f.name=:fn");
             q.setParameter("fn", fieldName);
-            
+
             List resultList = q.list();
-                    //session.createQuery("from Field f where f.name=\""+fieldName+"\"").list();
+            //session.createQuery("from Field f where f.name=\""+fieldName+"\"").list();
             session.getTransaction().commit();
-            
-             field=(Field) resultList.get(0);
-             return field;
-           
+            session.close();
+            field = (Field) resultList.get(0);
+            return field;
+
         }
         catch (HibernateException he)
         {
             he.printStackTrace();
         }
         return null;
-        
+
     }
 
 }

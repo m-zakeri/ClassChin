@@ -186,7 +186,7 @@ public class UsersEditDialogController implements Initializable
             deActiveRadioButton.setSelected(true);
         }
 
-        userNameTextField.setText(editableUser.getPassword());
+        userNameTextField.setText(editableUser.getUsername());
         passwordField.setText(editableUser.getPassword());
 
         userNameTextField.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
@@ -199,10 +199,6 @@ public class UsersEditDialogController implements Initializable
         fieldComboBox.getItems().clear();
         jobComboBox.getItems().clear();
 
-//        maleSexRadioButton.setSelected(false);
-//        femaleSexRadioButton.setSelected(false);
-//        activeRadioButton.setSelected(false);
-//        deActiveRadioButton.setSelected(false);
         firstNameTextField.setText(editableUser.getPerson().getFirstName());
         lastNameTextField.setText(editableUser.getPerson().getLastName());
         phoneTextField.setText(editableUser.getPerson().getPhone());

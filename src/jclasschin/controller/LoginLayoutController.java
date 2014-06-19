@@ -47,15 +47,16 @@ import jclasschin.model.Login;
  *
  * @author Ali
  */
-public class LoginLayoutController implements Initializable {
+public class LoginLayoutController implements Initializable
+{
 
     private BorderPane objectLayout;
 
-    private FXMLLoader mainLayoutLoader;
-    private BorderPane mainLayout;
-    private MainLayoutController mainLayoutController;
+    private final FXMLLoader mainLayoutLoader;
+    private final BorderPane mainLayout;
+    private final MainLayoutController mainLayoutController;
 
-//    private Login login;
+    private Login login;
 //    private boolean isLoggedIn;
 //    private Image emptyImage, unlockImage;
     @FXML
@@ -73,7 +74,8 @@ public class LoginLayoutController implements Initializable {
     @FXML
     private ImageView cancelImageView;
 
-    public LoginLayoutController() throws IOException {
+    public LoginLayoutController() throws IOException
+    {
 
 //        login = new Login();
 //        unlockImage = new Image("jclasschin/gallery/image/unlockIcon.png");
@@ -86,31 +88,35 @@ public class LoginLayoutController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
-    public void start() {
-        
+    public void start()
+    {
 
     }
 
     /**
      * @param objectLayout the objectLayout to set
      */
-    public void setObjectLayout(BorderPane objectLayout) {
+    public void setObjectLayout(BorderPane objectLayout)
+    {
         this.objectLayout = objectLayout;
     }
 
     @FXML
-    private void okHboxOnMouseClicked(MouseEvent event) throws InterruptedException {
+    private void okHboxOnMouseClicked(MouseEvent event) throws InterruptedException
+    {
 
-        //Login login = new Login();
-        if (new Login().checkForLogin(usernameTextField.getText(), passwordField.getText())) {
+        login = new Login();
+        if (login.checkForLogin(usernameTextField.getText(), passwordField.getText()))
+        {
             //new Effect().fadeInTransition(loginImageView, 1000);
-            
+
             loginImageView.setImage(new Image("jclasschin/gallery/image/unlockIcon.png"));
-            
+
             new Effect().fadeInTransition(mainLayout, 1000);
             objectLayout.setCenter(mainLayout);
             mainLayoutController.setObjectLayout(objectLayout);
@@ -121,7 +127,8 @@ public class LoginLayoutController implements Initializable {
     }
 
     @FXML
-    private void cancelHboxOnMouseClicked(MouseEvent event) {
+    private void cancelHboxOnMouseClicked(MouseEvent event)
+    {
     }
 
 }

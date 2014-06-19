@@ -21,13 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.model;
+
+import jclasschin.entity.Course;
+import jclasschin.util.HibernateUtil;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  *
  * @author Ali
  */
-public class CourseManager {
- 
+public class CourseManager
+{
+
+    private  Course course;
+    private  Session session;
+    private CourseTypeManager courseTypeManager;
+    
+    public boolean insert(String courseName, String courseType)
+    {
+
+        courseTypeManager = new CourseTypeManager();
+        course = new Course();
+        course.setName(courseName);
+        course.setCoursetype(courseTypeManager.selectByName(courseType));
+        course.setField(Login.getLogedUser().getPerson().getField());
+        
+//        try
+//        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(course);
+            session.getTransaction().commit();
+            //session.close();
+            //HibernateUtil.getSessionFactory().close();
+            return true;
+//        }
+
+//        catch (HibernateException he)
+//        {
+//            return false;
+//        }
+    }
+
 }

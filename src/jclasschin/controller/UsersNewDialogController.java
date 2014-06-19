@@ -154,8 +154,8 @@ public class UsersNewDialogController implements Initializable {
         clearDialogFields();
         titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
         
-       
-        List fl = FieldManager.selectAll();
+        FieldManager fieldManager = new FieldManager();
+        List fl = fieldManager.selectAll();
         fl.stream().forEach((f) -> {
             fieldComboBox.getItems().add(((Field) f).getName());
         });

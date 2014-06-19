@@ -118,10 +118,11 @@ public class GroupsCoursesEditDialogController implements Initializable
 
     public void initDialog()
     {
+        CourseTypeManager courseTypeManager = new CourseTypeManager();
         typeComboBox.getItems().clear();
         //nameTextField.setText(editableCourse.getName());
 
-        List courseTypeList = CourseTypeManager.selectAll();
+        List courseTypeList = courseTypeManager.selectAll();
         courseTypeList.stream().forEach((ct) ->
         {
             typeComboBox.getItems().add(((Coursetype) ct).getType());

@@ -181,12 +181,12 @@ public class FieldsLayoutController implements Initializable {
      */
     public void updateFieldTableView() {
 
-        //FieldManager fm = new FieldManager();
+        FieldManager fm = new FieldManager();
         ObservableList<Field> fieldList = FXCollections.observableArrayList();
         
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        List l = FieldManager.selectAll();
+        List l = fm.selectAll();
         l.stream().forEach((f) -> {
             fieldList.add((Field) f);
         
