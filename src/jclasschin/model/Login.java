@@ -33,22 +33,25 @@ public class Login
 {
 
     private UserManager userManager;
-    private static User logedUser;
+    private User loggedUser;
+    
+    public static String loggedUserField;
 
     /**
      * @return the logedUser
      */
-    public static User getLogedUser()
+    public User getLoggedUser()
     {
-        return logedUser;
+        loggedUserField = loggedUser.getPerson().getField().getName();
+        return loggedUser;
     }
 
     /**
      * @param aLogedUser the logedUser to set
      */
-    public static void setLogedUser(User aLogedUser)
+    public void setLoggedUser(User aLogedUser)
     {
-        logedUser = aLogedUser;
+        loggedUser = aLogedUser;
     }
 
     /**
@@ -61,7 +64,7 @@ public class Login
     {
         userManager = new UserManager();
 
-        setLogedUser(userManager.selectByUserNameAndPassWord(username, password));
-        return getLogedUser() != null;
+        setLoggedUser(userManager.selectByUserNameAndPassWord(username, password));
+        return getLoggedUser() != null;
     }
 }

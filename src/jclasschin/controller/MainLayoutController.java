@@ -162,7 +162,6 @@ public class MainLayoutController implements Initializable {
 //        reportButton = new Image("jclasschin/gallery/image/reportButton.png");
 //        reportButtonOnMouseEntered = new Image("jclasschin/gallery/image/reportButtonEntered.png");
 //        reportButtonOnMouseClicked = new Image("jclasschin/gallery/image/reportButtonClicked.png");
-        
         dashboardHBoxOnMouseClickedFlag = false;
         fieldsHBoxOnMouseClickedFlag = false;
         usersHBoxOnMouseClickedFlag = false;

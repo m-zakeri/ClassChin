@@ -185,13 +185,20 @@ public class UserManager
             q.setParameter("pass",passWord );
             List resultList = q.list();
             session.getTransaction().commit();
-            
+            //session.disconnect();
+           // session.close();
             user = (User) resultList.get(0);
+            System.out.println(user.getPerson().getField().getName());
             return user;
         }
         catch (HibernateException he)
         {
+            //User u0 = new User();
             return null;
+        }
+        finally
+        {
+            session.close();
         }
 
     }

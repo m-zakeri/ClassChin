@@ -24,6 +24,10 @@
 package jclasschin.model;
 
 import jclasschin.entity.Course;
+import jclasschin.entity.Coursetype;
+import jclasschin.entity.Field;
+import jclasschin.entity.Person;
+import jclasschin.entity.User;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,31 +42,68 @@ public class CourseManager
     private Course course;
     private Session session;
     private CourseTypeManager courseTypeManager;
+    private FieldManager fieldManager;
 
     public boolean insert(String courseName, String courseType)
     {
-
         courseTypeManager = new CourseTypeManager();
+        fieldManager = new FieldManager();
         course = new Course();
         course.setName(courseName);
         course.setCoursetype(courseTypeManager.selectByName(courseType));
-        course.setField(Login.getLogedUser().getPerson().getField());
+        course.setField(fieldManager.selectByName(Login.loggedUserField));
 
-//        try
-//        {
-        session = (Session) HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(course);
-        session.getTransaction().commit();
-            //session.close();
-        //HibernateUtil.getSessionFactory().close();
-        return true;
-//        }
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(course);
+            session.getTransaction().commit();
 
-//        catch (HibernateException he)
-//        {
-//            return false;
-//        }
+            return true;
+
+        } catch (HibernateException e)
+        {
+            return false;
+        } finally
+        {
+            session.close();
+        }
+
     }
+//
+//    public boolean insert(String courseName, Coursetype courseType, Field field)
+//    {
+//        course = new Course();
+//        course.setName(courseName);
+//        course.setCoursetype(courseType);
+//        course.setField(field);
+//        session = (Session) HibernateUtil.getSessionFactory().openSession();
+//        session.beginTransaction();
+//        session.save(course);
+//        session.getTransaction().commit();
+//        return true;
+//
+//    }
+//
+//    public boolean insert(String courseName, String courseType, User loggedUser)
+//    {
+//
+//        courseTypeManager = new CourseTypeManager();
+//
+//        course = new Course();
+//        course.setName(courseName);
+//        course.setCoursetype(courseTypeManager.selectByName(courseType));
+////        Person p=loggedUser.getPerson();
+////        Field f= p.getField();
+//        course.setField(loggedUser.getPerson().getField());
+//
+//        session = (Session) HibernateUtil.getSessionFactory().openSession();
+//        session.beginTransaction();
+//        session.save(course);
+//        session.getTransaction().commit();
+//
+//        return true;
+//    }
 
 }

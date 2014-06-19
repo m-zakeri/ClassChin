@@ -116,7 +116,9 @@ public class LoginLayoutController implements Initializable
             //new Effect().fadeInTransition(loginImageView, 1000);
 
             loginImageView.setImage(new Image("jclasschin/gallery/image/unlockIcon.png"));
-
+            
+           System.out.println(login.getLoggedUser().getPerson().getField().getName());
+            
             new Effect().fadeInTransition(mainLayout, 1000);
             objectLayout.setCenter(mainLayout);
             mainLayoutController.setObjectLayout(objectLayout);

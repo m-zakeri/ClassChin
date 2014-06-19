@@ -21,14 +21,14 @@ import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
 import jclasschin.entity.Course;
 import jclasschin.entity.Person;
+import jclasschin.entity.User;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsLayoutController implements Initializable
-{
+public class GroupsLayoutController implements Initializable {
 
     private final FXMLLoader profNewDialogLoader, profEditDialogLoader,
             profDeleteDialogLoader, courseNewDialogLoader,
@@ -73,8 +73,7 @@ public class GroupsLayoutController implements Initializable
     @FXML
     private TableColumn<Course, String> typeTableColumn;
 
-    public GroupsLayoutController() throws IOException
-    {
+    public GroupsLayoutController() throws IOException {
 
         /* Professor New Dialog */
         profNewDialogLoader
@@ -160,28 +159,25 @@ public class GroupsLayoutController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
     @FXML
-    private void newHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void newHBoxOnMouseClicked(MouseEvent event) {
 
         courseNewDialogController = new GroupsCoursesNewDialogController();
         courseNewDialogController = courseNewDialogLoader.getController();
         courseNewDialogController.initialize(null, null);
         courseNewDialogController.setGroupsCoursesNewDialog(courseNewDialogStage);
-        courseNewDialogController.initDialog();
+        courseNewDialogController.initDialog();        
         courseNewDialogStage.showAndWait();
         updateCourseTableView();
 
     }
 
     @FXML
-    private void editHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void editHBoxOnMouseClicked(MouseEvent event) {
         courseEditDialogController = new GroupsCoursesEditDialogController();
         courseEditDialogController = courseEditDialogLoader.getController();
         courseEditDialogController.initialize(null, null);
@@ -193,8 +189,7 @@ public class GroupsLayoutController implements Initializable
     }
 
     @FXML
-    private void deleteHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void deleteHBoxOnMouseClicked(MouseEvent event) {
         courseDeleteDialogController = new GroupsCoursesDeleteDialogController();
         courseDeleteDialogController = courseDeleteDialogLoader.getController();
         courseDeleteDialogController.initialize(null, null);
@@ -205,28 +200,24 @@ public class GroupsLayoutController implements Initializable
     }
 
     @FXML
-    private void profNewHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void profNewHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void profEditHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void profEditHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void profDeleteHBoxOnMouseClicked(MouseEvent event)
-    {
+    private void profDeleteHBoxOnMouseClicked(MouseEvent event) {
     }
 
-    private void updateProfTableView()
-    {
+    private void updateProfTableView() {
 
     }
 
-    private void updateCourseTableView()
-    {
+    private void updateCourseTableView() {
 
     }
+
 
 }
