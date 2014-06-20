@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -31,22 +30,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Person;
+import jclasschin.model.PersonManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsProferssorsEditDialogController implements Initializable {
+public class GroupsProferssorsEditDialogController implements Initializable
+{
+
+    private Stage groupProferssorsEditDialogStage;
+    private Person editablePerson;
+    private PersonManager personManager;
+
     @FXML
     private TextField lastNameTextField;
     @FXML
     private TextField firstNameTextField;
     @FXML
-    private ComboBox<?> titleComboBox;
+    private ComboBox<String> titleComboBox;
     @FXML
     private TextField phoneTextField;
     @FXML
@@ -66,16 +75,79 @@ public class GroupsProferssorsEditDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        personManager = new PersonManager();
+        personManager.update(editablePerson.getId(),titleComboBox.getValue(),firstNameTextField.getText(),
+                lastNameTextField.getText(),phoneTextField.getText(),maleSexRadioButton.isSelected());
+        groupProferssorsEditDialogStage.close();
     }
-    
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupProferssorsEditDialogStage.close();
+    }
+
+    /**
+     * @return the groupProferssorsEditDialogStage
+     */
+    public Stage getGroupProferssorsEditDialogStage()
+    {
+        return groupProferssorsEditDialogStage;
+    }
+
+    /**
+     * @param groupProferssorsEditDialogStage the
+     * groupProferssorsEditDialogStage to set
+     */
+    public void setGroupProferssorsEditDialogStage(Stage groupProferssorsEditDialogStage)
+    {
+        this.groupProferssorsEditDialogStage = groupProferssorsEditDialogStage;
+    }
+
+    /**
+     * @return the editablePerson
+     */
+    public Person getEditablePerson()
+    {
+        return editablePerson;
+    }
+
+    /**
+     * @param editablePerson the editablePerson to set
+     */
+    public void setEditablePerson(Person editablePerson)
+    {
+        this.editablePerson = editablePerson;
+    }
+
+    void initDialog()
+    {
+        titleComboBox.getItems().clear();
+        titleComboBox.getItems().addAll("آقا", "خانم", "دکتر", "مهندس");
+        titleComboBox.setValue(editablePerson.getTitle());
+        firstNameTextField.setText(editablePerson.getFirstName());
+        lastNameTextField.setText(editablePerson.getLastName());
+        phoneTextField.setText(editablePerson.getPhone());
+
+        ToggleGroup toggleGroup = new ToggleGroup();
+        maleSexRadioButton.setToggleGroup(toggleGroup);
+        femaleSexRadioButton.setToggleGroup(toggleGroup);
+        
+        if (editablePerson.isSex())
+        {
+            maleSexRadioButton.setSelected(true);
+        }
+        else
+        {
+            femaleSexRadioButton.setSelected(true);
+        }
+    }
 }

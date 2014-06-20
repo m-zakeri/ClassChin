@@ -48,7 +48,7 @@ public class CourseTypeManager
             session.beginTransaction();
             List resultList = session.createQuery("from Coursetype").list();
             session.getTransaction().commit();
-            session.close();
+            //session.close();
             //HibernateUtil.getSessionFactory().close();
             return resultList;
 
@@ -70,7 +70,7 @@ public class CourseTypeManager
             q.setParameter("t", type);
             List resultList = q.list();
             session.getTransaction().commit();
-            session.close();
+            //session.close();
             //HibernateUtil.getSessionFactory().close();
             return (Coursetype) resultList.get(0);
 

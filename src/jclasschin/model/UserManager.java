@@ -90,7 +90,6 @@ public class UserManager
     {
         try
         {
-
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
@@ -105,7 +104,7 @@ public class UserManager
             job = jobManager.selectByName(jobTitle);
             person.setJob(job);
 
-           // fieldManager = new FieldManager();
+            fieldManager = new FieldManager();
             field = fieldManager.selectByName(fieldTitle);
             person.setField(field);
 

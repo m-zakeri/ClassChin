@@ -25,6 +25,9 @@ package jclasschin.model;
 
 import java.util.List;
 import jclasschin.entity.Field;
+import jclasschin.entity.Job;
+import jclasschin.entity.Person;
+import jclasschin.entity.User;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -34,41 +37,34 @@ import org.hibernate.Session;
  *
  * @author HP
  */
-public class FieldManager
+public class PersonManager
 {
 
-    private Field field;
     private Session session;
+    private Person person;
+    private Field field;
+    private FieldManager fieldManager;
 
-    public boolean insert(String fieldName)
-    {
-        field = new Field();
-        field.setName(fieldName);
+    private Job job;
+    private JobManager jobManager;
+    
+    
+    public boolean insert(String title, String firstName, String lastName, boolean sex, String phone)
+    { 
+        fieldManager = new FieldManager();
+        field = fieldManager.selectByName(Login.loggedUserField);
+
+        person = new Person(firstName, lastName, sex);
+        person.setTitle(title);
+        person.setPhone(phone);
+        person.setField(field);
+        person.setJob(null);
 
         try
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(field);
-            session.getTransaction().commit();
-            return true;
-        }
-
-        catch (HibernateException he)
-        {
-            return false;
-        }
-
-    }
-
-    public boolean delete(int fieldId)
-    {
-        try
-        {
-            session = (Session) HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            Field f = (Field) session.load(Field.class, fieldId);
-            session.delete(f);
+            session.save(person);
             session.getTransaction().commit();
             return true;
         }
@@ -76,72 +72,65 @@ public class FieldManager
         {
             return false;
         }
-        finally
-        {
-            session.close();
-        }
     }
 
-    public boolean update(int fieldId, String newFieldName)
+    public List selectAllByFieldName(String loggedUserField)
     {
         try
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Field f = (Field) session.load(Field.class, fieldId);
-            f.setName(newFieldName);
-            session.update(f);
-            session.getTransaction().commit();
-            return true;
-        }
-        catch (HibernateException he)
-        {
-            he.printStackTrace();
-            return false;
-        }
-
-    }
-
-    public List selectAll()
-    {
-        try
-        {
-            session = (Session) HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-
-            //Query q = session.createQuery(hql);
-            List resultList = session.createQuery("from Field").list();
-            //displayResult(resultList);
-
+            Query q = session.createQuery("from Person p where p.field.name=:pfn and p.job is null");
+            q.setParameter("pfn", loggedUserField);
+            List resultList = q.list();
             session.getTransaction().commit();
             return resultList;
         }
         catch (HibernateException he)
         {
-            he.printStackTrace();
+            return null;
         }
-        return null;
     }
 
-    public Field selectByName(String fieldName)
+    public boolean update(Integer id, String title, String firstName, String lastName, String phone, boolean sex)
+    {
+         try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            person = (Person) session.load(Person.class, id);
+            person.setTitle(title);
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setSex(sex);
+            person.setPhone(phone);
+
+            session.update(person);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (HibernateException he)
+        {
+            return false;
+        }
+    }
+
+    public boolean delete(Integer id)
     {
         try
         {
             session = (Session) HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Query q = session.createQuery("from Field f where f.name=:fn");
-            q.setParameter("fn", fieldName);
-            List resultList = q.list();
-            //session.createQuery("from Field f where f.name=\""+fieldName+"\"").list();
+            person = (Person) session.load(Person.class, id);
+            session.delete(person);
             session.getTransaction().commit();
-            field = (Field) resultList.get(0);
-            return field;
+            return true;
         }
         catch (HibernateException he)
         {
-            return null;
+            return false;
         }
-
     }
 
 }

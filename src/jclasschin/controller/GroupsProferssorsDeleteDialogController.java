@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -31,13 +30,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Person;
+import jclasschin.model.PersonManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsProferssorsDeleteDialogController implements Initializable {
+public class GroupsProferssorsDeleteDialogController implements Initializable
+{
+    private Stage groupProferssorsDeleteDialogStage;
+    private Person editablePerson;
+    private PersonManager personManager;
+    
     @FXML
     private HBox yesHBox;
     @FXML
@@ -51,32 +58,75 @@ public class GroupsProferssorsDeleteDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void yesHBoxOnMouseExited(MouseEvent event) {
     }
 
     @FXML
-    private void yesHBoxOnMouseEntered(MouseEvent event) {
+    private void yesHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void yesHBoxOnMouseClicked(MouseEvent event) {
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseExited(MouseEvent event) {
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+        personManager = new PersonManager();
+        personManager.delete(editablePerson.getId());
+        groupProferssorsDeleteDialogStage.close();
     }
 
     @FXML
-    private void noHBoxOnMouseEntered(MouseEvent event) {
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseClicked(MouseEvent event) {
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
     }
-    
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
+    {
+        groupProferssorsDeleteDialogStage.close();
+    }
+
+    /**
+     * @return the groupProferssorsDeleteDialogStage
+     */
+    public Stage getGroupProferssorsDeleteDialogStage()
+    {
+        return groupProferssorsDeleteDialogStage;
+    }
+
+    /**
+     * @param groupProferssorsDeleteDialogStage the groupProferssorsDeleteDialogStage to set
+     */
+    public void setGroupProferssorsDeleteDialogStage(Stage groupProferssorsDeleteDialogStage)
+    {
+        this.groupProferssorsDeleteDialogStage = groupProferssorsDeleteDialogStage;
+    }
+
+    /**
+     * @return the editablePerson
+     */
+    public Person getEditablePerson()
+    {
+        return editablePerson;
+    }
+
+    /**
+     * @param editablePerson the editablePerson to set
+     */
+    public void setEditablePerson(Person editablePerson)
+    {
+        this.editablePerson = editablePerson;
+    }
+
 }

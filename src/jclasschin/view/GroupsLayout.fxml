@@ -76,7 +76,8 @@
                   <columns>
                     <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="ردیف" />
                     <TableColumn fx:id="nameTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="220.0" text="نام درس" />
-                    <TableColumn fx:id="typeTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="نوع درس" />
+                    <TableColumn fx:id="typeTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="216.0" text="نوع درس" />
+                              <TableColumn fx:id="fieldTableColumn" prefWidth="190.0" text="رشته " />
                   </columns>
                 </TableView>
               </center>

@@ -165,11 +165,7 @@ public class UsersLayoutController implements Initializable
 
         UserManager um = new UserManager();
         ObservableList<User> userList = FXCollections.observableArrayList();
-
-        um.selectAll();
-
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         nameTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getFirstName() + " " + u.getValue().getPerson().getLastName()));
         fieldTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getField().getName()));
         //jobTableColumn.setCellValueFactory((CellDataFeatures<User, String> u) -> new ReadOnlyObjectWrapper(u.getValue().getPerson().getJob().getTitle()));

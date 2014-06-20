@@ -36,6 +36,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import jclasschin.entity.Course;
 import jclasschin.entity.Coursetype;
+import jclasschin.model.CourseManager;
 import jclasschin.model.CourseTypeManager;
 
 /**
@@ -74,6 +75,8 @@ public class GroupsCoursesEditDialogController implements Initializable
     @FXML
     private void okHBoxOnMouseClicked(MouseEvent event)
     {
+        CourseManager cm = new CourseManager();
+        cm.update(editableCourse.getId(),typeComboBox.getValue(),nameTextField.getText());
         groupsCoursesEditDialogStage.close();
     }
 
@@ -120,16 +123,15 @@ public class GroupsCoursesEditDialogController implements Initializable
     {
         CourseTypeManager courseTypeManager = new CourseTypeManager();
         typeComboBox.getItems().clear();
-        //nameTextField.setText(editableCourse.getName());
+        nameTextField.setText(editableCourse.getName());
 
         List courseTypeList = courseTypeManager.selectAll();
         courseTypeList.stream().forEach((ct) ->
         {
             typeComboBox.getItems().add(((Coursetype) ct).getType());
         });
-        
-        //typeComboBox.setValue(editableCourse.getCoursetype().getType());
-        
+
+        typeComboBox.setValue(editableCourse.getCoursetype().getType());
     }
 
 }

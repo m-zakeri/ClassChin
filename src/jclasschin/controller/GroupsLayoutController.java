@@ -5,13 +5,19 @@ package jclasschin.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,13 +28,17 @@ import jclasschin.JClassChin;
 import jclasschin.entity.Course;
 import jclasschin.entity.Person;
 import jclasschin.entity.User;
+import jclasschin.model.CourseManager;
+import jclasschin.model.Login;
+import jclasschin.model.PersonManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsLayoutController implements Initializable {
+public class GroupsLayoutController implements Initializable
+{
 
     private final FXMLLoader profNewDialogLoader, profEditDialogLoader,
             profDeleteDialogLoader, courseNewDialogLoader,
@@ -72,8 +82,11 @@ public class GroupsLayoutController implements Initializable {
     private TableColumn<Course, String> nameTableColumn;
     @FXML
     private TableColumn<Course, String> typeTableColumn;
+    @FXML
+    private TableColumn<Course, String> fieldTableColumn;
 
-    public GroupsLayoutController() throws IOException {
+    public GroupsLayoutController() throws IOException
+    {
 
         /* Professor New Dialog */
         profNewDialogLoader
@@ -159,65 +172,125 @@ public class GroupsLayoutController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
     @FXML
-    private void newHBoxOnMouseClicked(MouseEvent event) {
+    private void newHBoxOnMouseClicked(MouseEvent event)
+    {
 
-        courseNewDialogController = new GroupsCoursesNewDialogController();
         courseNewDialogController = courseNewDialogLoader.getController();
-        courseNewDialogController.initialize(null, null);
         courseNewDialogController.setGroupsCoursesNewDialog(courseNewDialogStage);
-        courseNewDialogController.initDialog();        
+        courseNewDialogController.initDialog();
         courseNewDialogStage.showAndWait();
         updateCourseTableView();
 
     }
 
     @FXML
-    private void editHBoxOnMouseClicked(MouseEvent event) {
-        courseEditDialogController = new GroupsCoursesEditDialogController();
-        courseEditDialogController = courseEditDialogLoader.getController();
-        courseEditDialogController.initialize(null, null);
-        courseEditDialogController.setGroupsCoursesEditDialogStage(courseEditDialogStage);
-        courseEditDialogController.initDialog();
-        courseEditDialogStage.showAndWait();
-
-        updateCourseTableView();
+    private void editHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (courseTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Course c = courseTableView.getSelectionModel().getSelectedItem();
+            courseEditDialogController = courseEditDialogLoader.getController();
+            courseEditDialogController.initialize(null, null);
+            courseEditDialogController.setGroupsCoursesEditDialogStage(courseEditDialogStage);
+            courseEditDialogController.setEditableCourse(c);
+            courseEditDialogController.initDialog();
+            courseEditDialogStage.showAndWait();
+            updateCourseTableView();
+        }
     }
 
     @FXML
-    private void deleteHBoxOnMouseClicked(MouseEvent event) {
-        courseDeleteDialogController = new GroupsCoursesDeleteDialogController();
-        courseDeleteDialogController = courseDeleteDialogLoader.getController();
-        courseDeleteDialogController.initialize(null, null);
-        courseDeleteDialogController.setGroupsCoursesDeleteDialogStage(courseDeleteDialogStage);
-
-        courseDeleteDialogStage.showAndWait();
-        updateCourseTableView();
+    private void deleteHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (courseTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Course c = courseTableView.getSelectionModel().getSelectedItem();
+            courseDeleteDialogController = courseDeleteDialogLoader.getController();
+            courseDeleteDialogController.initialize(null, null);
+            courseDeleteDialogController.setGroupsCoursesDeleteDialogStage(courseDeleteDialogStage);
+            courseDeleteDialogController.setEditableCourse(c);
+            courseDeleteDialogStage.showAndWait();
+            updateCourseTableView();
+        }
     }
 
     @FXML
-    private void profNewHBoxOnMouseClicked(MouseEvent event) {
+    private void profNewHBoxOnMouseClicked(MouseEvent event)
+    {
+        profNewDialogController = profNewDialogLoader.getController();
+        profNewDialogController.setGroupProferssorsNewDialogStage(profNewDialogStage);
+        profNewDialogController.initDialog();
+        profNewDialogStage.showAndWait();
+        updateProfTableView();
     }
 
     @FXML
-    private void profEditHBoxOnMouseClicked(MouseEvent event) {
+    private void profEditHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (profTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Person person = profTableView.getSelectionModel().getSelectedItem();
+            profEditDialogController = profEditDialogLoader.getController();
+            profEditDialogController.setGroupProferssorsEditDialogStage(profEditDialogStage);
+            profEditDialogController.setEditablePerson(person);
+            profEditDialogController.initDialog();
+            profEditDialogStage.showAndWait();
+            updateProfTableView();
+        }
     }
 
     @FXML
-    private void profDeleteHBoxOnMouseClicked(MouseEvent event) {
+    private void profDeleteHBoxOnMouseClicked(MouseEvent event)
+    {
+        if (profTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Person person = profTableView.getSelectionModel().getSelectedItem();
+            profDeleteDialogController = profDeleteDialogLoader.getController();
+            profDeleteDialogController.setGroupProferssorsDeleteDialogStage(profDeleteDialogStage);
+            profDeleteDialogController.setEditablePerson(person);
+            profDeleteDialogStage.showAndWait();
+            updateProfTableView();
+        }
     }
 
-    private void updateProfTableView() {
+    public void updateProfTableView()
+    {
+        PersonManager pm = new PersonManager();
 
+        ObservableList<Person> personList = FXCollections.observableArrayList();
+        profIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        profFirstAndLastNameTableColumn.setCellValueFactory((CellDataFeatures<Person, String> p) -> new ReadOnlyObjectWrapper(p.getValue().getFirstName() + " " + p.getValue().getLastName()));
+        profFieldTableColumn.setCellValueFactory((CellDataFeatures<Person, String> p) -> new ReadOnlyObjectWrapper(p.getValue().getField().getName()));
+        profPhoneTableColumn.setCellValueFactory((CellDataFeatures<Person, String> p) -> new ReadOnlyObjectWrapper(p.getValue().getPhone()));
+        List l = pm.selectAllByFieldName(Login.loggedUserField);
+        l.stream().forEach((p) ->
+        {
+            personList.add((Person) p);
+        });
+        profTableView.setItems(personList);
     }
 
-    private void updateCourseTableView() {
+    public void updateCourseTableView()
+    {
 
+        CourseManager cm = new CourseManager();
+        ObservableList<Course> courseList = FXCollections.observableArrayList();
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameTableColumn.setCellValueFactory((CellDataFeatures<Course, String> c) -> new ReadOnlyObjectWrapper(c.getValue().getName()));
+        typeTableColumn.setCellValueFactory((CellDataFeatures<Course, String> c) -> new ReadOnlyObjectWrapper(c.getValue().getCoursetype().getType()));
+        fieldTableColumn.setCellValueFactory((CellDataFeatures<Course, String> c) -> new ReadOnlyObjectWrapper(c.getValue().getField().getName()));
+        List l = cm.selectAllByFieldName(Login.loggedUserField);
+        l.stream().forEach((c) ->
+        {
+            courseList.add((Course) c);
+        });
+        courseTableView.setItems(courseList);
     }
-
 
 }

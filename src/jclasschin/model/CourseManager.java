@@ -23,13 +23,13 @@
  */
 package jclasschin.model;
 
+import java.util.List;
 import jclasschin.entity.Course;
 import jclasschin.entity.Coursetype;
 import jclasschin.entity.Field;
-import jclasschin.entity.Person;
-import jclasschin.entity.User;
 import jclasschin.util.HibernateUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -59,51 +59,96 @@ public class CourseManager
             session.beginTransaction();
             session.save(course);
             session.getTransaction().commit();
-
             return true;
 
-        } catch (HibernateException e)
+        }
+        catch (HibernateException e)
         {
             return false;
-        } finally
-        {
-            session.close();
         }
+//        finally
+//        {
+//            session.close();
+//        }
+    }
+
+    public List selectAll()
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            List resultList = session.createQuery("from Course").list();
+            session.getTransaction().commit();
+            return resultList;
+        }
+        catch (HibernateException he)
+        {
+            return null;
+        }
+//        finally
+//        {
+//            session.close();
+//        }
 
     }
-//
-//    public boolean insert(String courseName, Coursetype courseType, Field field)
-//    {
-//        course = new Course();
-//        course.setName(courseName);
-//        course.setCoursetype(courseType);
-//        course.setField(field);
-//        session = (Session) HibernateUtil.getSessionFactory().openSession();
-//        session.beginTransaction();
-//        session.save(course);
-//        session.getTransaction().commit();
-//        return true;
-//
-//    }
-//
-//    public boolean insert(String courseName, String courseType, User loggedUser)
-//    {
-//
-//        courseTypeManager = new CourseTypeManager();
-//
-//        course = new Course();
-//        course.setName(courseName);
-//        course.setCoursetype(courseTypeManager.selectByName(courseType));
-////        Person p=loggedUser.getPerson();
-////        Field f= p.getField();
-//        course.setField(loggedUser.getPerson().getField());
-//
-//        session = (Session) HibernateUtil.getSessionFactory().openSession();
-//        session.beginTransaction();
-//        session.save(course);
-//        session.getTransaction().commit();
-//
-//        return true;
-//    }
+    public List selectAllByFieldName(String filedName)
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery("from Course c where c.field.name=:cfn");
+            q.setParameter("cfn", filedName);
+            List resultList = q.list();
+            session.getTransaction().commit();
+            return resultList;
+        }
+        catch (HibernateException he)
+        {
+            return null;
+        }
+    }
+
+    public boolean update(Integer id,String type, String name)
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            course = (Course) session.load(Course.class, id);
+            Field field = (Field) session.load(Field.class, Login.loggedUserID);
+            courseTypeManager  = new CourseTypeManager();
+            Coursetype coursetype = courseTypeManager.selectByName(type);
+            course.setName(name);
+            course.setField(field);
+            course.setCoursetype(coursetype);
+            session.update(course);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (HibernateException e)
+        {
+            return false;
+        }
+    }
+
+    public boolean delete(Integer id)
+    {
+        try
+        {
+            session = (Session) HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            course = (Course) session.load(Course.class, id);
+            session.delete(course);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (HibernateException e)
+        {
+            return false;
+        }
+    }
 
 }

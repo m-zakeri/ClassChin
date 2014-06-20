@@ -32,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import jclasschin.entity.Course;
+import jclasschin.model.CourseManager;
 
 /**
  * FXML Controller class
@@ -43,7 +44,7 @@ public class GroupsCoursesDeleteDialogController implements Initializable
 
     private Stage groupsCoursesDeleteDialogStage;
     private Course editableCourse;
-    
+
     @FXML
     private HBox yesHBox;
     @FXML
@@ -75,6 +76,8 @@ public class GroupsCoursesDeleteDialogController implements Initializable
     @FXML
     private void yesHBoxOnMouseClicked(MouseEvent event)
     {
+        CourseManager cm = new CourseManager();
+        cm.delete(editableCourse.getId());
         groupsCoursesDeleteDialogStage.close();
     }
 
@@ -103,7 +106,8 @@ public class GroupsCoursesDeleteDialogController implements Initializable
     }
 
     /**
-     * @param groupsCoursesEditDialogStage the groupsCoursesEditDialogStage to set
+     * @param groupsCoursesEditDialogStage the groupsCoursesEditDialogStage to
+     * set
      */
     public void setGroupsCoursesDeleteDialogStage(Stage groupsCoursesDeleteDialogStage)
     {

@@ -35,18 +35,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import jclasschin.entity.Coursetype;
-import jclasschin.entity.Field;
-import jclasschin.entity.User;
 import jclasschin.model.CourseManager;
 import jclasschin.model.CourseTypeManager;
-import jclasschin.model.Login;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class GroupsCoursesNewDialogController implements Initializable {
+public class GroupsCoursesNewDialogController implements Initializable
+{
 
     private Stage groupsCoursesNewDialog;
 
@@ -67,49 +65,51 @@ public class GroupsCoursesNewDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
     @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
         CourseManager cm = new CourseManager();
-        //  String s=nameTextField.getText();
-        //Coursetype ct=new CourseTypeManager().selectByName(typeComboBox.getValue());
-        // Coursetype ct=new Coursetype("Saberi");
-        // Field f=Login.getLogedUser().getPerson().getField();
         cm.insert(nameTextField.getText(), typeComboBox.getValue());
-        //  groupsCoursesNewDialog.close();
+        groupsCoursesNewDialog.close();
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
         groupsCoursesNewDialog.close();
     }
 
     /**
      * @return the groupsCoursesNewDialog
      */
-    public Stage getGroupsCoursesNewDialog() {
+    public Stage getGroupsCoursesNewDialog()
+    {
         return groupsCoursesNewDialog;
     }
 
     /**
      * @param groupsCoursesNewDialog the groupsCoursesNewDialog to set
      */
-    public void setGroupsCoursesNewDialog(Stage groupsCoursesNewDialog) {
+    public void setGroupsCoursesNewDialog(Stage groupsCoursesNewDialog)
+    {
         this.groupsCoursesNewDialog = groupsCoursesNewDialog;
     }
 
-    public void initDialog() {
+    public void initDialog()
+    {
         CourseTypeManager cm = new CourseTypeManager();
-        typeComboBox.getItems().add("Ali");
+        typeComboBox.getItems().clear();
         nameTextField.setText("");
 
         List courseTypeList = cm.selectAll();
-        courseTypeList.stream().forEach((ct) -> {
+        courseTypeList.stream().forEach((ct) ->
+        {
             typeComboBox.getItems().add(((Coursetype) ct).getType());
         });
     }
-
 }

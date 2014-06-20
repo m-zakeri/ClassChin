@@ -36,6 +36,7 @@ public class Login
     private User loggedUser;
     
     public static String loggedUserField;
+    public static Integer loggedUserID;
 
     /**
      * @return the logedUser
@@ -43,6 +44,7 @@ public class Login
     public User getLoggedUser()
     {
         loggedUserField = loggedUser.getPerson().getField().getName();
+        loggedUserID = loggedUser.getPerson().getField().getId();
         return loggedUser;
     }
 
