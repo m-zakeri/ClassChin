@@ -26,21 +26,29 @@ import jclasschin.JClassChin;
  */
 public class ClassLayoutController implements Initializable {
 
-    private final FXMLLoader classListNewDialogLoader, classListEditDialogLoader,
-            classListDeleteDialogLoader;
+    private  FXMLLoader classListNewDialogLoader, classListEditDialogLoader,
+            classListDeleteDialogLoader,classDedicateNewDialogLoader, classDedicateEditDialogLoader,
+            classDedicateDeleteDialogLoader;
 
-    private final AnchorPane classListNewDialogLayout, classListEditDialogLayout,
-            classListDeleteDialogLayout;
+    private  AnchorPane classListNewDialogLayout, classListEditDialogLayout,
+            classListDeleteDialogLayout,classDedicateNewDialogLayout, classDedicateEditDialogLayout,
+            classDedicateDeleteDialogLayout;
 
-    private final Scene classListNewDialogScene, classListEditDialogScene,
-            classListDeleteDialogScene;
+    private  Scene classListNewDialogScene, classListEditDialogScene,
+            classListDeleteDialogScene,classDedicateNewDialogScene, classDedicateEditDialogScene,
+            classDedicateDeleteDialogScene;
 
-    private final Stage classListNewDialogStage, classListEditDialogStage,
-            classListDeleteDialogStage;
+    private  Stage classListNewDialogStage, classListEditDialogStage,
+            classListDeleteDialogStage,classDedicateNewDialogStage, classDedicateEditDialogStage,
+            classDedicateDeleteDialogStage;
 
     private ClassListNewDialogController classListNewDialogController;
     private ClassListEditDialogController classListEditDialogController;
     private ClassListDeleteDialogController classListDeleteDialogController;
+    private ClassDedicateNewDialogController classDedicateNewDialogController;
+//    private ClassDedicateEditDialogController classDedicateEditDialogController;
+//    private ClassDedicateDeleteDialogController classDedicateDeleteDialogController;
+    
 
     public ClassLayoutController() throws IOException {
 
@@ -88,6 +96,23 @@ public class ClassLayoutController implements Initializable {
         classListDeleteDialogStage.initStyle(StageStyle.UTILITY);
 
         classListDeleteDialogController = classListDeleteDialogLoader.getController();
+        
+        /* List New Dialog */
+        classDedicateNewDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/ClassDedicateNewDialog.fxml"));
+        classDedicateNewDialogLayout = (AnchorPane) classDedicateNewDialogLoader.load();
+        classDedicateNewDialogScene = new Scene(classDedicateNewDialogLayout);
+        classDedicateNewDialogStage = new Stage();
+        classDedicateNewDialogStage.setScene(classDedicateNewDialogScene);
+        classDedicateNewDialogStage.setTitle("تخصیص جدید");
+        classDedicateNewDialogStage.initModality(Modality.WINDOW_MODAL);
+        classDedicateNewDialogStage.initOwner(JClassChin.getMainStage());
+        classDedicateNewDialogStage.setResizable(false);
+        classDedicateNewDialogStage.initStyle(StageStyle.UTILITY);
+
+        classDedicateNewDialogController = classDedicateNewDialogLoader.getController();
+
+        
     }
 
     /**
@@ -119,5 +144,26 @@ public class ClassLayoutController implements Initializable {
         
         //updateClassListTableView();
     }
+
+ 
+    
+    @FXML
+    private void newDedicateHBoxOnMouseClicked(MouseEvent event)
+    {
+        classDedicateNewDialogController.createClassDedicateCheckListBox();
+        classDedicateNewDialogStage.showAndWait();
+    }
+
+    @FXML
+    private void editDedicateHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void deleteDedicateHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+    
+    
 
 }

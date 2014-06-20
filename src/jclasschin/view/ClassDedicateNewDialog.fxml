@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="classDedicateNewDialogAnchorPane" prefHeight="578.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.ClassDedicateNewDialogController">
+   <children>
+      <HBox id="HBox" alignment="CENTER" layoutX="73.0" layoutY="515.0" spacing="40.0">
+         <children>
+            <HBox id="HBox" fx:id="okHBox" alignment="CENTER" onMouseClicked="#okHBoxOnMouseClicked" spacing="10.0">
+               <children>
+                  <ImageView id="okButton" fx:id="okImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../gallery/image/okButton.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="تایید">
+                     <font>
+                        <Font name="B Nazanin" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="HBox" fx:id="cancelHBox" alignment="CENTER" onMouseClicked="#cancelHBoxOnMouseClicked" spacing="10.0">
+               <children>
+                  <ImageView id="okButton" fx:id="cancelImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../gallery/image/cancelButton.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="انصراف">
+                     <font>
+                        <Font name="B Nazanin" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
