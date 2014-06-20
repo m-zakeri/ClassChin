@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -33,13 +32,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Classroom;
+import jclasschin.model.ClassManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class ClassListEditDialogController implements Initializable {
+public class ClassListEditDialogController implements Initializable
+{
+
+    private Stage classEditDialogStage;
+    private Classroom editableClass;
+    private ClassManager classManager;
+    
     @FXML
     private TextField floorTextField;
     @FXML
@@ -65,16 +73,67 @@ public class ClassListEditDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
+    }
+    
     @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        ClassManager cm = new ClassManager();
+        cm.update(editableClass.getId(),classNameTextField.getText(),floorTextField.getText(),Integer.parseInt(capacityTextField.getText()),
+                videoProjectorCheckBox.isSelected(),whiteBoardCheckBox.isSelected(),blackBoardCheckBox.isSelected());
+       
+        classEditDialogStage.close();
+    }
+    
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+        classEditDialogStage.close();
     }
 
-    @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    /**
+     * @return the classEditDialogStage
+     */
+    public Stage getClassEditDialogStage()
+    {
+        return classEditDialogStage;
+    }
+
+    /**
+     * @param classEditDialogStage the classEditDialogStage to set
+     */
+    public void setClassEditDialogStage(Stage classEditDialogStage)
+    {
+        this.classEditDialogStage = classEditDialogStage;
+    }
+
+    /**
+     * @return the editableClass
+     */
+    public Classroom getEditableClass()
+    {
+        return editableClass;
+    }
+
+    /**
+     * @param editableClass the editableClass to set
+     */
+    public void setEditableClass(Classroom editableClass)
+    {
+        this.editableClass = editableClass;
+    }
+    
+    public void initDialog()
+    {
+        classNameTextField.setText(editableClass.getName());
+        floorTextField.setText(editableClass.getFloor());
+        capacityTextField.setText(editableClass.getCapacity() + "");
+        videoProjectorCheckBox.setSelected(editableClass.getDataProjector());
+        whiteBoardCheckBox.setSelected(editableClass.getWhiteboard());
+        blackBoardCheckBox.setSelected(editableClass.getBlackboard());
     }
     
 }

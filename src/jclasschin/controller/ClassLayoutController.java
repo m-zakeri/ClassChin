@@ -1,45 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jclasschin.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jclasschin.JClassChin;
+import jclasschin.entity.Classroom;
+import jclasschin.entity.Course;
+import jclasschin.model.ClassManager;
+import jclasschin.model.CourseManager;
+import jclasschin.model.Login;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class ClassLayoutController implements Initializable {
+public class ClassLayoutController implements Initializable
+{
 
-    private  FXMLLoader classListNewDialogLoader, classListEditDialogLoader,
-            classListDeleteDialogLoader,classDedicateNewDialogLoader, classDedicateEditDialogLoader,
+    private FXMLLoader classListNewDialogLoader, classListEditDialogLoader,
+            classListDeleteDialogLoader, classDedicateNewDialogLoader, classDedicateEditDialogLoader,
             classDedicateDeleteDialogLoader;
 
-    private  AnchorPane classListNewDialogLayout, classListEditDialogLayout,
-            classListDeleteDialogLayout,classDedicateNewDialogLayout, classDedicateEditDialogLayout,
+    private AnchorPane classListNewDialogLayout, classListEditDialogLayout,
+            classListDeleteDialogLayout, classDedicateNewDialogLayout, classDedicateEditDialogLayout,
             classDedicateDeleteDialogLayout;
 
-    private  Scene classListNewDialogScene, classListEditDialogScene,
-            classListDeleteDialogScene,classDedicateNewDialogScene, classDedicateEditDialogScene,
+    private Scene classListNewDialogScene, classListEditDialogScene,
+            classListDeleteDialogScene, classDedicateNewDialogScene, classDedicateEditDialogScene,
             classDedicateDeleteDialogScene;
 
-    private  Stage classListNewDialogStage, classListEditDialogStage,
-            classListDeleteDialogStage,classDedicateNewDialogStage, classDedicateEditDialogStage,
+    private Stage classListNewDialogStage, classListEditDialogStage,
+            classListDeleteDialogStage, classDedicateNewDialogStage, classDedicateEditDialogStage,
             classDedicateDeleteDialogStage;
 
     private ClassListNewDialogController classListNewDialogController;
@@ -48,11 +56,27 @@ public class ClassLayoutController implements Initializable {
     private ClassDedicateNewDialogController classDedicateNewDialogController;
 //    private ClassDedicateEditDialogController classDedicateEditDialogController;
 //    private ClassDedicateDeleteDialogController classDedicateDeleteDialogController;
-    
+    @FXML
+    private TableView<Classroom> classTableView;
+    @FXML
+    private TableColumn<Classroom, Integer> classIdTableColumn;
+    @FXML
+    private TableColumn<Classroom, String> classNameTableColumn;
+    @FXML
+    private TableColumn<Classroom, String> floorTableColumn;
+    @FXML
+    private TableColumn<Classroom, Integer> capacityTableColumn;
+    @FXML
+    private TableColumn<Classroom, Boolean> videoProjectTableColumn;
+    @FXML
+    private TableColumn<Classroom, Boolean> whiteBoardTableColumn;
+    @FXML
+    private TableColumn<Classroom, Boolean> blackBoardTableColumn;
 
-    public ClassLayoutController() throws IOException {
+    public ClassLayoutController() throws IOException
+    {
 
-        /* List New Dialog */
+        /* Class New Dialog */
         classListNewDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/ClassListNewDialog.fxml"));
         classListNewDialogLayout = (AnchorPane) classListNewDialogLoader.load();
@@ -67,7 +91,7 @@ public class ClassLayoutController implements Initializable {
 
         classListNewDialogController = classListNewDialogLoader.getController();
 
-        /* List Edit Dialog   */
+        /* Class Edit Dialog   */
         classListEditDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/ClassListEditDialog.fxml"));
         classListEditDialogLayout = (AnchorPane) classListEditDialogLoader.load();
@@ -82,7 +106,7 @@ public class ClassLayoutController implements Initializable {
 
         classListEditDialogController = classListEditDialogLoader.getController();
 
-        /* List Delete Dialog   */
+        /* Class Delete Dialog   */
         classListDeleteDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/ClassListDeleteDialog.fxml"));
         classListDeleteDialogLayout = (AnchorPane) classListDeleteDialogLoader.load();
@@ -96,7 +120,7 @@ public class ClassLayoutController implements Initializable {
         classListDeleteDialogStage.initStyle(StageStyle.UTILITY);
 
         classListDeleteDialogController = classListDeleteDialogLoader.getController();
-        
+
         /* List New Dialog */
         classDedicateNewDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/ClassDedicateNewDialog.fxml"));
@@ -112,41 +136,58 @@ public class ClassLayoutController implements Initializable {
 
         classDedicateNewDialogController = classDedicateNewDialogLoader.getController();
 
-        
     }
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
     @FXML
-    private void newClassHBoxOnMouseClicked(MouseEvent event) {
-        
+    private void newClassHBoxOnMouseClicked(MouseEvent event)
+    {
+        classListNewDialogController.setClassListNewDialogStage(classListNewDialogStage);
+        classListNewDialogController.initDialog();
         classListNewDialogStage.showAndWait();
-        
-        //updateClassListTableView();
+
+        updateClassListTableView();
     }
 
     @FXML
-    private void editClassHBoxOnMouseClicked(MouseEvent event) {
-        classListEditDialogStage.showAndWait();
-        
-        //updateClassListTableView();
+    private void editClassHBoxOnMouseClicked(MouseEvent event)
+    {
+
+        if (classTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Classroom c = classTableView.getSelectionModel().getSelectedItem();
+            classListEditDialogController.setClassEditDialogStage(classListEditDialogStage);
+            classListEditDialogController.setEditableClass(c);
+            classListEditDialogController.initDialog();
+            classListEditDialogStage.showAndWait();
+            updateClassListTableView();
+        }
+
     }
 
     @FXML
-    private void deleteClassHBoxOnMouseClicked(MouseEvent event) {
-        classListDeleteDialogStage.showAndWait();
-        
-        //updateClassListTableView();
+    private void deleteClassHBoxOnMouseClicked(MouseEvent event)
+    {
+
+        if (classTableView.getSelectionModel().getSelectedIndex() != -1)
+        {
+            Classroom c = classTableView.getSelectionModel().getSelectedItem();
+            classListDeleteDialogController.setClassListDeleteDialogStage(classListDeleteDialogStage);
+            classListDeleteDialogController.setEditableClass(c);
+            classListDeleteDialogStage.showAndWait();
+
+            updateClassListTableView();
+        }
     }
 
- 
-    
     @FXML
     private void newDedicateHBoxOnMouseClicked(MouseEvent event)
     {
@@ -163,7 +204,24 @@ public class ClassLayoutController implements Initializable {
     private void deleteDedicateHBoxOnMouseClicked(MouseEvent event)
     {
     }
-    
-    
+
+    public void updateClassListTableView()
+    {
+        ClassManager cm = new ClassManager();
+        ObservableList<Classroom> classList = FXCollections.observableArrayList();
+        classIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        classNameTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, String> c) -> new ReadOnlyObjectWrapper(c.getValue().getName()));
+        floorTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, String> c) -> new ReadOnlyObjectWrapper(c.getValue().getFloor()));
+        capacityTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, Integer> c) -> new ReadOnlyObjectWrapper(c.getValue().getCapacity()));
+        videoProjectTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, Boolean> c) -> new ReadOnlyObjectWrapper(c.getValue().getDataProjector() ? "دارد" : "ندارد"));
+        whiteBoardTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, Boolean> c) -> new ReadOnlyObjectWrapper(c.getValue().getWhiteboard() ? "دارد" : "ندارد"));
+        blackBoardTableColumn.setCellValueFactory((TableColumn.CellDataFeatures<Classroom, Boolean> c) -> new ReadOnlyObjectWrapper(c.getValue().getBlackboard() ? "دارد" : "ندارد"));
+        List l = cm.selectAll();
+        l.stream().forEach((c) ->
+        {
+            classList.add((Classroom) c);
+        });
+        classTableView.setItems(classList);
+    }
 
 }

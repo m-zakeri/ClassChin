@@ -16,15 +16,15 @@
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
-                <TableView prefHeight="200.0" prefWidth="200.0">
+                <TableView fx:id="classTableView" prefHeight="200.0" prefWidth="200.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="ردیف" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="نام کلاس" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="110.0" text="طبقه" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="237.0" text="ظرفیت" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="ویدئو" />
-                              <TableColumn prefWidth="104.0" text="تخته سفید" />
-                              <TableColumn prefWidth="75.0" text="تخته سیاه" />
+                    <TableColumn fx:id="classIdTableColumn" prefWidth="75.0" text="ردیف" />
+                    <TableColumn fx:id="classNameTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="226.0" text="نام کلاس" />
+                    <TableColumn fx:id="floorTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="99.0" text="طبقه" />
+                    <TableColumn fx:id="capacityTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="114.0" text="ظرفیت" />
+                    <TableColumn fx:id="videoProjectTableColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="ویدئو" />
+                              <TableColumn fx:id="whiteBoardTableColumn" prefWidth="104.0" text="تخته سفید" />
+                              <TableColumn fx:id="blackBoardTableColumn" prefWidth="109.0" text="تخته سیاه" />
                   </columns>
                 </TableView>
               </center>

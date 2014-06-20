@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -31,13 +30,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.entity.Classroom;
+import jclasschin.model.ClassManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class ClassListDeleteDialogController implements Initializable {
+public class ClassListDeleteDialogController implements Initializable
+{
+    private Stage classListDeleteDialogStage;
+    private Classroom editableClass;
+    private ClassManager classManager;
+
     @FXML
     private HBox yesHBox;
     @FXML
@@ -51,32 +58,80 @@ public class ClassListDeleteDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void yesHBoxOnMouseExited(MouseEvent event) {
     }
 
     @FXML
-    private void yesHBoxOnMouseEntered(MouseEvent event) {
+    private void yesHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void yesHBoxOnMouseClicked(MouseEvent event) {
+    private void yesHBoxOnMouseEntered(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseExited(MouseEvent event) {
+    private void yesHBoxOnMouseClicked(MouseEvent event)
+    {
+        classManager = new ClassManager();
+        classManager.delete(editableClass.getId());
+        classListDeleteDialogStage.close();
     }
 
     @FXML
-    private void noHBoxOnMouseEntered(MouseEvent event) {
+    private void noHBoxOnMouseExited(MouseEvent event)
+    {
     }
 
     @FXML
-    private void noHBoxOnMouseClicked(MouseEvent event) {
+    private void noHBoxOnMouseEntered(MouseEvent event)
+    {
     }
-    
+
+    @FXML
+    private void noHBoxOnMouseClicked(MouseEvent event)
+    {
+        classListDeleteDialogStage.close();
+    }
+
+    void initDialog()
+    {
+
+    }
+
+    /**
+     * @return the classListDeleteDialogStage
+     */
+    public Stage getClassListDeleteDialogStage()
+    {
+        return classListDeleteDialogStage;
+    }
+
+    /**
+     * @param classListDeleteDialogStage the classListDeleteDialogStage to set
+     */
+    public void setClassListDeleteDialogStage(Stage classListDeleteDialogStage)
+    {
+        this.classListDeleteDialogStage = classListDeleteDialogStage;
+    }
+
+    /**
+     * @return the editableClass
+     */
+    public Classroom getEditableClass()
+    {
+        return editableClass;
+    }
+
+    /**
+     * @param editableClass the editableClass to set
+     */
+    public void setEditableClass(Classroom editableClass)
+    {
+        this.editableClass = editableClass;
+    }
+
 }

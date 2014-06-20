@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package jclasschin.controller;
 
 import java.net.URL;
@@ -33,13 +32,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jclasschin.model.ClassManager;
 
 /**
  * FXML Controller class
  *
  * @author Ali
  */
-public class ClassListNewDialogController implements Initializable {
+public class ClassListNewDialogController implements Initializable
+{
+    private Stage classListNewDialogStage;
+    private ClassManager classManager;
+
     @FXML
     private TextField floorTextField;
     @FXML
@@ -65,16 +70,51 @@ public class ClassListNewDialogController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event) {
     }
 
     @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event) {
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
+        classManager = new ClassManager();
+        classManager.insert(classNameTextField.getText(),floorTextField.getText(),Integer.parseInt(capacityTextField.getText()),
+                whiteBoardCheckBox.isSelected(),blackBoardCheckBox.isSelected(),videoProjectorCheckBox.isSelected());
+        classListNewDialogStage.close();
     }
-    
+
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
+    {
+        classListNewDialogStage.close();
+    }
+
+    /**
+     * @return the classListNewDialogStage
+     */
+    public Stage getClassListNewDialogStage()
+    {
+        return classListNewDialogStage;
+    }
+
+    /**
+     * @param classListNewDialogStage the classListNewDialogStage to set
+     */
+    public void setClassListNewDialogStage(Stage classListNewDialogStage)
+    {
+        this.classListNewDialogStage = classListNewDialogStage;
+    }
+
+    void initDialog()
+    {
+        classNameTextField.setText("");
+        floorTextField.setText("");
+        capacityTextField.setText("");
+        whiteBoardCheckBox.setSelected(true);
+        blackBoardCheckBox.setSelected(false);
+        videoProjectorCheckBox.setSelected(false);
+        
+    }
+
 }

@@ -402,6 +402,7 @@ public class MainLayoutController implements Initializable
         mainLayout.setCenter(classLayout);
         classImageView.setImage(classButtonOnMouseClicked);
         classHBoxOnMouseClickedFlag = true;
+        classLayoutController.updateClassListTableView();
     }
 
     @FXML
