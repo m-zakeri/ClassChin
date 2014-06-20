@@ -1,5 +1,5 @@
 package jclasschin.entity;
-// Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0
+// Generated Jun 20, 2014 4:27:44 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -15,6 +15,7 @@ public class Schedule  implements java.io.Serializable {
      private String name;
      private Integer numberOfPeriods;
      private Set periods = new HashSet(0);
+     private Set ctacsses = new HashSet(0);
 
     public Schedule() {
     }
@@ -23,10 +24,11 @@ public class Schedule  implements java.io.Serializable {
     public Schedule(String name) {
         this.name = name;
     }
-    public Schedule(String name, Integer numberOfPeriods, Set periods) {
+    public Schedule(String name, Integer numberOfPeriods, Set periods, Set ctacsses) {
        this.name = name;
        this.numberOfPeriods = numberOfPeriods;
        this.periods = periods;
+       this.ctacsses = ctacsses;
     }
    
     public Integer getId() {
@@ -56,6 +58,13 @@ public class Schedule  implements java.io.Serializable {
     
     public void setPeriods(Set periods) {
         this.periods = periods;
+    }
+    public Set getCtacsses() {
+        return this.ctacsses;
+    }
+    
+    public void setCtacsses(Set ctacsses) {
+        this.ctacsses = ctacsses;
     }
 
 

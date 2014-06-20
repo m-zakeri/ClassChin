@@ -1,5 +1,5 @@
 package jclasschin.entity;
-// Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0
+// Generated Jun 20, 2014 4:27:44 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;

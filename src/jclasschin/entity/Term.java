@@ -1,5 +1,5 @@
 package jclasschin.entity;
-// Generated Jun 19, 2014 7:07:55 PM by Hibernate Tools 3.6.0
+// Generated Jun 20, 2014 4:27:44 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,6 +13,7 @@ public class Term  implements java.io.Serializable {
 
      private Integer id;
      private String name;
+     private Set ctacsses = new HashSet(0);
      private Set mails = new HashSet(0);
      private Set dedications = new HashSet(0);
      private Set statuses = new HashSet(0);
@@ -24,8 +25,9 @@ public class Term  implements java.io.Serializable {
     public Term(String name) {
         this.name = name;
     }
-    public Term(String name, Set mails, Set dedications, Set statuses) {
+    public Term(String name, Set ctacsses, Set mails, Set dedications, Set statuses) {
        this.name = name;
+       this.ctacsses = ctacsses;
        this.mails = mails;
        this.dedications = dedications;
        this.statuses = statuses;
@@ -44,6 +46,13 @@ public class Term  implements java.io.Serializable {
     
     public void setName(String name) {
         this.name = name;
+    }
+    public Set getCtacsses() {
+        return this.ctacsses;
+    }
+    
+    public void setCtacsses(Set ctacsses) {
+        this.ctacsses = ctacsses;
     }
     public Set getMails() {
         return this.mails;
