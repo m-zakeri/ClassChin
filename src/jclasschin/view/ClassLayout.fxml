@@ -145,7 +145,7 @@
                   <children>
                     <HBox id="HBox" alignment="CENTER" spacing="30.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                       <children>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#newScheduleHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="addButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
@@ -155,7 +155,7 @@
                             <Label text="جدید" />
                           </children>
                         </HBox>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#editScheduleHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="replyButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true">
                               <image>
@@ -165,7 +165,7 @@
                             <Label text="ویرایش" />
                           </children>
                         </HBox>
-                        <HBox id="HBox" alignment="CENTER" spacing="10.0">
+                        <HBox id="HBox" alignment="CENTER" onMouseClicked="#deleteScheduleHBoxOnMouseClicked" spacing="10.0">
                           <children>
                             <ImageView id="deleteButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" x="0.0">
                               <image>
@@ -177,10 +177,10 @@
                         </HBox>
                       </children>
                     </HBox>
-                    <HBox id="HBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="23.5" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.5">
+                    <HBox id="HBox" alignment="CENTER" layoutX="715.0" layoutY="12.0" prefHeight="41.0" prefWidth="251.0" spacing="10.0" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="12.0">
                       <children>
                         <Label text="برنامه دوره جاری" />
-                        <ComboBox prefWidth="141.0">
+                        <ComboBox prefHeight="36.0" prefWidth="141.0">
                           <items>
                             <FXCollections fx:factory="observableArrayList">
                               <String fx:value="Item 1" />

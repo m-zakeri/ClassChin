@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="classDedicateNewDialogAnchorPane" prefHeight="578.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.ClassDedicateNewDialogController">
+<AnchorPane id="AnchorPane" fx:id="classDedicateEditDialogAnchorPane" prefHeight="578.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.ClassDedicateEditDialogController">
    <children>
       <HBox id="HBox" alignment="CENTER" layoutX="66.0" layoutY="515.0" spacing="40.0">
          <children>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="false" depthTest="DISABLE" disable="false" focusTraversable="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="169.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jclasschin.controller.ClassDedicateDeleteDialogController">
+  <children>
+    <VBox id="VBox" alignment="TOP_LEFT" layoutX="21.0" layoutY="55.0" spacing="20.0" />
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../gallery/image/warningIcon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="81.0" layoutY="33.0" prefHeight="27.0" prefWidth="435.0" text="آیا مطمئن هستید که می خواهید این تخصیص را حذف کنید؟">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <HBox id="HBox" alignment="CENTER" layoutX="144.0" layoutY="98.0" prefHeight="45.0" prefWidth="249.0" spacing="40.0">
+         <children>
+            <HBox id="HBox" fx:id="yesHBox" alignment="CENTER" onMouseClicked="#yesHBoxOnMouseClicked" onMouseEntered="#yesHBoxOnMouseEntered" onMouseExited="#yesHBoxOnMouseExited" spacing="10.0">
+               <children>
+                  <ImageView id="okButton" fx:id="okImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+                     <image>
+                        <Image preserveRatio="true" smooth="true" url="@../gallery/image/okButton.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="تایید" />
+               </children>
+            </HBox>
+            <HBox id="HBox" fx:id="noHBox" alignment="CENTER" onMouseClicked="#noHBoxOnMouseClicked" onMouseEntered="#noHBoxOnMouseEntered" onMouseExited="#noHBoxOnMouseExited" spacing="10.0">
+               <children>
+                  <ImageView id="okButton" fx:id="cancelImageView" fitHeight="41.0" fitWidth="41.0" pickOnBounds="true">
+                     <image>
+                        <Image preserveRatio="true" smooth="true" url="@../gallery/image/cancelButton.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="انصراف" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+  </children>
+</AnchorPane>

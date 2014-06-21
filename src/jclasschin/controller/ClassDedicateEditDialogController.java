@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package jclasschin.controller;
 
 import java.net.URL;
@@ -29,7 +30,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
@@ -37,11 +37,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import jclasschin.JClassChin;
-import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.CheckListView;
 
 /**
@@ -49,11 +47,10 @@ import org.controlsfx.control.CheckListView;
  *
  * @author Ali
  */
-public class ClassDedicateNewDialogController implements Initializable
+public class ClassDedicateEditDialogController implements Initializable
 {
-
     @FXML
-    private AnchorPane classDedicateNewDialogAnchorPane;
+    private AnchorPane classDedicateEditDialogAnchorPane;
     @FXML
     private HBox okHBox;
     @FXML
@@ -70,12 +67,22 @@ public class ClassDedicateNewDialogController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+    }    
+
+    @FXML
+    private void okHBoxOnMouseClicked(MouseEvent event)
+    {
     }
 
-    public void initDialog()
+    @FXML
+    private void cancelHBoxOnMouseClicked(MouseEvent event)
     {
-        String css = JClassChin.class.getResource("gallery/css/CSS.css").toString();
-        classDedicateNewDialogAnchorPane.getStylesheets().add(css);
+    }
+
+    void initDialog()
+    {
+ String css = JClassChin.class.getResource("gallery/css/CSS.css").toString();
+        classDedicateEditDialogAnchorPane.getStylesheets().add(css);
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.TOP_CENTER);
         gridPane.setLayoutX(30);
@@ -112,18 +119,9 @@ public class ClassDedicateNewDialogController implements Initializable
 //                updateText(checkedItemsLabel, c.getList());
 //            }
 //        });
-        classDedicateNewDialogAnchorPane.getChildren().add(gridPane);
-        classDedicateNewDialogAnchorPane.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        classDedicateEditDialogAnchorPane.getChildren().add(gridPane);
+        classDedicateEditDialogAnchorPane.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+    
     }
-
-    @FXML
-    private void okHBoxOnMouseClicked(MouseEvent event)
-    {
-    }
-
-    @FXML
-    private void cancelHBoxOnMouseClicked(MouseEvent event)
-    {
-    }
-
+    
 }

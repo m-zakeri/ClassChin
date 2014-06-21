@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,26 +37,35 @@ public class ClassLayoutController implements Initializable
 
     private FXMLLoader classListNewDialogLoader, classListEditDialogLoader,
             classListDeleteDialogLoader, classDedicateNewDialogLoader, classDedicateEditDialogLoader,
-            classDedicateDeleteDialogLoader;
+            classDedicateDeleteDialogLoader, classScheduleNewDialogLoader, classScheduleEditDialogLoader,
+            classScheduleDeleteDialogLoader;
 
     private AnchorPane classListNewDialogLayout, classListEditDialogLayout,
             classListDeleteDialogLayout, classDedicateNewDialogLayout, classDedicateEditDialogLayout,
-            classDedicateDeleteDialogLayout;
+            classDedicateDeleteDialogLayout, classScheduleDeleteDialogLayout;
+    
+    private ScrollPane classScheduleNewDialogLayout, classScheduleEditDialogLayout;
 
     private Scene classListNewDialogScene, classListEditDialogScene,
             classListDeleteDialogScene, classDedicateNewDialogScene, classDedicateEditDialogScene,
-            classDedicateDeleteDialogScene;
+            classDedicateDeleteDialogScene, classScheduleNewDialogScene, classScheduleEditDialogScene,
+            classScheduleDeleteDialogScene;
 
     private Stage classListNewDialogStage, classListEditDialogStage,
             classListDeleteDialogStage, classDedicateNewDialogStage, classDedicateEditDialogStage,
-            classDedicateDeleteDialogStage;
+            classDedicateDeleteDialogStage, classScheduleNewDialogStage, classScheduleEditDialogStage,
+            classScheduleDeleteDialogStage;
 
     private ClassListNewDialogController classListNewDialogController;
     private ClassListEditDialogController classListEditDialogController;
     private ClassListDeleteDialogController classListDeleteDialogController;
     private ClassDedicateNewDialogController classDedicateNewDialogController;
-//    private ClassDedicateEditDialogController classDedicateEditDialogController;
-//    private ClassDedicateDeleteDialogController classDedicateDeleteDialogController;
+    private ClassDedicateEditDialogController classDedicateEditDialogController;
+    private ClassDedicateDeleteDialogController classDedicateDeleteDialogController;
+    private ClassScheduleNewDialogController classScheduleNewDialogController;
+//    private ClassScheduleEditDialogController classScheduleEditDialogController;
+//    private ClassScheduleDeleteDialogController classScheduleDeleteDialogController;
+
     @FXML
     private TableView<Classroom> classTableView;
     @FXML
@@ -121,7 +131,7 @@ public class ClassLayoutController implements Initializable
 
         classListDeleteDialogController = classListDeleteDialogLoader.getController();
 
-        /* List New Dialog */
+        /* Dedicate New Dialog */
         classDedicateNewDialogLoader
                 = new FXMLLoader(JClassChin.class.getResource("view/ClassDedicateNewDialog.fxml"));
         classDedicateNewDialogLayout = (AnchorPane) classDedicateNewDialogLoader.load();
@@ -135,6 +145,51 @@ public class ClassLayoutController implements Initializable
         classDedicateNewDialogStage.initStyle(StageStyle.UTILITY);
 
         classDedicateNewDialogController = classDedicateNewDialogLoader.getController();
+
+        /* Dedicate Edit Dialog */
+        classDedicateEditDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/ClassDedicateEditDialog.fxml"));
+        classDedicateEditDialogLayout = (AnchorPane) classDedicateEditDialogLoader.load();
+        classDedicateEditDialogScene = new Scene(classDedicateEditDialogLayout);
+        classDedicateEditDialogStage = new Stage();
+        classDedicateEditDialogStage.setScene(classDedicateEditDialogScene);
+        classDedicateEditDialogStage.setTitle("ویرایش تخصیص");
+        classDedicateEditDialogStage.initModality(Modality.WINDOW_MODAL);
+        classDedicateEditDialogStage.initOwner(JClassChin.getMainStage());
+        classDedicateEditDialogStage.setResizable(false);
+        classDedicateEditDialogStage.initStyle(StageStyle.UTILITY);
+
+        classDedicateEditDialogController = classDedicateEditDialogLoader.getController();
+
+        /* Dedicate Delete Dialog */
+        classDedicateDeleteDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/ClassDedicateDeleteDialog.fxml"));
+        classDedicateDeleteDialogLayout = (AnchorPane) classDedicateDeleteDialogLoader.load();
+        classDedicateDeleteDialogScene = new Scene(classDedicateDeleteDialogLayout);
+        classDedicateDeleteDialogStage = new Stage();
+        classDedicateDeleteDialogStage.setScene(classDedicateDeleteDialogScene);
+        classDedicateDeleteDialogStage.setTitle("حذف تخصیص");
+        classDedicateDeleteDialogStage.initModality(Modality.WINDOW_MODAL);
+        classDedicateDeleteDialogStage.initOwner(JClassChin.getMainStage());
+        classDedicateDeleteDialogStage.setResizable(false);
+        classDedicateDeleteDialogStage.initStyle(StageStyle.UTILITY);
+
+        classDedicateDeleteDialogController = classDedicateDeleteDialogLoader.getController();
+        
+        /* Class New Dialog */
+        classScheduleNewDialogLoader
+                = new FXMLLoader(JClassChin.class.getResource("view/ClassScheduleNewDialog.fxml"));
+        classScheduleNewDialogLayout = (ScrollPane) classScheduleNewDialogLoader.load();
+        classScheduleNewDialogScene = new Scene(classScheduleNewDialogLayout);
+        classScheduleNewDialogStage = new Stage();
+        classScheduleNewDialogStage.setScene(classScheduleNewDialogScene);
+        classScheduleNewDialogStage.setTitle("زمان بندی جدید");
+        classScheduleNewDialogStage.initModality(Modality.WINDOW_MODAL);
+        classScheduleNewDialogStage.initOwner(JClassChin.getMainStage());
+        classScheduleNewDialogStage.setResizable(false);
+        classScheduleNewDialogStage.initStyle(StageStyle.UTILITY);
+
+        classScheduleNewDialogController = classScheduleNewDialogLoader.getController();
 
     }
 
@@ -191,18 +246,21 @@ public class ClassLayoutController implements Initializable
     @FXML
     private void newDedicateHBoxOnMouseClicked(MouseEvent event)
     {
-        classDedicateNewDialogController.createClassDedicateCheckListBox();
+        classDedicateNewDialogController.initDialog();
         classDedicateNewDialogStage.showAndWait();
     }
 
     @FXML
     private void editDedicateHBoxOnMouseClicked(MouseEvent event)
     {
+        classDedicateEditDialogController.initDialog();
+        classDedicateEditDialogStage.showAndWait();
     }
 
     @FXML
     private void deleteDedicateHBoxOnMouseClicked(MouseEvent event)
     {
+        classDedicateDeleteDialogStage.showAndWait();
     }
 
     public void updateClassListTableView()
@@ -222,6 +280,24 @@ public class ClassLayoutController implements Initializable
             classList.add((Classroom) c);
         });
         classTableView.setItems(classList);
+    }
+
+    @FXML
+    private void newScheduleHBoxOnMouseClicked(MouseEvent event)
+    {
+        classScheduleNewDialogController.initDialog();
+        classScheduleNewDialogStage.showAndWait();
+        
+    }
+
+    @FXML
+    private void editScheduleHBoxOnMouseClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void deleteScheduleHBoxOnMouseClicked(MouseEvent event)
+    {
     }
 
 }
