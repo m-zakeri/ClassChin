@@ -1,6 +1,5 @@
-CCFRe
+ClassChin Project source code
 =====
-
-Class Chin Repository. Seems Final!
+Here is some source code for classchin project in javaFX 8.
 
 1393-02-23
